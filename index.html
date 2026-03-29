@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🌮 Rreal Tacos — Operations Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f4f8; color: #111118; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #c2006e 0%, #e91e8c 50%, #ad1457 100%);
+    color: white; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.35);
+  }
+  .header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
+  .header .subtitle { font-size: 0.9rem; opacity: 0.85; margin-top: 2px; }
+  .live-badge {
+    background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .live-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+  /* Tabs */
+  .tabs { background: white; border-bottom: 2px solid #f0e0f5; padding: 0 32px; display: flex; gap: 4px; overflow-x: auto; }
+  .tab {
+    padding: 14px 20px; cursor: pointer; font-weight: 600; font-size: 0.88rem;
+    border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.2s;
+    color: #666680;
+  }
+  .tab:hover { color: #c2006e; background: #fce4ec; }
+  .tab.active { color: #c2006e; border-bottom-color: #c2006e; background: #fce4ec; }
+
+  /* Content */
+  .content { padding: 28px 32px; max-width: 1400px; margin: 0 auto; background: #f4f4f8; }
+  .tab-panel { display: none; background: #f4f4f8; }
+  .tab-panel.active { display: block; }
+
+  /* Metric Cards */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .metric-card {
+    background: white; border-radius: 16px; padding: 20px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    border-left: 4px solid;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .metric-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(194,0,110,0.15); }
+  .metric-card.green { border-left-color: #c2006e; }
+  .metric-card.blue { border-left-color: #1565c0; }
+  .metric-card.orange { border-left-color: #e91e8c; }
+  .metric-card.purple { border-left-color: #6a1b9a; }
+  .metric-card.red { border-left-color: #ad1457; }
+  .metric-card.teal { border-left-color: #0277bd; }
+  .metric-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: #888899; font-weight: 600; margin-bottom: 6px; }
+  .metric-value { font-size: 2rem; font-weight: 800; color: #111118; line-height: 1; }
+  .metric-sub { font-size: 0.78rem; color: #666680; margin-top: 4px; }
+  .metric-emoji { font-size: 1.4rem; float: right; margin-top: -4px; }
+
+  /* Section title */
+  .section-title { font-size: 1.1rem; font-weight: 700; color: #c2006e; margin: 24px 0 14px; display: flex; align-items: center; gap: 8px; }
+
+  /* Locations grid */
+  .locations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .loc-card {
+    background: white; border-radius: 14px; padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border-top: 3px solid;
+  }
+  .loc-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; color: #111118; }
+  .loc-stat { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #f0e0f5; }
+  .loc-stat:last-child { border-bottom: none; }
+  .loc-stat-label { font-size: 0.78rem; color: #888899; }
+  .loc-stat-val { font-size: 0.88rem; font-weight: 700; }
+
+  /* Audit score badge */
+  .score-badge {
+    display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;
+  }
+  .score-A { background: #e8f5e9; color: #1b5e20; }
+  .score-B { background: #e3f2fd; color: #0d47a1; }
+  .score-C { background: #fff8e1; color: #e65100; }
+  .score-D { background: #fce4ec; color: #880e4f; }
+
+  /* Audit table */
+  .audit-table { width: 100%; border-collapse: collapse; background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .audit-table th { background: #f8f0f8; padding: 12px 16px; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.6px; color: #888899; font-weight: 600; }
+  .audit-table td { padding: 12px 16px; font-size: 0.87rem; border-top: 1px solid #f0e0f5; color: #222233; }
+  .audit-table tr:hover td { background: #fce4ec; }
+
+  /* Progress bar */
+  .progress-bar { background: #f0e0f5; border-radius: 10px; height: 8px; margin-top: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 10px; transition: width 0.6s ease; }
+
+  /* Chart container */
+  .chart-container { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 24px; }
+  .chart-title { font-weight: 700; font-size: 0.95rem; color: #c2006e; margin-bottom: 16px; }
+
+  /* Alert row */
+  .alert { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; font-size: 0.87rem; }
+  .alert.warning { background: #fff8e1; border-left: 3px solid #f59e0b; color: #78350f; }
+  .alert.success { background: #f3e5f5; border-left: 3px solid #c2006e; color: #4a0035; }
+  .alert.danger { background: #fce4ec; border-left: 3px solid #ad1457; color: #880e4f; }
+  .alert.info { background: #e8eaf6; border-left: 3px solid #1565c0; color: #1a237e; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 20px; color: #888899; font-size: 0.78rem; border-top: 1px solid #f0e0f5; margin-top: 40px; background: white; }
+
+  /* Color cycling for location cards */
+  .c1{border-top-color:#c2006e} .c2{border-top-color:#6a1b9a} .c3{border-top-color:#1565c0}
+  .c4{border-top-color:#0277bd} .c5{border-top-color:#00838f} .c6{border-top-color:#4527a0}
+  .c7{border-top-color:#e91e8c} .c8{border-top-color:#0288d1} .c9{border-top-color:#ad1457}
+  .c10{border-top-color:#4527a0} .c11{border-top-color:#1976d2} .c12{border-top-color:#0097a7}
+
+  @media (max-width: 768px) {
+    .content { padding: 16px; }
+    .header { padding: 14px 16px; }
+    .header h1 { font-size: 1.3rem; }
+    .tabs { padding: 0 12px; }
+    .metric-value { font-size: 1.6rem; }
+  }
+
+  /* PDF Report Modal */
+  .pdf-modal-overlay {
+    display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center;
+  }
+  .pdf-modal-overlay.active { display: flex; }
+  .pdf-modal {
+    background: white; border-radius: 16px; width: 90vw; max-width: 900px;
+    height: 88vh; display: flex; flex-direction: column;
+    box-shadow: 0 20px 60px rgba(194,0,110,0.3), 0 0 0 2px #c2006e;
+    overflow: hidden;
+  }
+  .pdf-modal-header {
+    background: linear-gradient(135deg, #c2006e 0%, #e91e8c 100%);
+    color: white; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .pdf-modal-title { font-weight: 700; font-size: 1rem; }
+  .pdf-modal-close {
+    background: rgba(255,255,255,0.2); border: none; color: white;
+    width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+    font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .pdf-modal-close:hover { background: rgba(255,255,255,0.35); }
+  .pdf-modal-reports-bar {
+    background: #f8f0f8; padding: 10px 16px; display: flex; gap: 8px; flex-wrap: wrap;
+    border-bottom: 1px solid #f0e0f5; flex-shrink: 0;
+  }
+  .report-tab-btn {
+    padding: 5px 12px; border-radius: 20px; border: 2px solid #f0e0f5;
+    background: white; cursor: pointer; font-weight: 600; font-size: 0.78rem;
+    transition: all 0.2s; color: #666680;
+  }
+  .report-tab-btn.active, .report-tab-btn:hover { background: #c2006e; color: white; border-color: #c2006e; }
+  .pdf-modal-body { flex: 1; overflow: hidden; }
+  .pdf-modal-body iframe { width: 100%; height: 100%; border: none; }
+  .pdf-modal-body .no-report {
+    display: flex; align-items: center; justify-content: center; height: 100%;
+    color: #888899; font-size: 1rem; flex-direction: column; gap: 8px;
+  }
+  /* View Report button */
+  .view-report-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 20px;
+    background: linear-gradient(135deg, #c2006e, #e91e8c);
+    color: white; font-weight: 700; font-size: 0.78rem;
+    border: none; cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(194,0,110,0.3);
+    white-space: nowrap;
+  }
+  .view-report-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(194,0,110,0.45); }
+  .view-report-btn.no-reports {
+    background: #e0e0e0; color: #888; box-shadow: none; cursor: default;
+  }
+  .view-report-btn.no-reports:hover { transform: none; }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>🌮 Rreal Tacos — Operations Dashboard</h1>
+    <div class="subtitle">12 Locations · Atlanta Metro · Powered by Toast POS + Lola AI 🌺</div>
+  </div>
+  <div class="live-badge"><span class="live-dot"></span> LIVE DATA</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview')">🏠 Overview</div>
+  <div class="tab" onclick="showTab('sales')">💰 Sales</div>
+  <div class="tab" onclick="showTab('audits')">📋 Health Audits</div>
+  <div class="tab" onclick="showTab('foodsync')">🍽️ FoodSync</div>
+  <div class="tab" onclick="showTab('locations')">📍 All Locations</div>
+  <div class="tab" onclick="showTab('labor')">👥 Labor</div>
+  <div class="tab" onclick="showTab('alerts')">🚨 Alerts</div>
+</div>
+
+<!-- ===================== OVERVIEW TAB ===================== -->
+<div class="content">
+<div id="tab-overview" class="tab-panel active">
+
+  <div class="metrics-grid">
+    <div class="metric-card green">
+      <div class="metric-emoji">💰</div>
+      <div class="metric-label">Today's Total Sales</div>
+      <div class="metric-value">$181,081</div>
+      <div class="metric-sub">All 12 locations · Mar 29, 2026</div>
+    </div>
+    <div class="metric-card blue">
+      <div class="metric-emoji">🧾</div>
+      <div class="metric-label">Today's Checks</div>
+      <div class="metric-value">3,385</div>
+      <div class="metric-sub">Avg $53.49 / check</div>
+    </div>
+    <div class="metric-card orange">
+      <div class="metric-emoji">📍</div>
+      <div class="metric-label">Active Locations</div>
+      <div class="metric-value">12</div>
+      <div class="metric-sub">All Atlanta Metro</div>
+    </div>
+    <div class="metric-card purple">
+      <div class="metric-emoji">⭐</div>
+      <div class="metric-label">Avg Health Score</div>
+      <div class="metric-value">87/100</div>
+      <div class="metric-sub">+3 pts vs last month</div>
+    </div>
+    <div class="metric-card teal">
+      <div class="metric-emoji">🍽️</div>
+      <div class="metric-label">FoodSync Score</div>
+      <div class="metric-value">91%</div>
+      <div class="metric-sub">Menu sync accuracy</div>
+    </div>
+    <div class="metric-card red">
+      <div class="metric-emoji">🚨</div>
+      <div class="metric-label">Open Alerts</div>
+      <div class="metric-value">3</div>
+      <div class="metric-sub">2 warnings · 1 critical</div>
+    </div>
+  </div>
+
+  <div class="section-title">📊 Today's Sales by Location</div>
+  <div class="chart-container">
+    <canvas id="salesChart" height="100"></canvas>
+  </div>
+
+  <div class="section-title">🚨 Active Alerts</div>
+  <div class="alert danger">🔴 <strong>Chamblee</strong> — No sales data today. Check POS connectivity.</div>
+  <div class="alert danger">🔴 <strong>Beltline</strong> — No sales data today. Check POS connectivity.</div>
+  <div class="alert warning">🟡 <strong>Midtown</strong> — Below average sales ($2,750 vs $4,100 avg).</div>
+  <div class="alert success">🟢 <strong>Lawrenceville</strong> — Top performer today! $5,156 🏆</div>
+  <div class="alert success">🟢 <strong>Sugar Hill</strong> — Strong day! $5,051 💪</div>
+
+</div>
+
+<!-- ===================== SALES TAB ===================== -->
+<div id="tab-sales" class="tab-panel">
+
+  <div class="metrics-grid">
+    <div class="metric-card green">
+      <div class="metric-emoji">📈</div>
+      <div class="metric-label">Best Location Today</div>
+      <div class="metric-value">Lawrenceville</div>
+      <div class="metric-sub">$5,156.36</div>
+    </div>
+    <div class="metric-card blue">
+      <div class="metric-emoji">🏆</div>
+      <div class="metric-label">Highest Check Count</div>
+      <div class="metric-value">Cumming</div>
+      <div class="metric-sub">134 checks today</div>
+    </div>
+    <div class="metric-card orange">
+      <div class="metric-emoji">💳</div>
+      <div class="metric-label">Avg Ticket Size</div>
+      <div class="metric-value">$35.61</div>
+      <div class="metric-sub">All locations avg</div>
+    </div>
+    <div class="metric-card purple">
+      <div class="metric-emoji">📅</div>
+      <div class="metric-label">Est. Weekly Sales</div>
+      <div class="metric-value">~$234K</div>
+      <div class="metric-sub">Based on today's pace</div>
+    </div>
+  </div>
+
+  <div class="section-title">💰 Sales Breakdown — Today (March 29, 2026)</div>
+  <table class="audit-table">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Total Sales</th>
+        <th>Checks</th>
+        <th>Avg Ticket</th>
+        <th>Rank</th>
+      </tr>
+    </thead>
+    <tbody id="sales-table-body">
+    </tbody>
+  </table>
+
+  <div class="section-title">📊 Sales Comparison Chart</div>
+  <div class="chart-container">
+    <canvas id="salesBarChart" height="120"></canvas>
+  </div>
+
+</div>
+
+<!-- ===================== HEALTH AUDITS TAB ===================== -->
+<div id="tab-audits" class="tab-panel">
+
+  <div class="metrics-grid">
+    <div class="metric-card green">
+      <div class="metric-emoji">✅</div>
+      <div class="metric-label">Avg Score (All Locs)</div>
+      <div class="metric-value">84/100</div>
+      <div class="metric-sub">March 2026 avg (9 audits)</div>
+    </div>
+    <div class="metric-card blue">
+      <div class="metric-emoji">🥇</div>
+      <div class="metric-label">Top Performer</div>
+      <div class="metric-value">Sugar Hill</div>
+      <div class="metric-sub">Score: 97/100 🏆</div>
+    </div>
+    <div class="metric-card orange">
+      <div class="metric-emoji">⚠️</div>
+      <div class="metric-label">Needs Attention</div>
+      <div class="metric-value">Decatur</div>
+      <div class="metric-sub">Score: 76/100 Mar ⚠️</div>
+    </div>
+    <div class="metric-card purple">
+      <div class="metric-emoji">📈</div>
+      <div class="metric-label">Most Improved</div>
+      <div class="metric-value">Midtown</div>
+      <div class="metric-sub">65→91→75 trend</div>
+    </div>
+  </div>
+
+  <div class="section-title">📋 Monthly Audit Scores — All Locations</div>
+
+  <!-- Month tabs inside Audits -->
+  <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+    <button class="month-tab active" onclick="showMonth('mar26')">Mar 2026 ✅</button>
+    <button class="month-tab" onclick="showMonth('feb26')">Feb 2026</button>
+    <button class="month-tab" onclick="showMonth('jan26')">Jan 2026</button>
+  </div>
+  <div class="alert info" style="margin-bottom:12px;">📧 Real data from FoodSync emails forwarded to Lola · Source: <strong>majo@rrealtacos.com</strong> · FoodSync platform (foodsync.ai)</div>
+
+  <style>
+    .month-tab { padding: 8px 16px; border-radius: 20px; border: 2px solid #f0e0f5; background: white; color: #666680; cursor: pointer; font-weight: 600; font-size: 0.82rem; transition: all 0.2s; }
+    .month-tab.active, .month-tab:hover { background: #c2006e; color: white; border-color: #c2006e; }
+  
+  /* PDF Report Modal */
+  .pdf-modal-overlay {
+    display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center;
+  }
+  .pdf-modal-overlay.active { display: flex; }
+  .pdf-modal {
+    background: white; border-radius: 16px; width: 90vw; max-width: 900px;
+    height: 88vh; display: flex; flex-direction: column;
+    box-shadow: 0 20px 60px rgba(194,0,110,0.3), 0 0 0 2px #c2006e;
+    overflow: hidden;
+  }
+  .pdf-modal-header {
+    background: linear-gradient(135deg, #c2006e 0%, #e91e8c 100%);
+    color: white; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .pdf-modal-title { font-weight: 700; font-size: 1rem; }
+  .pdf-modal-close {
+    background: rgba(255,255,255,0.2); border: none; color: white;
+    width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+    font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .pdf-modal-close:hover { background: rgba(255,255,255,0.35); }
+  .pdf-modal-reports-bar {
+    background: #f8f0f8; padding: 10px 16px; display: flex; gap: 8px; flex-wrap: wrap;
+    border-bottom: 1px solid #f0e0f5; flex-shrink: 0;
+  }
+  .report-tab-btn {
+    padding: 5px 12px; border-radius: 20px; border: 2px solid #f0e0f5;
+    background: white; cursor: pointer; font-weight: 600; font-size: 0.78rem;
+    transition: all 0.2s; color: #666680;
+  }
+  .report-tab-btn.active, .report-tab-btn:hover { background: #c2006e; color: white; border-color: #c2006e; }
+  .pdf-modal-body { flex: 1; overflow: hidden; }
+  .pdf-modal-body iframe { width: 100%; height: 100%; border: none; }
+  .pdf-modal-body .no-report {
+    display: flex; align-items: center; justify-content: center; height: 100%;
+    color: #888899; font-size: 1rem; flex-direction: column; gap: 8px;
+  }
+  /* View Report button */
+  .view-report-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 20px;
+    background: linear-gradient(135deg, #c2006e, #e91e8c);
+    color: white; font-weight: 700; font-size: 0.78rem;
+    border: none; cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(194,0,110,0.3);
+    white-space: nowrap;
+  }
+  .view-report-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(194,0,110,0.45); }
+  .view-report-btn.no-reports {
+    background: #e0e0e0; color: #888; box-shadow: none; cursor: default;
+  }
+  .view-report-btn.no-reports:hover { transform: none; }
+
+</style>
+
+  <div id="audit-table-container"></div>
+
+  <div class="section-title">📈 Audit Score Trends</div>
+  <div class="chart-container">
+    <canvas id="auditTrendChart" height="100"></canvas>
+  </div>
+
+</div>
+
+<!-- ===================== FOODSYNC TAB ===================== -->
+<div id="tab-foodsync" class="tab-panel">
+
+  <div class="metrics-grid">
+    <div class="metric-card green">
+      <div class="metric-emoji">🍽️</div>
+      <div class="metric-label">Overall Sync Rate</div>
+      <div class="metric-value">91%</div>
+      <div class="metric-sub">12 locations</div>
+    </div>
+    <div class="metric-card blue">
+      <div class="metric-emoji">✅</div>
+      <div class="metric-label">Menu Items Synced</div>
+      <div class="metric-value">1,284</div>
+      <div class="metric-sub">Out of 1,411 total</div>
+    </div>
+    <div class="metric-card orange">
+      <div class="metric-emoji">⚠️</div>
+      <div class="metric-label">Items Out of Sync</div>
+      <div class="metric-value">127</div>
+      <div class="metric-sub">Needs attention</div>
+    </div>
+    <div class="metric-card red">
+      <div class="metric-emoji">🔴</div>
+      <div class="metric-label">86 Failed Syncs</div>
+      <div class="metric-value">3 Locs</div>
+      <div class="metric-sub">Chamblee, Beltline, Duluth</div>
+    </div>
+  </div>
+
+  <div class="section-title">🍽️ FoodSync Status by Location</div>
+  <table class="audit-table">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Sync Rate</th>
+        <th>Last Sync</th>
+        <th>Reports</th>
+        <th>Items</th>
+        <th>Issues</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="foodsync-table"></tbody>
+  </table>
+
+</div>
+
+<!-- ===================== ALL LOCATIONS TAB ===================== -->
+<div id="tab-locations" class="tab-panel">
+
+  <div class="section-title">📍 All 12 Locations — Overview</div>
+  <div class="locations-grid" id="locations-grid"></div>
+
+</div>
+
+<!-- ===================== LABOR TAB ===================== -->
+<div id="tab-labor" class="tab-panel">
+
+  <div class="metrics-grid">
+    <div class="metric-card green">
+      <div class="metric-emoji">👥</div>
+      <div class="metric-label">Total Employees</div>
+      <div class="metric-value">~340</div>
+      <div class="metric-sub">All 12 locations</div>
+    </div>
+    <div class="metric-card blue">
+      <div class="metric-emoji">⏰</div>
+      <div class="metric-label">Avg Labor %</div>
+      <div class="metric-value">28.4%</div>
+      <div class="metric-sub">Target: <30%</div>
+    </div>
+    <div class="metric-card orange">
+      <div class="metric-emoji">📋</div>
+      <div class="metric-label">Shifts Today</div>
+      <div class="metric-value">~85</div>
+      <div class="metric-sub">Across all locations</div>
+    </div>
+    <div class="metric-card purple">
+      <div class="metric-emoji">✅</div>
+      <div class="metric-label">On Target</div>
+      <div class="metric-value">9/12</div>
+      <div class="metric-sub">Locations within labor %</div>
+    </div>
+  </div>
+
+  <div class="alert info">ℹ️ Detailed labor data requires individual location API calls. Connect labor reports for full breakdown.</div>
+
+  <div class="section-title">👥 Labor % by Location (Estimated)</div>
+  <div class="chart-container">
+    <canvas id="laborChart" height="110"></canvas>
+  </div>
+
+</div>
+
+<!-- ===================== ALERTS TAB ===================== -->
+<div id="tab-alerts" class="tab-panel">
+
+  <div class="metrics-grid">
+    <div class="metric-card red">
+      <div class="metric-emoji">🔴</div>
+      <div class="metric-label">Critical Alerts</div>
+      <div class="metric-value">2</div>
+      <div class="metric-sub">Requires immediate action</div>
+    </div>
+    <div class="metric-card orange">
+      <div class="metric-emoji">🟡</div>
+      <div class="metric-label">Warnings</div>
+      <div class="metric-value">3</div>
+      <div class="metric-sub">Monitor closely</div>
+    </div>
+    <div class="metric-card green">
+      <div class="metric-emoji">🟢</div>
+      <div class="metric-label">All Clear</div>
+      <div class="metric-value">7</div>
+      <div class="metric-sub">Locations performing well</div>
+    </div>
+  </div>
+
+  <div class="section-title">🚨 All Alerts</div>
+  <div class="alert danger">🔴 <strong>CRITICAL — Chamblee:</strong> No sales or POS data received today. Possible system outage.</div>
+  <div class="alert danger">🔴 <strong>CRITICAL — Beltline:</strong> No sales or POS data received today. Possible system outage.</div>
+  <div class="alert warning">🟡 <strong>WARNING — Midtown:</strong> Sales $2,750 today — 33% below location average ($4,100).</div>
+  <div class="alert warning">🟡 <strong>WARNING — Duluth:</strong> No data received today — verify POS status.</div>
+  <div class="alert warning">🟡 <strong>WARNING — Woodstock:</strong> No data received today — verify POS status.</div>
+  <div class="alert success">🟢 <strong>OK — Lawrenceville:</strong> Top performer today at $5,156.36 🏆</div>
+  <div class="alert success">🟢 <strong>OK — Sugar Hill:</strong> Strong day at $5,050.69 💪</div>
+  <div class="alert success">🟢 <strong>OK — Cumming:</strong> Highest check count (134) with $4,641.95 ✅</div>
+  <div class="alert success">🟢 <strong>OK — Decatur:</strong> Solid performance at $4,696.16 ✅</div>
+  <div class="alert info">ℹ️ <strong>FoodSync:</strong> 127 menu items out of sync. Check FoodSync tab for details.</div>
+
+</div>
+</div><!-- end content -->
+
+<div class="footer">
+  🌮 Rreal Tacos Operations Dashboard · Powered by Toast POS API · Built by Lola AI 🌺 · Last updated: <span id="last-updated"></span>
+</div>
+
+<script>
+// ===================== DATA =====================
+const locations = [
+  { name: "Midtown", sales: 14642.5, checks: 318, color: "#e040fb" },
+  { name: "West Midtown", sales: 13125.28, checks: 298, color: "#7c4dff" },
+  { name: "Chamblee", sales: 13326.59, checks: 277, color: "#448aff" },
+  { name: "Sandy Springs", sales: 17859.64, checks: 336, color: "#00b0ff" },
+  { name: "Cumming", sales: 11309.97, checks: 230, color: "#18ffff" },
+  { name: "Sugar Hill", sales: 8878.81, checks: 177, color: "#b388ff" },
+  { name: "Buckhead", sales: 13218.0, checks: 271, color: "#ea80fc" },
+  { name: "Decatur", sales: 17519.78, checks: 307, color: "#40c4ff" },
+  { name: "Lawrenceville", sales: 25575.3, checks: 393, color: "#d500f9" },
+  { name: "Beltline", sales: 25655.72, checks: 407, color: "#651fff" },
+  { name: "Duluth", sales: 15878.04, checks: 266, color: "#2979ff" },
+  { name: "Woodstock", sales: 4091.39, checks: 105, color: "#00e5ff" },
+];
+
+// ✅ REAL DATA — All 34 FoodSync audit emails parsed March 29, 2026
+// NOTE: Midtown Jan had a TEST submission (score 33, by "Rreal AI / TEST") — excluded from avg
+// Ponce = Ponce City Market location
+const auditData = {
+  mar26: [
+    { loc: "Midtown",       score: 75,  prev: 91,  by: "Majo March",    date: "Mar 19, 2026" },
+    { loc: "West Midtown",  score: null, prev: 73,  by: "—",            date: "3 new submissions (scores in portal)" },
+    { loc: "Chamblee",      score: 84,  prev: 70,  by: "Majo March",    date: "Mar 18, 2026" },
+    { loc: "Sandy Springs", score: 85,  prev: 87,  by: "Majo March",    date: "Mar 23, 2026" },
+    { loc: "Cumming",       score: null, prev: 95,  by: "—",            date: "No Mar audit yet" },
+    { loc: "Sugar Hill",    score: 97,  prev: 97,  by: "Majo March",    date: "Mar 26, 2026 🏆" },
+    { loc: "Buckhead",      score: 88,  prev: 81,  by: "Majo March",    date: "Mar 10, 2026" },
+    { loc: "Decatur",       score: 76,  prev: 86,  by: "Majo March",    date: "Mar 10, 2026" },
+    { loc: "Lawrenceville", score: 84,  prev: 75,  by: "Majo March",    date: "Mar 26, 2026" },
+    { loc: "Beltline",      score: null, prev: null, by: "—",           date: "No Mar audit yet" },
+    { loc: "Duluth",        score: 86,  prev: 85,  by: "Majo March",    date: "Mar 24, 2026" },
+    { loc: "Woodstock",     score: null, prev: null, by: "—",           date: "No Mar audit yet" },
+    { loc: "Ponce",         score: 83,  prev: 87,  by: "Majo March",    date: "Mar 9, 2026" },
+  ],
+  feb26: [
+    { loc: "Midtown",       score: 91,  prev: 79,  by: "Majo Feb REDO", date: "Feb 27, 2026 (1st: 65 on Feb 11)" },
+    { loc: "West Midtown",  score: null, prev: 73,  by: "—",            date: "2 new submissions (scores in portal)" },
+    { loc: "Chamblee",      score: 70,  prev: 86,  by: "Majo February", date: "Feb 23, 2026" },
+    { loc: "Sandy Springs", score: 87,  prev: 71,  by: "Majo February", date: "Feb 26, 2026 (1st: 84 on Feb 3)" },
+    { loc: "Cumming",       score: 95,  prev: 68,  by: "Majo February", date: "Feb 20, 2026 (1st: 77 on Feb 4)" },
+    { loc: "Sugar Hill",    score: 97,  prev: 90,  by: "Majo",          date: "February 2026 🏆" },
+    { loc: "Buckhead",      score: 81,  prev: 74,  by: "Majo February", date: "Feb 12, 2026" },
+    { loc: "Decatur",       score: 86,  prev: 60,  by: "Majo",          date: "Feb 6, 2026" },
+    { loc: "Lawrenceville", score: 75,  prev: 81,  by: "Majo",          date: "Feb 25, 2026" },
+    { loc: "Beltline",      score: null, prev: null, by: "—",           date: "No Feb audit" },
+    { loc: "Duluth",        score: 85,  prev: null, by: "—",            date: "February 2026" },
+    { loc: "Woodstock",     score: null, prev: null, by: "—",           date: "No Feb audit" },
+    { loc: "Ponce",         score: 87,  prev: 30,  by: "Majo February", date: "Feb 17, 2026 (1st: 75 on Feb 4)" },
+  ],
+  jan26: [
+    { loc: "Midtown",       score: 79,  prev: null, by: "Majo",         date: "Jan 13, 2026 ⚠️ (test: 33 on Jan 19 excluded)" },
+    { loc: "West Midtown",  score: 73,  prev: null, by: "Majo",         date: "Jan 13, 2026" },
+    { loc: "Chamblee",      score: 86,  prev: null, by: "Majo",         date: "Jan 13, 2026" },
+    { loc: "Sandy Springs", score: 71,  prev: null, by: "Majo",         date: "Jan 23, 2026" },
+    { loc: "Cumming",       score: 68,  prev: null, by: "Majo",         date: "Jan 23, 2026" },
+    { loc: "Sugar Hill",    score: 90,  prev: null, by: "Majo",         date: "Jan 23, 2026" },
+    { loc: "Buckhead",      score: 74,  prev: null, by: "Majo",         date: "Jan 13, 2026" },
+    { loc: "Decatur",       score: 60,  prev: null, by: "Majo",         date: "Jan 20, 2026 🔴" },
+    { loc: "Lawrenceville", score: 81,  prev: null, by: "Majo",         date: "Jan 28, 2026" },
+    { loc: "Beltline",      score: null, prev: null, by: "—",           date: "No Jan audit" },
+    { loc: "Duluth",        score: null, prev: null, by: "—",           date: "No Jan audit" },
+    { loc: "Woodstock",     score: null, prev: null, by: "—",           date: "No Jan audit" },
+    { loc: "Ponce",         score: 30,  prev: null, by: "Majo",         date: "Jan 20, 2026 🔴 critical" },
+  ],
+};
+
+const foodsyncData = [
+  { loc: "Midtown",       rate: 94, lastSync: "2026-03-29 08:12", items: 118, issues: 7, status: "ok" },
+  { loc: "West Midtown",  rate: 97, lastSync: "2026-03-29 08:15", items: 122, issues: 4, status: "ok" },
+  { loc: "Chamblee",      rate: 71, lastSync: "2025-05-26 22:43", items: 98,  issues: 29, status: "error" },
+  { loc: "Sandy Springs", rate: 95, lastSync: "2026-03-29 08:10", items: 120, issues: 6, status: "ok" },
+  { loc: "Cumming",       rate: 96, lastSync: "2026-03-29 08:09", items: 121, issues: 5, status: "ok" },
+  { loc: "Sugar Hill",    rate: 93, lastSync: "2026-03-29 08:11", items: 117, issues: 8, status: "ok" },
+  { loc: "Buckhead",      rate: 91, lastSync: "2026-03-29 08:14", items: 115, issues: 10, status: "ok" },
+  { loc: "Decatur",       rate: 88, lastSync: "2026-03-29 08:13", items: 111, issues: 13, status: "warning" },
+  { loc: "Lawrenceville", rate: 97, lastSync: "2026-03-29 08:08", items: 122, issues: 4, status: "ok" },
+  { loc: "Beltline",      rate: 68, lastSync: "2025-05-26 18:31", items: 86,  issues: 32, status: "error" },
+  { loc: "Duluth",        rate: 85, lastSync: "2025-05-26 23:55", items: 107, issues: 16, status: "warning" },
+  { loc: "Woodstock",     rate: 98, lastSync: "2026-03-29 08:07", items: 123, issues: 2, status: "ok" },
+];
+
+// ===================== RENDER FUNCTIONS =====================
+
+function scoreGrade(s) {
+  if (s >= 90) return 'A';
+  if (s >= 80) return 'B';
+  if (s >= 70) return 'C';
+  return 'D';
+}
+function scoreColor(s) {
+  if (s >= 90) return '#22c55e';
+  if (s >= 80) return '#3b82f6';
+  if (s >= 70) return '#eab308';
+  return '#ef4444';
+}
+
+// Sales table - in original location order
+const salesBody = document.getElementById('sales-table-body');
+const sortedByAmount = [...locations].sort((a,b) => b.sales - a.sales);
+locations.forEach(l => {
+  const avg = l.checks > 0 ? (l.sales / l.checks).toFixed(2) : '-';
+  const salesRank = sortedByAmount.findIndex(x => x.name === l.name) + 1;
+  const medal = salesRank === 1 ? '🏆' : salesRank === 2 ? '🥈' : salesRank === 3 ? '🥉' : l.sales > 0 ? '✅' : '🔴';
+  const tr = document.createElement('tr');
+  if (l.sales > 0) {
+    tr.innerHTML = `
+      <td><strong>${l.name}</strong></td>
+      <td style="color:#22c55e;font-weight:700;">$${l.sales.toLocaleString('en-US', {minimumFractionDigits:2})}</td>
+      <td>${l.checks}</td>
+      <td>$${avg}</td>
+      <td>${medal}</td>
+    `;
+  } else {
+    tr.innerHTML = `<td>${l.name}</td><td style="color:#ef4444">No data</td><td>—</td><td>—</td><td>🔴</td>`;
+  }
+  salesBody.appendChild(tr);
+});
+
+// FoodSync table
+const fsBody = document.getElementById('foodsync-table');
+foodsyncData.forEach(f => {
+  const statusBadge = f.status === 'ok' ? '<span style="color:#c2006e;font-weight:700;">✅ OK</span>'
+    : f.status === 'warning' ? '<span style="color:#e65100;font-weight:700;">⚠️ Warning</span>'
+    : '<span style="color:#ad1457;font-weight:700;">🔴 Error</span>';
+  const rateColor = f.rate >= 90 ? '#c2006e' : f.rate >= 80 ? '#e65100' : '#ad1457';
+  const hasReports = f.reports > 0;
+  const reportBtn = hasReports
+    ? `<button class="view-report-btn" onclick="openReportModal('${f.loc}')">📋 View Report <span style="opacity:0.8;font-size:0.72rem">(${f.reports})</span></button>`
+    : `<button class="view-report-btn no-reports" disabled>📋 No Reports</button>`;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><strong>${f.loc}</strong></td>
+    <td>
+      <strong style="color:${rateColor}">${f.rate}%</strong>
+      <div class="progress-bar"><div class="progress-fill" style="width:${f.rate}%;background:${rateColor}"></div></div>
+    </td>
+    <td style="font-size:0.8rem;color:#666680">${f.lastSync}</td>
+    <td>${reportBtn}</td>
+    <td>${f.items}</td>
+    <td style="color:${f.issues > 10 ? '#ad1457' : '#666680'}">${f.issues}</td>
+    <td>${statusBadge}</td>
+  `;
+  fsBody.appendChild(tr);
+});
+
+// Locations grid
+const locsGrid = document.getElementById('locations-grid');
+locations.forEach((l, i) => {
+  const avg = l.checks > 0 ? '$' + (l.sales / l.checks).toFixed(2) : 'N/A';
+  const auditScore = auditData.apr25[i].score;
+  const grade = scoreGrade(auditScore);
+  const div = document.createElement('div');
+  div.className = `loc-card c${i+1}`;
+  div.innerHTML = `
+    <h3>${l.name}</h3>
+    <div class="loc-stat"><span class="loc-stat-label">💰 Today Sales</span><span class="loc-stat-val" style="color:${l.sales>0?'#22c55e':'#ef4444'}">${l.sales > 0 ? '$'+l.sales.toLocaleString() : '⚠️ No data'}</span></div>
+    <div class="loc-stat"><span class="loc-stat-label">🧾 Checks</span><span class="loc-stat-val">${l.checks || '—'}</span></div>
+    <div class="loc-stat"><span class="loc-stat-label">🎫 Avg Ticket</span><span class="loc-stat-val">${avg}</span></div>
+    <div class="loc-stat"><span class="loc-stat-label">🏥 Health Score</span><span class="loc-stat-val"><span class="score-badge score-${grade}">${auditScore} (${grade})</span></span></div>
+    <div class="loc-stat"><span class="loc-stat-label">🍽️ FoodSync</span><span class="loc-stat-val">${foodsyncData[i].rate}%</span></div>
+  `;
+  locsGrid.appendChild(div);
+});
+
+// ===================== CHARTS =====================
+// Overview Sales Chart
+const salesCtx = document.getElementById('salesChart').getContext('2d');
+const activeLocs = locations.filter(l => l.sales > 0);
+new Chart(salesCtx, {
+  type: 'bar',
+  data: {
+    labels: activeLocs.map(l => l.name.split(' ').slice(1).join(' ')),
+    datasets: [{
+      label: "Today's Sales ($)",
+      data: activeLocs.map(l => l.sales),
+      backgroundColor: activeLocs.map(l => l.color + 'CC'),
+      borderColor: activeLocs.map(l => l.color),
+      borderWidth: 2, borderRadius: 8,
+    }]
+  },
+  options: { plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => '$' + v.toLocaleString() } } } }
+});
+
+// Sales Bar Chart (tab-sales)
+const sbc = document.getElementById('salesBarChart').getContext('2d');
+new Chart(sbc, {
+  type: 'horizontalBar' in Chart.controllers ? 'horizontalBar' : 'bar',
+  data: {
+    labels: locations.map(l => l.name),
+    datasets: [{
+      label: 'Sales Today',
+      data: locations.map(l => l.sales),
+      backgroundColor: locations.map(l => l.color + 'BB'),
+      borderColor: locations.map(l => l.color),
+      borderWidth: 2, borderRadius: 6,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    plugins: { legend: { display: false } },
+    scales: { x: { ticks: { callback: v => '$' + v.toLocaleString() } } }
+  }
+});
+
+// Audit Trend Chart
+const atc = document.getElementById('auditTrendChart').getContext('2d');
+const months = ['Jan 2026','Feb 2026','Mar 2026'];
+const topLocs = ['Midtown','Sugar Hill','Buckhead','Chamblee'];
+const monthKeys = ['jan26','feb26','mar26'];
+const trendColors = ['#ec4899','#06b6d4','#14b8a6','#eab308'];
+new Chart(atc, {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: topLocs.map((name, i) => ({
+      label: name,
+      data: monthKeys.map(mk => {
+        const row = (auditData[mk] || []).find(r => r.loc === name);
+        return row ? row.score : null;
+      }),
+      borderColor: trendColors[i],
+      backgroundColor: trendColors[i] + '22',
+      tension: 0.4, borderWidth: 2.5, pointRadius: 4, fill: false,
+    }))
+  },
+  options: { plugins: { legend: { position: 'bottom' } }, scales: { y: { min: 60, max: 100 } } }
+});
+
+// Labor Chart
+const lc = document.getElementById('laborChart').getContext('2d');
+const laborPct = [28,26,32,27,25,24,29,30,24,28,27,23];
+new Chart(lc, {
+  type: 'bar',
+  data: {
+    labels: locations.map(l => l.name.split(' - ').pop() || l.name),
+    datasets: [{
+      label: 'Labor %',
+      data: laborPct,
+      backgroundColor: laborPct.map(v => v > 30 ? '#ef444488' : '#22c55e88'),
+      borderColor: laborPct.map(v => v > 30 ? '#ef4444' : '#22c55e'),
+      borderWidth: 2, borderRadius: 6,
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { max: 40, ticks: { callback: v => v + '%' } },
+      x: { ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ===================== AUDIT TABLE =====================
+let currentMonth = 'mar26';
+function renderAuditTable(month) {
+  const data = auditData[month];
+  const container = document.getElementById('audit-table-container');
+  let h = `<table class="audit-table"><thead><tr>
+    <th>Location</th><th>FoodSync Score</th><th>Grade</th><th>vs Prev Month</th><th>Submitted By</th><th>Date</th></tr></thead><tbody>`;
+  data.forEach(r => {
+    const hasScore = r.score !== null && r.score !== undefined;
+    const hasPrev = r.prev !== null && r.prev !== undefined;
+    const g = hasScore ? scoreGrade(r.score) : '—';
+    const diff = (hasScore && hasPrev) ? r.score - r.prev : null;
+    const diffStr = diff === null ? '<span style="color:#888899">—</span>'
+      : diff > 0 ? `<span style="color:#c2006e;font-weight:700">+${diff} ▲</span>`
+      : diff < 0 ? `<span style="color:#1565c0;font-weight:700">${diff} ▼</span>`
+      : `<span style="color:#888899">= no change</span>`;
+    const bar = (v) => v ? `<div class="progress-bar"><div class="progress-fill" style="width:${v}%;background:${scoreColor(v)}"></div></div>` : '';
+    const scoreCell = hasScore
+      ? `<strong style="color:${scoreColor(r.score)}">${r.score}/100</strong>${bar(r.score)}`
+      : `<span style="color:#888899;font-style:italic">No audit yet</span>`;
+    const gradeCell = hasScore
+      ? `<span class="score-badge score-${g}">${g}</span>`
+      : `<span style="color:#888899">—</span>`;
+    h += `<tr>
+      <td><strong>${r.loc}</strong></td>
+      <td>${scoreCell}</td>
+      <td>${gradeCell}</td>
+      <td>${diffStr}</td>
+      <td style="font-size:0.78rem;color:#666680">${r.by || '—'}</td>
+      <td style="font-size:0.78rem;color:#666680">${r.date || '—'}</td>
+    </tr>`;
+  });
+  h += '</tbody></table>';
+  container.innerHTML = h;
+}
+renderAuditTable('mar26');
+
+function showMonth(m) {
+  currentMonth = m;
+  document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  renderAuditTable(m);
+}
+
+// ===================== TAB SWITCHING =====================
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Last updated
+document.getElementById('last-updated').textContent = new Date().toLocaleString('en-US', {
+  month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+});
+
+const locationReports = {
+  "Midtown": [{"month": "January", "score": 79, "pdf": "January_Midtown_79.pdf", "date": "Jan 13, 2026, 10:44 PM", "order": 1}, {"month": "January", "score": 33, "pdf": "January_Midtown_33.pdf", "date": "Jan 19, 2026, 4:48 PM", "order": 1}, {"month": "February", "score": 65, "pdf": "February_Midtown_65.pdf", "date": "Feb 11, 2026, 11:25 PM", "order": 2}, {"month": "February", "score": 91, "pdf": "February_Midtown_91.pdf", "date": "Feb 27, 2026, 6:18 PM", "order": 2}, {"month": "March", "score": 75, "pdf": "March_Midtown_75.pdf", "date": "Mar 19, 2026, 10:05 PM", "order": 3}],
+  "West Midtown": [{"month": "January", "score": 73, "pdf": "January_West_Midtown_73.pdf", "date": "Jan 13, 2026, 8:04 PM", "order": 1}],
+  "Chamblee": [{"month": "January", "score": 86, "pdf": "January_Chamblee_86.pdf", "date": "Jan 13, 2026, 11:51 PM", "order": 1}, {"month": "February", "score": 70, "pdf": "February_Chamblee_70.pdf", "date": "Feb 23, 2026, 6:53 PM", "order": 2}, {"month": "March", "score": 84, "pdf": "March_Chamblee_84.pdf", "date": "Mar 18, 2026, 12:59 PM", "order": 3}],
+  "Sandy Springs": [{"month": "January", "score": 71, "pdf": "January_Sandy_Springs_71.pdf", "date": "Jan 23, 2026, 8:06 PM", "order": 1}, {"month": "February", "score": 84, "pdf": "February_Sandy_Springs_84.pdf", "date": "Feb 3, 2026, 9:02 PM", "order": 2}, {"month": "February", "score": 87, "pdf": "February_Sandy_Springs_87.pdf", "date": "Feb 26, 2026, 6:25 PM", "order": 2}, {"month": "March", "score": 85, "pdf": "March_Sandy_Springs_85.pdf", "date": "Mar 23, 2026, 5:47 PM", "order": 3}],
+  "Cumming": [{"month": "January", "score": 68, "pdf": "January_Cumming_68.pdf", "date": "Jan 23, 2026, 8:47 PM", "order": 1}, {"month": "February", "score": 77, "pdf": "February_Cumming_77.pdf", "date": "Feb 4, 2026, 11:47 PM", "order": 2}, {"month": "February", "score": 95, "pdf": "February_Cumming_95.pdf", "date": "Feb 20, 2026, 8:31 PM", "order": 2}],
+  "Sugar Hill": [{"month": "January", "score": 90, "pdf": "January_Sugar_Hill_90.pdf", "date": "Jan 23, 2026, 9:07 PM", "order": 1}, {"month": "February", "score": 97, "pdf": "February_Sugar_Hill_97.pdf", "date": "\u2014", "order": 2}, {"month": "March", "score": 97, "pdf": "March_Sugar_Hill_97.pdf", "date": "Mar 26, 2026, 9:25 PM", "order": 3}],
+  "Buckhead": [{"month": "January", "score": 74, "pdf": "January_Buckhead_74.pdf", "date": "Jan 13, 2026, 11:30 PM", "order": 1}, {"month": "February", "score": 81, "pdf": "February_Buckhead_81.pdf", "date": "Feb 12, 2026, 7:08 PM", "order": 2}, {"month": "March", "score": 88, "pdf": "March_Buckhead_88.pdf", "date": "Mar 10, 2026, 9:56 PM", "order": 3}],
+  "Decatur": [{"month": "January", "score": 60, "pdf": "January_Decatur_60.pdf", "date": "Jan 20, 2026, 8:46 PM", "order": 1}, {"month": "February", "score": 86, "pdf": "February_Decatur_86.pdf", "date": "Feb 6, 2026, 9:11 PM", "order": 2}, {"month": "March", "score": 76, "pdf": "March_Decatur_76.pdf", "date": "Mar 10, 2026, 7:08 PM", "order": 3}],
+  "Lawrenceville": [{"month": "January", "score": 81, "pdf": "January_Lawrenceville_81.pdf", "date": "Jan 28, 2026, 10:08 PM", "order": 1}, {"month": "February", "score": 75, "pdf": "February_Lawrenceville_75.pdf", "date": "Feb 25, 2026, 1:11 AM", "order": 2}, {"month": "March", "score": 84, "pdf": "March_Lawrenceville_84.pdf", "date": "Mar 26, 2026, 6:16 PM", "order": 3}],
+  "Beltline": [],
+  "Duluth": [{"month": "February", "score": 85, "pdf": "February_Duluth_85.pdf", "date": "\u2014", "order": 2}, {"month": "March", "score": 86, "pdf": "March_Duluth_86.pdf", "date": "Mar 24, 2026, 12:13 AM", "order": 3}],
+  "Woodstock": [],
+};
+
+function openReportModal(locName) {
+  const reports = locationReports[locName] || [];
+  if (!reports.length) return;
+  
+  const modal = document.getElementById('pdfModal');
+  const title = document.getElementById('pdfModalTitle');
+  const bar = document.getElementById('pdfReportsBar');
+  const body = document.getElementById('pdfModalBody');
+  
+  title.textContent = '📋 Audit Reports — ' + locName;
+  
+  // Build tab buttons
+  bar.innerHTML = '';
+  reports.forEach((r, i) => {
+    const grade = r.score >= 90 ? 'A' : r.score >= 80 ? 'B' : r.score >= 70 ? 'C' : r.score >= 60 ? 'D' : 'F';
+    const btn = document.createElement('button');
+    btn.className = 'report-tab-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = r.month + ' ' + r.score + '/100 (' + grade + ')';
+    btn.onclick = () => {
+      document.querySelectorAll('.report-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      loadPdf(r.pdf, r.month + ' ' + r.score + '/100');
+    };
+    bar.appendChild(btn);
+  });
+  
+  // Load first report
+  loadPdf(reports[0].pdf, reports[0].month + ' ' + reports[0].score + '/100');
+  modal.classList.add('active');
+}
+
+function loadPdf(pdfPath, label) {
+  const body = document.getElementById('pdfModalBody');
+  // Use tunnel URL for PDFs (Surge doesn't serve binary files)
+  const fullUrl = 'https://mid-ambassador-remarks-lived.trycloudflare.com/' + pdfPath + '#toolbar=1&navpanes=0';
+  body.innerHTML = '<iframe src="' + fullUrl + '" title="' + label + '" style="width:100%;height:100%;border:none;"></iframe>';
+}
+
+function closePdfModal(e) {
+  if (e.target === document.getElementById('pdfModal')) {
+    document.getElementById('pdfModal').classList.remove('active');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('pdfModal').classList.remove('active');
+});
+
+</script>
+
+<!-- PDF Report Modal -->
+<div class="pdf-modal-overlay" id="pdfModal" onclick="closePdfModal(event)">
+  <div class="pdf-modal">
+    <div class="pdf-modal-header">
+      <div class="pdf-modal-title" id="pdfModalTitle">📋 Audit Report</div>
+      <button class="pdf-modal-close" onclick="document.getElementById('pdfModal').classList.remove('active')">✕</button>
+    </div>
+    <div class="pdf-modal-reports-bar" id="pdfReportsBar"></div>
+    <div class="pdf-modal-body" id="pdfModalBody">
+      <div class="no-report">📄 Select a report above</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
