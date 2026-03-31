@@ -856,7 +856,7 @@
     <button class="month-tab" id="ht-btn-feb26" onclick="showHealthMonth('feb26', this)">Feb 2026</button>
     <button class="month-tab" id="ht-btn-jan26" onclick="showHealthMonth('jan26', this)">Jan 2026</button>
   </div>
-  <div id="health-audit-table-container"></div>
+  <div id="health-audit-table-container" style="color:#cbd5e1;"></div>
 
   <div class="section-title">📈 Audit Score Trends</div>
   <div class="chart-container">
@@ -2669,7 +2669,7 @@ function _initTab(name) {
   if (name === 'overview') { /* overview is static HTML, nothing to build */ }
   if (name === 'sales' && !_salesBuilt) { _salesBuilt = true; initSalesTable(); }
   if (name === 'reviews') { initReviews(); switchReviewSection('marqii'); }
-  if (name === 'audits') { renderHealthAuditTable('mar26'); setActiveMonthBtn('ht', 'mar26'); }
+  if (name === 'audits') { setTimeout(() => { renderHealthAuditTable('mar26'); setActiveMonthBtn('ht', 'mar26'); }, 50); }
   if (name === 'foodsync' && !_fsBuilt) { _fsBuilt = true; renderFSAuditTable('mar26'); setActiveMonthBtn('fs', 'mar26'); }
   if (name === 'secretshopper') { renderSSTable('mar26'); setActiveMonthBtn('ss', 'mar26'); }
   if (name === 'locations' && !_locsBuilt) { _locsBuilt = true; initLocationsGrid(); }
