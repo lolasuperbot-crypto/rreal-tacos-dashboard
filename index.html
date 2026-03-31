@@ -33,13 +33,13 @@
   }
   input, select, textarea { background: var(--bg-card); color: var(--text-primary); border-color: var(--border); }
   input::placeholder { color: var(--text-muted); }
-  /* Catch remaining white backgrounds */
-  .audit-table { background: var(--bg-card) !important; }
-  .chart-container { background: var(--bg-card) !important; }
-  .metric-card { background: var(--bg-card) !important; }
-  .loc-card { background: var(--bg-card) !important; }
-  .tier-card { background: var(--bg-card) !important; }
-  .sc-hist-card { background: var(--bg-card) !important; }
+  /* Dark mode tables */
+  .audit-table { background: var(--bg-card); }
+  .chart-container { background: var(--bg-card); }
+  .metric-card { background: var(--bg-card); }
+  .loc-card { background: var(--bg-card); }
+  .tier-card { background: var(--bg-card); }
+  .sc-hist-card { background: var(--bg-card); }
   /* Table alternating rows */
   .audit-table tbody tr:nth-child(even) td { background: #1e2535; }
   .audit-table tbody tr:hover td { background: var(--bg-hover) !important; }
@@ -59,23 +59,16 @@
   ::-webkit-scrollbar-track { background: var(--bg-page); }
   ::-webkit-scrollbar-thumb { background: #334155; border-radius:3px; }
 
-  /* Force dark on all panels */
-  .content, .tab-panel { background: #0f1117 !important; }
-  body, html { background: #0f1117 !important; color: #e2e8f0; }
-  /* Fix remaining light areas */
-  [style*="background: white"], [style*="background:white"] { background: #1a1f2e !important; }
-  /* Fix inline white backgrounds in cards */
-  .kpi-card { background: #1a1f2e !important; }
-  .kpi-value, .metric-value { color: #f1f5f9 !important; }
-  /* Tabs nav */
-  .tabs { background: #161b27 !important; border-bottom-color: #2d3748 !important; }
-  /* Header stays navy - already dark */
-  /* Month tab buttons */
-  .month-tab { background: #1a1f2e !important; color: #94a3b8 !important; border-color: #2d3748 !important; }
-  .month-tab.active { background: #1e3a5f !important; color: #93c5fd !important; border-color: #3b82f6 !important; }
-  /* Fix any remaining inline white text on dark */
-  td, th { color: #cbd5e1; }
-  th { color: #e2e8f0 !important; }
+  /* Dark mode base */
+  .content, .tab-panel { background: #0f1117; }
+  body, html { background: #0f1117; color: #e2e8f0; }
+  .kpi-card { background: #1a1f2e; }
+  .kpi-value, .metric-value { color: #f1f5f9; }
+  .tabs { background: #161b27; border-bottom-color: #2d3748; }
+  .month-tab { background: #1a1f2e; color: #94a3b8; border-color: #2d3748; }
+  .month-tab.active { background: #1e3a5f; color: #93c5fd; border-color: #3b82f6; }
+  td { color: #cbd5e1; }
+  th { color: #e2e8f0; }
 
 </style>
 <style>
@@ -391,16 +384,7 @@
   /* Fix content wrapper */
   .content { background: #0f1117 !important; }
   
-  /* Override any inline background:white from JS */
-  [style*="background: white"] { background: #1a1f2e !important; }
-  [style*="background:#fff"] { background: #1a1f2e !important; }
-  [style*="background: #fff"] { background: #1a1f2e !important; }
-  [style*="background:#f9fafc"] { background: #1e2535 !important; }
-  [style*="background: #f9fafc"] { background: #1e2535 !important; }
-  [style*="background: #fafafa"] { background: #1a1f2e !important; }
-  [style*="color: #334155"] { color: #cbd5e1 !important; }
-  [style*="color: #111"] { color: #e2e8f0 !important; }
-  [style*="color: #1e3a5f"] { color: #93c5fd !important; }
+
 
 </style>
 </head>
