@@ -363,6 +363,45 @@
   .alert-badge.warn { background: #fef3c7; color: #92400e; }
   .alert-badge.good { background: #dcfce7; color: #166534; }
 
+
+  /* ── DARK MODE COMPREHENSIVE FIX ── */
+  /* Force all text to be readable in dark mode */
+  .tab-panel, .tab-panel * { color: inherit; }
+  .tab-panel { color: #e2e8f0 !important; }
+  
+  /* Fix dynamically rendered tables inside tab panels */
+  #health-audit-table-container table td,
+  #health-audit-table-container table th,
+  #fs-audit-table-container table td,
+  #fs-audit-table-container table th,
+  #ss-audit-table-container table td,
+  #ss-audit-table-container table th,
+  .audit-table td, .audit-table th { color: #e2e8f0 !important; }
+  
+  /* Fix any inline style white backgrounds injected by JS */
+  .audit-table tr { background: #1a1f2e; }
+  .audit-table tr:nth-child(even) { background: #1e2535; }
+  
+  /* Fix score badges */
+  .score-A, .score-B, .score-C, .score-D { color: #111 !important; }
+  
+  /* Fix footer - it's white */
+  .footer { background: #161b27 !important; color: #64748b !important; }
+  
+  /* Fix content wrapper */
+  .content { background: #0f1117 !important; }
+  
+  /* Override any inline background:white from JS */
+  [style*="background: white"] { background: #1a1f2e !important; }
+  [style*="background:#fff"] { background: #1a1f2e !important; }
+  [style*="background: #fff"] { background: #1a1f2e !important; }
+  [style*="background:#f9fafc"] { background: #1e2535 !important; }
+  [style*="background: #f9fafc"] { background: #1e2535 !important; }
+  [style*="background: #fafafa"] { background: #1a1f2e !important; }
+  [style*="color: #334155"] { color: #cbd5e1 !important; }
+  [style*="color: #111"] { color: #e2e8f0 !important; }
+  [style*="color: #1e3a5f"] { color: #93c5fd !important; }
+
 </style>
 </head>
 <body>
