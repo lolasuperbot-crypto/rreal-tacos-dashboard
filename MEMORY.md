@@ -23,3 +23,14 @@ https://console.developers.google.com/apis/api/sheets.googleapis.com/overview?pr
 Drive search works; sheet read/write is blocked until she enables it.
 
 **Account:** lolasuperbot@gmail.com (Drive ✅, Gmail ✅, Sheets ⚠️ API disabled)
+
+## GitHub Repository (added 2026-03-31)
+- Repo: https://github.com/lolasuperbot-crypto/rreal-tacos-dashboard (private)
+- Token: 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
+- Push: cd workspace/dashboard && git add -A && git commit -m "msg" && git push origin main
+
+## Marqii API Auth (added 2026-03-31)
+- Cognito UserPool: us-east-1_RvmkA3ZEL
+- ClientId: 4af42doicu3r2g2ld0su841m2l
+- Username: majo@rrealtacos.com / Password: 17deabriL!
+- Library: pycognito (pip3 install pycognito)
