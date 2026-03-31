@@ -339,11 +339,11 @@
     <div class="kpi-card kpi-sales">
       <div class="kpi-icon">💰</div>
       <div class="kpi-body">
-        <div class="kpi-label">Week 13 Total Sales</div>
-        <div class="kpi-value">$1,982,154</div>
-        <div class="kpi-sub">12 locations · 03/23–03/29/2026</div>
+        <div class="kpi-label">Wk 13 Total Net Sales</div>
+        <div class="kpi-value">$1,607,194</div>
+        <div class="kpi-sub">11 RRT locations · 03/23–03/29 · Source: WoW PnL</div>
       </div>
-      <div class="kpi-trend up">▲ Beltline #1 at $270K</div>
+      <div class="kpi-trend up">▲ Beltline #1 at $218,518</div>
     </div>
     <div class="kpi-card kpi-checks">
       <div class="kpi-icon">🧾</div>
@@ -495,7 +495,7 @@
     <div class="metric-card green">
       <div class="metric-emoji">📈</div>
       <div class="metric-label">Week 13 Total Sales</div>
-      <div class="metric-value">$1,982,154</div>
+      <div class="metric-value">$1,607,194</div>
       <div class="metric-sub">03/23–03/29 · 12 locations</div>
     </div>
     <div class="metric-card blue">
@@ -545,7 +545,7 @@
       <tr><td><strong>Duluth</strong></td><td style="color:#22c55e;font-weight:700">$155,847</td><td>$93,546</td><td style="color:#ef4444">-$62,300</td><td>60.0%</td><td>2,680</td><td>8</td></tr>
       <tr><td><strong>Woodstock</strong></td><td style="color:#22c55e;font-weight:700">$28,280</td><td>$184</td><td style="color:#ef4444">-$28,097</td><td>0.6%</td><td>692</td><td>12</td></tr>
       <tr style="background:#f0e8ff;font-weight:700;border-top:3px solid #1e3a5f">
-        <td>TOTAL</td><td style="color:#1e3a5f">$1,982,154</td><td>$1,147,508</td><td style="color:#ef4444">-$834,646</td><td>57.9%</td><td>39,938</td><td>—</td>
+        <td>TOTAL</td><td style="color:#1e3a5f">$1,607,194</td><td>$1,147,508</td><td style="color:#ef4444">-$834,646</td><td>57.9%</td><td>39,938</td><td>—</td>
       </tr>
     </tbody>
   </table>
@@ -1243,18 +1243,19 @@ function scoreColor(s) {
 // ── DATA ──
 // Week 13 data (03/23-03/29/2026) from Toast POS
 const locations = [
-  { name: "Midtown",       sales: 216687.69, checks: 4401, color: "#1e3a5f" },
-  { name: "West Midtown",  sales: 162538.06, checks: 3267, color: "#1e3a5f" },
-  { name: "Chamblee",      sales: 150272.79, checks: 2915, color: "#1565c0" },
-  { name: "Sandy Springs", sales: 179208.16, checks: 3197, color: "#0277bd" },
-  { name: "Cumming",       sales:  95168.17, checks: 1739, color: "#00838f" },
-  { name: "Sugar Hill",    sales: 111940.30, checks: 2016, color: "#334155" },
-  { name: "Buckhead",      sales: 176555.92, checks: 3305, color: "#0ea5e9" },
-  { name: "Decatur",       sales: 182168.79, checks: 3444, color: "#0288d1" },
-  { name: "Lawrenceville", sales: 252665.92, checks: 4041, color: "#0f2d4a" },
-  { name: "Beltline",      sales: 270821.49, checks: 4439, color: "#0f2d4a" },
-  { name: "Duluth",        sales: 155846.50, checks: 2680, color: "#1976d2" },
-  { name: "Woodstock",     sales:  28280.24, checks:  692, color: "#0097a7" },
+  // Source: WoW Operating PnL — Wk13 Net Sales (03/23–03/29/2026)
+  { name: "Midtown",       sales: 184786.35, checks: 4401, color: "#1e3a5f" },
+  { name: "West Midtown",  sales: 135942.67, checks: 3267, color: "#1e3a5f" },
+  { name: "Chamblee",      sales: 122362.60, checks: 2915, color: "#1565c0" },
+  { name: "Sandy Springs", sales: 149016.92, checks: 3197, color: "#0277bd" },
+  { name: "Cumming",       sales:  75991.83, checks: 1739, color: "#00838f" },
+  { name: "Sugar Hill",    sales:  92284.79, checks: 2016, color: "#334155" },
+  { name: "Buckhead",      sales: 144281.40, checks: 3305, color: "#0ea5e9" },
+  { name: "Decatur",       sales: 150513.83, checks: 3444, color: "#0288d1" },
+  { name: "Lawrenceville", sales: 207456.79, checks: 4041, color: "#0f2d4a" },
+  { name: "Beltline",      sales: 218517.95, checks: 4439, color: "#334155" },
+  { name: "Duluth",        sales: 126038.91, checks: 2680, color: "#1976d2" },
+  { name: "Woodstock",     sales:       null, checks:  null, color: "#0097a7" },
 ];
 
 const foodsyncData = [
@@ -1721,17 +1722,17 @@ const reviewsWeeks = [
      ]
    },
    locations:{
-    Midtown:      {reviews:4, sales:184786.35,per100k:2.16,food:2,service:2},
-    WestMidtown:  {reviews:1, sales:135942.67,per100k:0.74,food:0,service:1},
-    Chamblee:     {reviews:2, sales:122362.60,per100k:1.63,food:1,service:1},
-    SandySprings: {reviews:1, sales:149016.92,per100k:0.67,food:0,service:1},
-    Cumming:      {reviews:0, sales:75991.83, per100k:0.00,food:0,service:0},
-    SugarHill:    {reviews:1, sales:92284.79, per100k:1.08,food:0,service:1},
-    Buckhead:     {reviews:0, sales:144281.40,per100k:0.00,food:0,service:0},
-    Decatur:      {reviews:3, sales:150513.83,per100k:1.99,food:1,service:2},
-    Lawrenceville:{reviews:2, sales:207456.79,per100k:0.96,food:0,service:2},
-    Beltline:     {reviews:4, sales:218517.95,per100k:1.83,food:1,service:3},
-    Duluth:       {reviews:1, sales:126038.91,per100k:0.79,food:1,service:0},
+    Midtown:      {reviews:4, sales:184786.35,laborPct:19.9,per100k:2.16,food:2,service:2},
+    WestMidtown:  {reviews:1, sales:135942.67,laborPct:23.0,per100k:0.74,food:0,service:1},
+    Chamblee:     {reviews:2, sales:122362.60,laborPct:23.2,per100k:1.63,food:1,service:1},
+    SandySprings: {reviews:1, sales:149016.92,laborPct:21.0,per100k:0.67,food:0,service:1},
+    Cumming:      {reviews:0, sales:75991.83, laborPct:20.2,per100k:0.00,food:0,service:0},
+    SugarHill:    {reviews:1, sales:92284.79, laborPct:21.5,per100k:1.08,food:0,service:1},
+    Buckhead:     {reviews:0, sales:144281.40,laborPct:23.6,per100k:0.00,food:0,service:0},
+    Decatur:      {reviews:3, sales:150513.83,laborPct:23.8,per100k:1.99,food:1,service:2},
+    Lawrenceville:{reviews:2, sales:207456.79,laborPct:23.3,per100k:0.96,food:0,service:2},
+    Beltline:     {reviews:4, sales:218517.95,laborPct:21.9,per100k:1.83,food:1,service:3},
+    Duluth:       {reviews:1, sales:126038.91,laborPct:27.8,per100k:0.79,food:1,service:0},
    },total:19,avg100k:1.13},
   {week:12,dates:"03/16–03/22",month:"March",stars1:5,stars2:2,platforms:{google:6,yelp:1,uber:0},foodTotal:4,serviceTotal:3,
    themes:{food:[{emoji:"🌡️",topic:"Food cold / temperature issues",count:2,locs:"Chamblee, Beltline",worst:{loc:"Chamblee",stars:"⭐",quote:"My burrito bowl arrived ice cold. I asked for it to be reheated and it came back lukewarm. Not acceptable for this price."}},{emoji:"🌮",topic:"Incorrect order",count:2,locs:"Sandy Springs, Decatur",worst:{loc:"Decatur",stars:"⭐",quote:"Got the wrong order entirely. Didn't realize until I got home. No compensation offered."}}],service:[{emoji:"⏳",topic:"Long wait / slow service",count:2,locs:"Chamblee, Duluth",worst:{loc:"Chamblee",stars:"⭐",quote:"35 minute wait for a simple order on a weeknight. Nobody apologized or even acknowledged the delay."}},{emoji:"👻",topic:"Staff not attentive",count:1,locs:"West Midtown",worst:{loc:"West Midtown",stars:"⭐⭐",quote:"Had to ask three times for napkins. Staff seemed more interested in chatting with each other."}}]},
