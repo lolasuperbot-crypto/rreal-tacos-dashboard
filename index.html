@@ -587,7 +587,7 @@
         <div class="metric-emoji">⭐</div>
         <div id="rvw-platform-badges" style="display:flex;gap:5px;align-items:center;margin-top:2px"></div>
       </div>
-      <div class="metric-label">Total Bad Reviews</div>
+      <div class="metric-label">Total Bad Reviews (Google + Yelp)</div>
       <div style="display:flex;align-items:baseline;gap:10px">
         <div class="metric-value" id="rvw-total">—</div>
         <div id="rvw-star-split" style="font-size:.78rem;color:#64748b;line-height:1.4"></div>
@@ -1702,8 +1702,8 @@ const LOCATION_ORDER = ["Midtown","West Midtown","Chamblee","Sandy Springs","Cum
 // themes.food / themes.service = actual complaint topics seen that week (with counts)
 const reviewsWeeks = [
   {week:13,dates:"03/23–03/29",month:"March",
-   stars1:44,stars2:12,platforms:{google:31,yelp:14,uber:11},
-   foodTotal:34,serviceTotal:22,
+   stars1:16,stars2:3,platforms:{google:17,yelp:2,uber:0},
+   foodTotal:12,serviceTotal:9,
    themes:{
      food:[
        {emoji:"🌮",topic:"Wrong order / missing items",count:9,locs:"Decatur, Midtown, Chamblee",worst:{loc:"Decatur",stars:"⭐",quote:"I specifically asked for no sour cream and they put it on everything. This is the THIRD time this has happened. I gave up and threw the whole plate away. Completely unacceptable."}},
@@ -1720,18 +1720,18 @@ const reviewsWeeks = [
      ]
    },
    locations:{
-    Midtown:      {reviews:10,sales:184786.35,per100k:5.41,food:6,service:4},
-    WestMidtown:  {reviews:1, sales:135942.67,per100k:0.74,food:1,service:0},
-    Chamblee:     {reviews:9, sales:122362.60,per100k:7.36,food:5,service:4},
-    SandySprings: {reviews:4, sales:149016.92,per100k:2.68,food:2,service:2},
-    Cumming:      {reviews:3, sales:75991.83, per100k:3.95,food:2,service:1},
+    Midtown:      {reviews:4, sales:184786.35,per100k:2.16,food:2,service:2},
+    WestMidtown:  {reviews:1, sales:135942.67,per100k:0.74,food:0,service:1},
+    Chamblee:     {reviews:2, sales:122362.60,per100k:1.63,food:1,service:1},
+    SandySprings: {reviews:1, sales:149016.92,per100k:0.67,food:0,service:1},
+    Cumming:      {reviews:0, sales:75991.83, per100k:0.00,food:0,service:0},
     SugarHill:    {reviews:1, sales:92284.79, per100k:1.08,food:0,service:1},
-    Buckhead:     {reviews:2, sales:144281.40,per100k:1.39,food:1,service:1},
-    Decatur:      {reviews:11,sales:150513.83,per100k:7.31,food:7,service:4},
-    Lawrenceville:{reviews:5, sales:207456.79,per100k:2.41,food:3,service:2},
-    Beltline:     {reviews:6, sales:218517.95,per100k:2.75,food:4,service:2},
-    Duluth:       {reviews:4, sales:126038.91,per100k:3.17,food:3,service:1},
-   },total:56,avg100k:3.34},
+    Buckhead:     {reviews:0, sales:144281.40,per100k:0.00,food:0,service:0},
+    Decatur:      {reviews:3, sales:150513.83,per100k:1.99,food:1,service:2},
+    Lawrenceville:{reviews:2, sales:207456.79,per100k:0.96,food:0,service:2},
+    Beltline:     {reviews:4, sales:218517.95,per100k:1.83,food:1,service:3},
+    Duluth:       {reviews:1, sales:126038.91,per100k:0.79,food:1,service:0},
+   },total:19,avg100k:1.13},
   {week:12,dates:"03/16–03/22",month:"March",stars1:5,stars2:2,platforms:{google:4,yelp:2,uber:1},foodTotal:4,serviceTotal:3,
    themes:{food:[{emoji:"🌡️",topic:"Food cold / temperature issues",count:2,locs:"Chamblee, Beltline",worst:{loc:"Chamblee",stars:"⭐",quote:"My burrito bowl arrived ice cold. I asked for it to be reheated and it came back lukewarm. Not acceptable for this price."}},{emoji:"🌮",topic:"Incorrect order",count:2,locs:"Sandy Springs, Decatur",worst:{loc:"Decatur",stars:"⭐",quote:"Got the wrong order entirely. Didn't realize until I got home. No compensation offered."}}],service:[{emoji:"⏳",topic:"Long wait / slow service",count:2,locs:"Chamblee, Duluth",worst:{loc:"Chamblee",stars:"⭐",quote:"35 minute wait for a simple order on a weeknight. Nobody apologized or even acknowledged the delay."}},{emoji:"👻",topic:"Staff not attentive",count:1,locs:"West Midtown",worst:{loc:"West Midtown",stars:"⭐⭐",quote:"Had to ask three times for napkins. Staff seemed more interested in chatting with each other."}}]},
    locations:{Midtown:{reviews:0,sales:170080.66,per100k:0.00,food:0,service:0},WestMidtown:{reviews:1,sales:141930.77,per100k:0.70,food:0,service:1},Chamblee:{reviews:2,sales:117882.23,per100k:1.70,food:1,service:1},SandySprings:{reviews:1,sales:149134.55,per100k:0.67,food:1,service:0},Cumming:{reviews:0,sales:75685.58,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:90619.19,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:152147.34,per100k:0.00,food:0,service:0},Decatur:{reviews:1,sales:146135.87,per100k:0.68,food:1,service:0},Lawrenceville:{reviews:0,sales:207587.26,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:194980.93,per100k:0.51,food:1,service:0},Duluth:{reviews:1,sales:131030.00,per100k:0.76,food:0,service:1}},total:7,avg100k:0.42},
