@@ -2359,7 +2359,7 @@ function renderMgmtWeek(idx) {
     const mitDivider = isMIT ? `<div style="margin:18px 0 10px;border-top:2px dashed #f59e0b;padding-top:10px;font-size:.8rem;font-weight:700;color:#b45309;letter-spacing:.05em">🎓 MANAGERS IN TRAINING (MIT) — Hospitality · Training</div>` : '';
     html += `${mitDivider}<div style="background:#1a1f2e;border-radius:12px;padding:16px 20px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:4px solid ${color}${isMIT ? ';border-top:1px solid #fde68a' : ''}">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-        <div style="font-weight:800;font-size:.95rem;color:${isMIT ? '#b45309' : '#1e3a5f'}">${isMIT ? '🎓 Managers In Training' : loc}</div>
+        <div style="font-weight:800;font-size:.95rem;color:${isMIT ? '#fbbf24' : '#93c5fd'}">${isMIT ? '🎓 Managers In Training' : loc}</div>
         <div style="font-weight:700;font-size:1.05rem;color:${color}">${locTotal.toFixed(1)} hrs &nbsp;<span style="font-size:.75rem;color:#94a3b8;font-weight:400">${activeMgrs.length} MITs</span></div>
       </div>`;
 
@@ -2371,14 +2371,14 @@ function renderMgmtWeek(idx) {
         const isMulti = m[2];
         const pct = locTotal > 0 ? Math.round(m[1]/locTotal*100) : 0;
         const trainingLoc = isMIT && m[4] ? `<span style="background:#fef3c7;color:#92400e;font-size:.65rem;font-weight:600;padding:1px 6px;border-radius:8px;margin-left:4px">📍 ${m[4]}</span>` : '';
-        html += `<tr style="${mi%2===1?'background:#f9fafc':''}">
-          <td style="padding:5px 8px;font-size:.83rem;color:#334155;width:52%">
+        html += `<tr style="${mi%2===1?'background:#1e2535':''}">
+          <td style="padding:5px 8px;font-size:.83rem;color:#e2e8f0;width:52%">
             ${m[0]}${isMulti ? ' <span style="background:#fef3c7;color:#92400e;font-size:.65rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px">🔀 MULTI</span>' : ''}${trainingLoc}
             ${isMulti && m[3] ? `<div style="font-size:.68rem;color:#94a3b8;margin-top:1px">${m[3]}</div>` : ''}
           </td>
           <td style="padding:5px 8px;font-weight:700;font-size:.88rem;color:#93c5fd;width:15%;text-align:right">${m[1].toFixed(1)}h</td>
           <td style="padding:5px 8px;width:33%">
-            <div style="background:#f1f5f9;border-radius:4px;height:6px;overflow:hidden">
+            <div style="background:#2d3748;border-radius:4px;height:6px;overflow:hidden">
               <div style="width:${pct}%;height:100%;background:${color};border-radius:4px"></div>
             </div>
           </td>
