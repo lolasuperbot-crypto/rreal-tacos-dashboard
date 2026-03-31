@@ -324,7 +324,6 @@
   <div class="tab" onclick="showTab('secretshopper')">🕵️ Secret Shopper</div>
   <div class="tab" onclick="showTab('locations')">📍 All Locations</div>
   <div class="tab" onclick="showTab('labor')">👥 Labor</div>
-  <div class="tab" onclick="showTab('sunday')">☀️ Sunday</div>
   <div class="tab" onclick="showTab('mgmthours')">🧑‍💼 Mgmt Hours</div>
   <div class="tab" onclick="showTab('scorecard')">📊 Scorecard</div>
   <div class="tab" onclick="showTab('alerts')">🚨 Alerts</div>
@@ -561,8 +560,29 @@
 
 </div>
 
-<!-- ===================== REVIEWS TAB ===================== -->
+<!-- ===================== REVIEWS TAB (unified) ===================== -->
 <div id="tab-reviews" class="tab-panel">
+
+  <!-- ═══ REVIEWS SECTION NAV ═══ -->
+  <div id="rvw-section-nav" style="display:flex;gap:6px;margin-bottom:24px;border-bottom:2px solid #e2e8f0;padding-bottom:0;">
+    <button id="rvw-sec-btn-marqii" onclick="switchReviewSection('marqii')"
+      style="padding:10px 18px;font-weight:700;font-size:.85rem;border:none;background:none;cursor:pointer;border-bottom:3px solid #1e3a5f;color:#1e3a5f;margin-bottom:-2px;">
+      📊 Marqii Reviews
+    </button>
+    <button id="rvw-sec-btn-sunday" onclick="switchReviewSection('sunday')"
+      style="padding:10px 18px;font-weight:700;font-size:.85rem;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;margin-bottom:-2px;">
+      ☀️ Sunday App
+    </button>
+    <button id="rvw-sec-btn-per100k" onclick="switchReviewSection('per100k')"
+      style="padding:10px 18px;font-weight:700;font-size:.85rem;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;margin-bottom:-2px;">
+      📈 Sales Per 100K
+    </button>
+  </div>
+
+
+  <!-- ─── SECTION: Marqii Bad Reviews ─── -->
+  <div id="rvw-section-marqii" class="rvw-section">
+
 
   <div class="alert info" style="margin-bottom:16px;">⭐ <strong>Source: Weekly Resto Reviews · Marqii Platform</strong> · Weeks 1–13, 2026 · Updated by Lola every Monday 🌺</div>
 
@@ -969,9 +989,12 @@
     <canvas id="laborChart" height="110"></canvas>
   </div>
 
-</div>
-<!-- ===================== SUNDAY TAB ===================== -->
-<div id="tab-sunday" class="tab-panel">
+  </div>
+
+
+  <!-- ─── SECTION: Sunday App ─── -->
+  <div id="rvw-section-sunday" class="rvw-section" style="display:none;">
+
 
   <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
     <div style="font-size:1.4rem;font-weight:900;color:#1e3a5f">☀️ Sunday Snapshot</div>
@@ -1047,6 +1070,65 @@
   <!-- TREND CHART -->
   <div class="section-title" style="margin-top:28px">📈 Weekly Rating Trend — All Locations</div>
   <div class="chart-container"><canvas id="sunTrendChart" height="110"></canvas></div>
+
+  </div>
+
+
+  <!-- ─── SECTION: Sales Per 100K ─── -->
+  <div id="rvw-section-per100k" class="rvw-section" style="display:none;">
+
+    <div class="alert info" style="margin-bottom:18px;">📈 <strong>Source: Marqii Bad Reviews + WoW Net Sales</strong> · Bad reviews per $100K net sales · Weeks 1–13, 2026</div>
+
+    <!-- Week selector for 100K view -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap;">
+      <span style="font-size:.8rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.05em">Week:</span>
+      <div id="p100k-week-tabs" style="display:flex;gap:5px;flex-wrap:wrap;"></div>
+    </div>
+
+    <!-- Summary KPIs -->
+    <div class="metrics-grid">
+      <div class="metric-card" style="border-left-color:#1e3a5f">
+        <div class="metric-emoji">📊</div>
+        <div class="metric-label">Network Avg (per $100K)</div>
+        <div class="metric-value" id="p100k-avg">—</div>
+        <div class="metric-sub" id="p100k-week-label">—</div>
+      </div>
+      <div class="metric-card" style="border-left-color:#ef4444">
+        <div class="metric-emoji">🔴</div>
+        <div class="metric-label">Worst Location</div>
+        <div class="metric-value" id="p100k-worst" style="font-size:1.1rem">—</div>
+        <div class="metric-sub" id="p100k-worst-sub">—</div>
+      </div>
+      <div class="metric-card" style="border-left-color:#22c55e">
+        <div class="metric-emoji">🏆</div>
+        <div class="metric-label">Best Location</div>
+        <div class="metric-value" id="p100k-best" style="font-size:1.1rem">—</div>
+        <div class="metric-sub" id="p100k-best-sub">—</div>
+      </div>
+    </div>
+
+    <!-- Per-location table -->
+    <div class="section-title" style="margin-top:20px">📍 Bad Reviews per $100K Net Sales — by Location</div>
+    <div style="overflow-x:auto;">
+      <table class="audit-table" id="p100k-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Location</th>
+            <th>Net Sales</th>
+            <th>Bad Reviews (G+Y)</th>
+            <th>Per $100K</th>
+            <th>vs Prior Week</th>
+          </tr>
+        </thead>
+        <tbody id="p100k-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Trend chart -->
+    <div class="section-title" style="margin-top:28px">📈 Weekly Trend — Reviews per $100K</div>
+    <div class="chart-container"><canvas id="per100kTrendChart" height="110"></canvas></div>
+
+  </div>
 
 </div>
 
@@ -2479,7 +2561,7 @@ function initTables() {
 function _initTab(name) {
   if (name === 'overview') { /* overview is static HTML, nothing to build */ }
   if (name === 'sales' && !_salesBuilt) { _salesBuilt = true; initSalesTable(); }
-  if (name === 'reviews') { initReviews(); }
+  if (name === 'reviews') { initReviews(); switchReviewSection('marqii'); }
   if (name === 'audits') { renderHealthAuditTable('mar26'); setActiveMonthBtn('ht', 'mar26'); }
   if (name === 'foodsync' && !_fsBuilt) { _fsBuilt = true; renderFSAuditTable('mar26'); setActiveMonthBtn('fs', 'mar26'); }
   if (name === 'secretshopper') { renderSSTable('mar26'); setActiveMonthBtn('ss', 'mar26'); }
@@ -2762,6 +2844,125 @@ function scRenderKpiTable(){const d=scData[scCurrentMonth];const keys=['Sunday G
 function scPopulateLocSelect(){const sel=document.getElementById('sc-loc-select');if(sel.options.length>0)return;Object.keys(scLocHistory).forEach(loc=>{const o=document.createElement('option');o.value=loc;o.text=loc;sel.appendChild(o);});}
 function scShowLocHistory(){const sel=document.getElementById('sc-loc-select');if(!sel)return;const loc=sel.value;const hist=scLocHistory[loc];if(!hist)return;const months=[{key:'jan',label:'Enero 2026 (Wks 1-5)'},{key:'feb',label:'Febrero 2026 (Wks 6-10)'},{key:'mar',label:'Marzo 2026 (Wks 10-13)'}];let h='<div class="sc-hist-grid">';months.forEach(m=>{const score=hist[m.key];const disp=score||'-';h+='<div class="sc-hist-card"><h4>'+m.label+'</h4><div class="sc-hist-score"><span style="'+scInlineStyle(disp)+'">'+disp+'</span></div></div>';});h+='</div>';const scores=[hist.jan,hist.feb,hist.mar].filter(x=>x&&!isNaN(parseFloat(x))).map(x=>parseFloat(x));if(scores.length>=2){const diff=(scores[scores.length-1]-scores[scores.length-2]).toFixed(2);const up=diff>=0;h+='<div class="alert '+(up?'success':'warning')+'" style="margin-top:8px;">'+(up?'📈':'📉')+' <strong>'+loc+'</strong>: '+(up?'+':'')+diff+' pts vs mes anterior</div>';}document.getElementById('sc-loc-history').innerHTML=h;}
 function initScorecard(){scRenderRanking();scRenderKpiTable();scPopulateLocSelect();scShowLocHistory();}
+
+
+// ── REVIEWS SECTION SWITCHER ──
+function switchReviewSection(section) {
+  ['marqii','sunday','per100k'].forEach(s => {
+    const el = document.getElementById('rvw-section-' + s);
+    const btn = document.getElementById('rvw-sec-btn-' + s);
+    if (el) el.style.display = (s === section) ? '' : 'none';
+    if (btn) {
+      btn.style.borderBottomColor = (s === section) ? '#1e3a5f' : 'transparent';
+      btn.style.color = (s === section) ? '#1e3a5f' : '#64748b';
+    }
+  });
+  if (section === 'sunday' && typeof initSunday === 'function') initSunday();
+  if (section === 'per100k') initPer100K();
+}
+
+// ── PER 100K RENDERING ──
+let _p100kBuilt = false;
+let _p100kWeek = 13;
+function initPer100K() {
+  // Build week tabs
+  if (!_p100kBuilt) {
+    const tabs = document.getElementById('p100k-week-tabs');
+    if (tabs && !tabs.children.length) {
+      reviewsWeeks.forEach(w => {
+        const btn = document.createElement('button');
+        btn.className = 'month-tab';
+        btn.textContent = 'Wk ' + w.week;
+        btn.onclick = () => { _p100kWeek = w.week; renderP100K(); updateP100KTabs(); };
+        btn.id = 'p100k-btn-' + w.week;
+        tabs.appendChild(btn);
+      });
+    }
+    _p100kBuilt = true;
+  }
+  renderP100K();
+  updateP100KTabs();
+}
+function updateP100KTabs() {
+  reviewsWeeks.forEach(w => {
+    const btn = document.getElementById('p100k-btn-' + w.week);
+    if (btn) btn.classList.toggle('active', w.week === _p100kWeek);
+  });
+}
+function renderP100K() {
+  const w = reviewsWeeks.find(x => x.week === _p100kWeek);
+  if (!w) return;
+  document.getElementById('p100k-week-label').textContent = 'Wk ' + w.week + ' · ' + w.dates;
+  
+  const LOC_ORDER_P100K = ['Midtown','West Midtown','Chamblee','Sandy Springs','Cumming',
+    'Sugar Hill','Buckhead','Decatur','Lawrenceville','Beltline','Duluth'];
+  const LOC_KEY_P100K = {
+    Midtown:'Midtown', 'West Midtown':'WestMidtown', Chamblee:'Chamblee',
+    'Sandy Springs':'SandySprings', Cumming:'Cumming', 'Sugar Hill':'SugarHill',
+    Buckhead:'Buckhead', Decatur:'Decatur', Lawrenceville:'Lawrenceville',
+    Beltline:'Beltline', Duluth:'Duluth'
+  };
+  
+  const rows = LOC_ORDER_P100K.map(loc => {
+    const key = LOC_KEY_P100K[loc];
+    const locData = (w.locations || {})[key] || {};
+    const rev = locData.reviews;
+    const sales = locData.sales;
+    const per100k = (rev != null && sales && sales > 0) ? (rev / sales * 100000) : null;
+    return { loc, rev, sales, per100k };
+  }).filter(r => r.sales != null);
+  
+  const valid = rows.filter(r => r.per100k != null);
+  const avg = valid.length ? (valid.reduce((s,r) => s+r.per100k,0) / valid.length) : null;
+  document.getElementById('p100k-avg').textContent = avg != null ? avg.toFixed(2) : '—';
+  
+  const worst = valid.length ? valid.reduce((a,b) => b.per100k>a.per100k?b:a) : null;
+  const best = valid.length ? valid.reduce((a,b) => b.per100k<a.per100k?b:a) : null;
+  document.getElementById('p100k-worst').textContent = worst ? worst.loc : '—';
+  document.getElementById('p100k-worst-sub').textContent = worst ? worst.per100k.toFixed(2) + ' / $100K' : '—';
+  document.getElementById('p100k-best').textContent = best ? best.loc : '—';
+  document.getElementById('p100k-best-sub').textContent = best ? best.per100k.toFixed(2) + ' / $100K' : '—';
+  
+  const tbody = document.getElementById('p100k-tbody');
+  tbody.innerHTML = rows.map(r => {
+    const p = r.per100k;
+    const color = p == null ? '' : p <= 1 ? '#22c55e' : p <= 2 ? '#f59e0b' : '#ef4444';
+    const badge = p == null ? '<span style="color:#94a3b8">—</span>'
+      : `<span style="color:${color};font-weight:800">${p.toFixed(2)}</span>`;
+    const salesFmt = r.sales ? '$' + r.sales.toLocaleString('en-US',{maximumFractionDigits:0}) : '—';
+    return `<tr>
+      <td style="font-weight:700">${r.loc}</td>
+      <td style="text-align:right">${salesFmt}</td>
+      <td style="text-align:center">${r.rev != null ? r.rev : '—'}</td>
+      <td style="text-align:center">${badge}</td>
+      <td style="text-align:center;color:#94a3b8;font-size:.78rem">—</td>
+    </tr>`;
+  }).join('');
+  
+  // Trend chart
+  const ctx = document.getElementById('per100kTrendChart');
+  if (ctx && typeof Chart !== 'undefined') {
+    if (ctx._chart) ctx._chart.destroy();
+    ctx._chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: reviewsWeeks.map(w => 'Wk ' + w.week),
+        datasets: [{
+          label: 'Network Avg / $100K',
+          data: reviewsWeeks.map(w => {
+            const locs = Object.values(w.locations||{});
+            const valid = locs.filter(l=>l.sales&&l.sales>0&&l.reviews!=null);
+            if(!valid.length) return null;
+            return valid.reduce((s,l)=>s+(l.reviews/l.sales*100000),0)/valid.length;
+          }),
+          borderColor:'#1e3a5f',backgroundColor:'rgba(30,58,95,.08)',
+          tension:.4,borderWidth:2.5,pointRadius:4,fill:true,spanGaps:true
+        }]
+      },
+      options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>v.toFixed(1)}}}}
+    });
+  }
+}
 
 </script>
 
