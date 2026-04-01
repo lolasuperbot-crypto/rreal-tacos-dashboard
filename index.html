@@ -978,115 +978,206 @@
 <!-- ===================== FOODSYNC AUDIT TAB ===================== -->
 <div id="tab-foodsync" class="tab-panel">
 
-  <div class="alert info" style="margin-bottom:16px;">📧 <strong>Source: FoodSync Audits 2026</strong> · Emails forwarded by majo@rrealtacos.com → lolasuperbot@gmail.com · 37 audit submissions Jan–Mar 2026</div>
+  <div style="background:#0c1a2e;border:1px solid #2563eb;border-radius:10px;padding:12px 16px;margin-bottom:20px;color:#bfdbfe;font-size:.85rem;">
+    📧 <strong style="color:#60a5fa">Fuente: FoodSync Audits 2026</strong> · Emails de majo@rrealtacos.com → lolasuperbot@gmail.com · 37 auditorías Ene–Mar 2026 · Una auditoría mensual por locación · Si reprueban → REDO automático 🔄
+  </div>
 
   <!-- KPI CARDS -->
-  <div class="metrics-grid" style="margin-bottom:20px;">
-    <div class="metric-card green">
-      <div class="metric-emoji">📊</div>
-      <div class="metric-label">Total Audits 2026</div>
-      <div class="metric-value">37</div>
-      <div class="metric-sub">Enero · Febrero · Marzo</div>
-    </div>
-    <div class="metric-card blue">
+  <div class="metrics-grid" style="margin-bottom:24px;">
+    <div class="metric-card" style="background:#0d2818;border:1px solid #16a34a;">
       <div class="metric-emoji">🏆</div>
-      <div class="metric-label">Top Score</div>
-      <div class="metric-value">Sugar Hill 97</div>
-      <div class="metric-sub">Feb & Mar 2026 — 2 consecutive 🏆</div>
+      <div class="metric-label" style="color:#4ade80">Top Score 2026</div>
+      <div class="metric-value" style="color:#fff">Sugar Hill 97</div>
+      <div class="metric-sub" style="color:#86efac">Feb & Mar — 2 consecutivos 🌟</div>
     </div>
-    <div class="metric-card orange">
-      <div class="metric-emoji">📈</div>
-      <div class="metric-label">Avg Trend</div>
-      <div class="metric-value">↑ Improving</div>
-      <div class="metric-sub">Jan 72 → Feb 82 → Mar 84</div>
+    <div class="metric-card" style="background:#0c1a2e;border:1px solid #2563eb;">
+      <div class="metric-emoji">📊</div>
+      <div class="metric-label" style="color:#60a5fa">Total Auditorías</div>
+      <div class="metric-value" style="color:#fff">37</div>
+      <div class="metric-sub" style="color:#bfdbfe">Enero · Febrero · Marzo 2026</div>
     </div>
-    <div class="metric-card purple">
+    <div class="metric-card" style="background:#2d1a00;border:1px solid #ea580c;">
       <div class="metric-emoji">🔄</div>
-      <div class="metric-label">REDOs / Resubmissions</div>
-      <div class="metric-value">6</div>
-      <div class="metric-sub">Midtown, Cumming, Sandy Sp, Beltline ×2, W.Midtown</div>
+      <div class="metric-label" style="color:#fb923c">REDOs</div>
+      <div class="metric-value" style="color:#fff">6</div>
+      <div class="metric-sub" style="color:#fed7aa">Midtown · Cumming · Sandy Sp · Beltline ×2 · W.Midtown</div>
+    </div>
+    <div class="metric-card" style="background:#0d2818;border:1px solid #16a34a;">
+      <div class="metric-emoji">📈</div>
+      <div class="metric-label" style="color:#4ade80">Tendencia Promedio</div>
+      <div class="metric-value" style="color:#fff">↑ Mejorando</div>
+      <div class="metric-sub" style="color:#86efac">Ene 72 → Feb 82 → Mar 84</div>
     </div>
   </div>
 
-  <!-- MONTH TABS -->
-  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
-    <button class="month-tab active" onclick="showFSTab('mar',this)">Marzo 2026 (10)</button>
-    <button class="month-tab" onclick="showFSTab('feb',this)">Febrero 2026 (16)</button>
-    <button class="month-tab" onclick="showFSTab('jan',this)">Enero 2026 (11)</button>
-  </div>
+  <!-- LOCATION CARDS -->
+  <div class="section-title" style="margin-bottom:16px;">📍 Auditorías por Locación — Enero a Marzo 2026</div>
 
-  <!-- ── MARZO 2026 ── -->
-  <div id="fs-tab-mar" class="fs-month-panel">
-    <div class="section-title" style="margin-bottom:12px;">📋 Marzo 2026 — FoodSync Audit Scores</div>
-    <table class="audit-table">
-      <thead><tr>
-        <th>#</th><th>Locación</th><th>Score</th><th>Grade</th><th>vs Febrero</th><th>Fecha</th><th>PDF</th>
-      </tr></thead>
-      <tbody>
-        <tr><td>1</td><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">97/100</span><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#94a3b8">= 97</span></td><td>Mar 26, 2026 🏆</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Sugar_Hill_97.pdf','Sugar Hill — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>2</td><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +1 (85)</span></td><td>Mar 24, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Duluth_86.pdf','Duluth — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>3</td><td><strong>Lawrenceville</strong></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +9 (75)</span></td><td>Mar 26, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Lawrenceville_84.pdf','Lawrenceville — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>4</td><td><strong>Chamblee</strong></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +14 (70)</span></td><td>Mar 18, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Chamblee_84.pdf','Chamblee — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>5</td><td><strong>Sandy Springs</strong></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#ef4444">▼ -2 (87)</span></td><td>Mar 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Sandy_Springs_85.pdf','Sandy Springs — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>6</td><td><strong>Buckhead</strong></td><td><span style="color:#22c55e;font-weight:700">88/100</span><div class="progress-bar"><div class="progress-fill" style="width:88%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +7 (81)</span></td><td>Mar 10, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Buckhead_88.pdf','Buckhead — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>7</td><td><strong>Decatur</strong></td><td><span style="color:#f97316;font-weight:700">76/100</span><div class="progress-bar"><div class="progress-fill" style="width:76%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -10 (86)</span></td><td>Mar 10, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Decatur_76.pdf','Decatur — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>8</td><td><strong>Midtown</strong></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -16 (91 REDO)</span></td><td>Mar 19, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Midtown_75.pdf','Midtown — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr><td>9</td><td><strong>Beltline</strong></td><td><span style="color:#f97316;font-weight:700">83/100</span><div class="progress-bar"><div class="progress-fill" style="width:83%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -4 (87 REDO)</span></td><td>Mar 9, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Beltline_83.pdf','Beltline — FoodSync Mar 2026')">📄 PDF</button></td></tr>
-        <tr style="background:#1a1f2e"><td>10</td><td><strong style="color:#94a3b8">West Midtown</strong></td><td><span style="color:#64748b;font-style:italic">Submitted — sin score</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>Mar 18, 2026</td><td><span style="color:#64748b;font-size:.75rem">Sin PDF</span></td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;">
 
-  <!-- ── FEBRERO 2026 ── -->
-  <div id="fs-tab-feb" class="fs-month-panel" style="display:none;">
-    <div class="section-title" style="margin-bottom:12px;">📋 Febrero 2026 — FoodSync Audit Scores</div>
-    <table class="audit-table">
-      <thead><tr>
-        <th>#</th><th>Locación</th><th>Score</th><th>Grade</th><th>vs Enero</th><th>Fecha</th><th>PDF</th>
-      </tr></thead>
-      <tbody>
-        <tr><td>1</td><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">97/100</span><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +7 (90)</span></td><td>Feb 2026 🏆</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Sugar_Hill_97.pdf','Sugar Hill — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>2</td><td><strong>Cumming REDO</strong></td><td><span style="color:#22c55e;font-weight:700">95/100</span><div class="progress-bar"><div class="progress-fill" style="width:95%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +27 (68)</span></td><td>Feb 20, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Cumming_95.pdf','Cumming REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>3</td><td><strong>Midtown REDO</strong></td><td><span style="color:#22c55e;font-weight:700">91/100</span><div class="progress-bar"><div class="progress-fill" style="width:91%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +12 (79)</span></td><td>Feb 27, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Midtown_91.pdf','Midtown REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>4</td><td><strong>Beltline REDO</strong></td><td><span style="color:#22c55e;font-weight:700">87/100</span><div class="progress-bar"><div class="progress-fill" style="width:87%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +57 (30)</span></td><td>Feb 17, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Beltline_87.pdf','Beltline REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>5</td><td><strong>Sandy Springs REDO</strong></td><td><span style="color:#22c55e;font-weight:700">87/100</span><div class="progress-bar"><div class="progress-fill" style="width:87%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +16 (71)</span></td><td>Feb 26, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Sandy_Springs_87.pdf','Sandy Springs REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>6</td><td><strong>Decatur</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +26 (60)</span></td><td>Feb 6, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Decatur_86.pdf','Decatur — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>7</td><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#94a3b8">— (nuevo)</span></td><td>Feb 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Duluth_85.pdf','Duluth — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>8</td><td><strong>Sandy Springs</strong></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +13 (71)</span></td><td>Feb 3, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Sandy_Springs_84.pdf','Sandy Springs — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>9</td><td><strong>Buckhead</strong></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#22c55e">▲ +7 (74)</span></td><td>Feb 12, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Buckhead_81.pdf','Buckhead — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>10</td><td><strong>Beltline</strong></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#22c55e">▲ +45 (30)</span></td><td>Feb 4, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Beltline_75.pdf','Beltline — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>11</td><td><strong>Lawrenceville</strong></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -6 (81)</span></td><td>Feb 25, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Lawrenceville_75.pdf','Lawrenceville — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>12</td><td><strong>Chamblee</strong></td><td><span style="color:#f97316;font-weight:700">70/100</span><div class="progress-bar"><div class="progress-fill" style="width:70%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span style="color:#ef4444">▼ -16 (86)</span></td><td>Feb 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Chamblee_70.pdf','Chamblee — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>13</td><td><strong>Midtown</strong></td><td><span style="color:#f97316;font-weight:700">65/100</span><div class="progress-bar"><div class="progress-fill" style="width:65%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span style="color:#ef4444">▼ -14 (79)</span></td><td>Feb 11, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Midtown_65.pdf','Midtown — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr><td>14</td><td><strong>Cumming</strong></td><td><span style="color:#f97316;font-weight:700">77/100</span><div class="progress-bar"><div class="progress-fill" style="width:77%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#22c55e">▲ +9 (68)</span></td><td>Feb 4, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Cumming_77.pdf','Cumming — FoodSync Feb 2026')">📄 PDF</button></td></tr>
-        <tr style="background:#1a1f2e"><td>15</td><td><strong style="color:#94a3b8">West Midtown</strong></td><td><span style="color:#64748b;font-style:italic">Submitted — sin score</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>Feb 10, 2026</td><td><span style="color:#64748b;font-size:.75rem">Sin PDF</span></td></tr>
-        <tr style="background:#1a1f2e"><td>16</td><td><strong style="color:#94a3b8">West Midtown REDO</strong></td><td><span style="color:#64748b;font-style:italic">Submitted — sin score</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>Feb 27, 2026</td><td><span style="color:#64748b;font-size:.75rem">Sin PDF</span></td></tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- SUGAR HILL -->
+    <div style="background:#0d2818;border:1px solid #16a34a;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#4ade80;font-weight:800;font-size:1rem;">🌟 Sugar Hill</span>
+        <span style="background:#16a34a;color:#fff;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700">TOP PERFORMER</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #166534"><th style="color:#86efac;text-align:left;padding:4px 0">Mes</th><th style="color:#86efac;text-align:center">Score</th><th style="color:#86efac;text-align:center">Grade</th><th style="color:#86efac;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">90</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Sugar_Hill_90.pdf','Sugar Hill Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Febrero 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">97 🏆</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Sugar_Hill_97.pdf','Sugar Hill Feb')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">97 🏆</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Sugar_Hill_97.pdf','Sugar Hill Mar')">📄</button></td></tr>
+      </table>
+    </div>
 
-  <!-- ── ENERO 2026 ── -->
-  <div id="fs-tab-jan" class="fs-month-panel" style="display:none;">
-    <div class="section-title" style="margin-bottom:12px;">📋 Enero 2026 — FoodSync Audit Scores</div>
-    <table class="audit-table">
-      <thead><tr>
-        <th>#</th><th>Locación</th><th>Score</th><th>Grade</th><th>Fecha</th><th>PDF</th>
-      </tr></thead>
-      <tbody>
-        <tr><td>1</td><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">90/100</span><div class="progress-bar"><div class="progress-fill" style="width:90%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td>Jan 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Sugar_Hill_90.pdf','Sugar Hill — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>2</td><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">95/100</span><div class="progress-bar"><div class="progress-fill" style="width:95%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td>Jan 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Duluth_95.pdf','Duluth — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>3</td><td><strong>Chamblee</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Chamblee_86.pdf','Chamblee — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>4</td><td><strong>Lawrenceville</strong></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td>Jan 28, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Lawrenceville_81.pdf','Lawrenceville — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>5</td><td><strong>Midtown</strong></td><td><span style="color:#f97316;font-weight:700">79/100</span><div class="progress-bar"><div class="progress-fill" style="width:79%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Midtown_79.pdf','Midtown — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>6</td><td><strong>West Midtown</strong></td><td><span style="color:#f97316;font-weight:700">73/100</span><div class="progress-bar"><div class="progress-fill" style="width:73%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_West_Midtown_73.pdf','West Midtown — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>7</td><td><strong>Sandy Springs</strong></td><td><span style="color:#f97316;font-weight:700">71/100</span><div class="progress-bar"><div class="progress-fill" style="width:71%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Sandy_Springs_71.pdf','Sandy Springs — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>8</td><td><strong>Cumming</strong></td><td><span style="color:#ef4444;font-weight:700">68/100</span><div class="progress-bar"><div class="progress-fill" style="width:68%;background:#ef4444"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Cumming_68.pdf','Cumming — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>9</td><td><strong>Decatur</strong></td><td><span style="color:#ef4444;font-weight:700">60/100</span><div class="progress-bar"><div class="progress-fill" style="width:60%;background:#ef4444"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 20, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Decatur_60.pdf','Decatur — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>10</td><td><strong>Buckhead</strong></td><td><span style="color:#f97316;font-weight:700">74/100</span><div class="progress-bar"><div class="progress-fill" style="width:74%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Buckhead_74.pdf','Buckhead — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-        <tr><td>11</td><td><strong>Beltline</strong></td><td><span style="color:#ef4444;font-weight:700">30/100</span><div class="progress-bar"><div class="progress-fill" style="width:30%;background:#ef4444"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 20, 2026 🔴</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Beltline_30.pdf','Beltline — FoodSync Jan 2026')">📄 PDF</button></td></tr>
-      </tbody>
-    </table>
-    <div class="alert warning" style="margin-top:12px;">⚠️ <strong>Midtown test score 33</strong> (Jan 19, 2026) excluido — marcado como TEST en el sistema</div>
+    <!-- DULUTH -->
+    <div style="background:#0d2818;border:1px solid #16a34a;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#4ade80;font-weight:800;font-size:1rem;">✅ Duluth</span>
+        <span style="background:#166534;color:#86efac;padding:3px 10px;border-radius:20px;font-size:.75rem;">Consistente</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #166534"><th style="color:#86efac;text-align:left;padding:4px 0">Mes</th><th style="color:#86efac;text-align:center">Score</th><th style="color:#86efac;text-align:center">Grade</th><th style="color:#86efac;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">95</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><span style="color:#64748b;font-size:.7rem">—</span></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Febrero 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">85</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Duluth_85.pdf','Duluth Feb')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">86</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Duluth_86.pdf','Duluth Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- CHAMBLEE -->
+    <div style="background:#0d2818;border:1px solid #16a34a;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#4ade80;font-weight:800;font-size:1rem;">✅ Chamblee</span>
+        <span style="background:#166534;color:#86efac;padding:3px 10px;border-radius:20px;font-size:.75rem;">↑ Mejorando</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #166534"><th style="color:#86efac;text-align:left;padding:4px 0">Mes</th><th style="color:#86efac;text-align:center">Score</th><th style="color:#86efac;text-align:center">Grade</th><th style="color:#86efac;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">86</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Chamblee_86.pdf','Chamblee Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Febrero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">70</td><td style="text-align:center"><span class="score-badge score-C">C</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Chamblee_70.pdf','Chamblee Feb')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">84</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Chamblee_84.pdf','Chamblee Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- LAWRENCEVILLE -->
+    <div style="background:#0d2818;border:1px solid #16a34a;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#4ade80;font-weight:800;font-size:1rem;">✅ Lawrenceville</span>
+        <span style="background:#166534;color:#86efac;padding:3px 10px;border-radius:20px;font-size:.75rem;">↑ Mejorando</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #166534"><th style="color:#86efac;text-align:left;padding:4px 0">Mes</th><th style="color:#86efac;text-align:center">Score</th><th style="color:#86efac;text-align:center">Grade</th><th style="color:#86efac;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">81</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Lawrenceville_81.pdf','Lawrenceville Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Febrero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">75</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Lawrenceville_75.pdf','Lawrenceville Feb')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">84</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Lawrenceville_84.pdf','Lawrenceville Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- BUCKHEAD -->
+    <div style="background:#0d2818;border:1px solid #16a34a;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#4ade80;font-weight:800;font-size:1rem;">✅ Buckhead</span>
+        <span style="background:#166534;color:#86efac;padding:3px 10px;border-radius:20px;font-size:.75rem;">↑ Mejorando</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #166534"><th style="color:#86efac;text-align:left;padding:4px 0">Mes</th><th style="color:#86efac;text-align:center">Score</th><th style="color:#86efac;text-align:center">Grade</th><th style="color:#86efac;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">74</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Buckhead_74.pdf','Buckhead Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Febrero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">81</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Buckhead_81.pdf','Buckhead Feb')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">88</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Buckhead_88.pdf','Buckhead Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- SANDY SPRINGS -->
+    <div style="background:#0c1a2e;border:1px solid #2563eb;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#60a5fa;font-weight:800;font-size:1rem;">🔄 Sandy Springs</span>
+        <span style="background:#1e3a5f;color:#93c5fd;padding:3px 10px;border-radius:20px;font-size:.75rem;">1 REDO Feb</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #1e40af"><th style="color:#bfdbfe;text-align:left;padding:4px 0">Mes</th><th style="color:#bfdbfe;text-align:center">Score</th><th style="color:#bfdbfe;text-align:center">Grade</th><th style="color:#bfdbfe;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">71</td><td style="text-align:center"><span class="score-badge score-C">C</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Sandy_Springs_71.pdf','Sandy Springs Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Feb — 1er audit</td><td style="text-align:center;color:#22c55e;font-weight:700">84</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Sandy_Springs_84.pdf','Sandy Springs Feb 1')">📄</button></td></tr>
+        <tr style="background:#162032"><td style="color:#93c5fd;padding:5px 0">🔄 Feb — REDO</td><td style="text-align:center;color:#22c55e;font-weight:700">87</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Sandy_Springs_87.pdf','Sandy Springs REDO')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">85</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Sandy_Springs_85.pdf','Sandy Springs Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- MIDTOWN -->
+    <div style="background:#0c1a2e;border:1px solid #2563eb;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#60a5fa;font-weight:800;font-size:1rem;">🔄 Midtown</span>
+        <span style="background:#1e3a5f;color:#93c5fd;padding:3px 10px;border-radius:20px;font-size:.75rem;">1 REDO Feb</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #1e40af"><th style="color:#bfdbfe;text-align:left;padding:4px 0">Mes</th><th style="color:#bfdbfe;text-align:center">Score</th><th style="color:#bfdbfe;text-align:center">Grade</th><th style="color:#bfdbfe;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">79</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Midtown_79.pdf','Midtown Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Feb — 1er audit</td><td style="text-align:center;color:#ef4444;font-weight:700">65</td><td style="text-align:center"><span class="score-badge score-C">C</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Midtown_65.pdf','Midtown Feb 1')">📄</button></td></tr>
+        <tr style="background:#162032"><td style="color:#93c5fd;padding:5px 0">🔄 Feb — REDO</td><td style="text-align:center;color:#22c55e;font-weight:700">91</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Midtown_91.pdf','Midtown REDO')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#f97316;font-weight:700">75</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Midtown_75.pdf','Midtown Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- CUMMING -->
+    <div style="background:#0c1a2e;border:1px solid #2563eb;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#60a5fa;font-weight:800;font-size:1rem;">🔄 Cumming</span>
+        <span style="background:#1e3a5f;color:#93c5fd;padding:3px 10px;border-radius:20px;font-size:.75rem;">1 REDO Feb</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #1e40af"><th style="color:#bfdbfe;text-align:left;padding:4px 0">Mes</th><th style="color:#bfdbfe;text-align:center">Score</th><th style="color:#bfdbfe;text-align:center">Grade</th><th style="color:#bfdbfe;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#ef4444;font-weight:700">68</td><td style="text-align:center"><span class="score-badge score-C">C</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Cumming_68.pdf','Cumming Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Feb — 1er audit</td><td style="text-align:center;color:#f97316;font-weight:700">77</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Cumming_77.pdf','Cumming Feb 1')">📄</button></td></tr>
+        <tr style="background:#162032"><td style="color:#93c5fd;padding:5px 0">🔄 Feb — REDO</td><td style="text-align:center;color:#22c55e;font-weight:700">95</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Cumming_95.pdf','Cumming REDO')">📄</button></td></tr>
+        <tr style="background:#1a1f2e"><td style="color:#64748b;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#64748b;font-style:italic">Pendiente</td><td style="text-align:center"><span style="color:#64748b">—</span></td><td style="text-align:right"><span style="color:#64748b;font-size:.7rem">—</span></td></tr>
+      </table>
+    </div>
+
+    <!-- BELTLINE -->
+    <div style="background:#2d1a00;border:1px solid #ea580c;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#fb923c;font-weight:800;font-size:1rem;">⚠️ Beltline</span>
+        <span style="background:#7c2d12;color:#fed7aa;padding:3px 10px;border-radius:20px;font-size:.75rem;">2 REDOs</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #c2410c"><th style="color:#fed7aa;text-align:left;padding:4px 0">Mes</th><th style="color:#fed7aa;text-align:center">Score</th><th style="color:#fed7aa;text-align:center">Grade</th><th style="color:#fed7aa;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#ef4444;font-weight:700">30 🔴</td><td style="text-align:center"><span class="score-badge score-C">C</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Beltline_30.pdf','Beltline Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Feb — 1er audit</td><td style="text-align:center;color:#f97316;font-weight:700">75</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Beltline_75.pdf','Beltline Feb 1')">📄</button></td></tr>
+        <tr style="background:#3d2000"><td style="color:#fb923c;padding:5px 0">🔄 Feb — REDO</td><td style="text-align:center;color:#22c55e;font-weight:700">87</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Beltline_87.pdf','Beltline REDO')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#f97316;font-weight:700">83</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Beltline_83.pdf','Beltline Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- DECATUR -->
+    <div style="background:#2d1a00;border:1px solid #ea580c;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#fb923c;font-weight:800;font-size:1rem;">⚠️ Decatur</span>
+        <span style="background:#7c2d12;color:#fed7aa;padding:3px 10px;border-radius:20px;font-size:.75rem;">↓ Bajó en Mar</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #c2410c"><th style="color:#fed7aa;text-align:left;padding:4px 0">Mes</th><th style="color:#fed7aa;text-align:center">Score</th><th style="color:#fed7aa;text-align:center">Grade</th><th style="color:#fed7aa;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#ef4444;font-weight:700">60</td><td style="text-align:center"><span class="score-badge score-C">C</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_Decatur_60.pdf','Decatur Jan')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Febrero 2026</td><td style="text-align:center;color:#22c55e;font-weight:700">86</td><td style="text-align:center"><span class="score-badge score-A">A</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/February_Decatur_86.pdf','Decatur Feb')">📄</button></td></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#f97316;font-weight:700">76</td><td style="text-align:center"><span class="score-badge score-B">B</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/March_Decatur_76.pdf','Decatur Mar')">📄</button></td></tr>
+      </table>
+    </div>
+
+    <!-- WEST MIDTOWN -->
+    <div style="background:#2d1a00;border:1px solid #ea580c;border-radius:12px;padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="color:#fb923c;font-weight:800;font-size:1rem;">⚠️ West Midtown</span>
+        <span style="background:#7c2d12;color:#fed7aa;padding:3px 10px;border-radius:20px;font-size:.75rem;">Sin score Feb/Mar</span>
+      </div>
+      <table style="width:100%;font-size:.83rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #c2410c"><th style="color:#fed7aa;text-align:left;padding:4px 0">Mes</th><th style="color:#fed7aa;text-align:center">Score</th><th style="color:#fed7aa;text-align:center">Grade</th><th style="color:#fed7aa;text-align:right">PDF</th></tr>
+        <tr><td style="color:#e2e8f0;padding:5px 0">📅 Enero 2026</td><td style="text-align:center;color:#f97316;font-weight:700">73</td><td style="text-align:center"><span class="score-badge score-C">C</span></td><td style="text-align:right"><button class="view-report-btn" style="padding:3px 8px;font-size:.7rem" onclick="loadPdf('reports/January_West_Midtown_73.pdf','W.Midtown Jan')">📄</button></td></tr>
+        <tr style="background:#1a1f2e"><td style="color:#64748b;padding:5px 0">📅 Feb — audit</td><td style="text-align:center;color:#64748b;font-style:italic">Enviado sin score</td><td style="text-align:center"><span style="color:#64748b">—</span></td><td style="text-align:right"><span style="color:#64748b;font-size:.7rem">—</span></td></tr>
+        <tr style="background:#1a1f2e"><td style="color:#64748b;padding:5px 0">🔄 Feb — REDO</td><td style="text-align:center;color:#64748b;font-style:italic">Enviado sin score</td><td style="text-align:center"><span style="color:#64748b">—</span></td><td style="text-align:right"><span style="color:#64748b;font-size:.7rem">—</span></td></tr>
+        <tr style="background:#1a1f2e"><td style="color:#64748b;padding:5px 0">📅 Marzo 2026</td><td style="text-align:center;color:#64748b;font-style:italic">Enviado sin score</td><td style="text-align:center"><span style="color:#64748b">—</span></td><td style="text-align:right"><span style="color:#64748b;font-size:.7rem">—</span></td></tr>
+      </table>
+    </div>
+
+  </div><!-- end grid -->
+
+  <div style="background:#1a1f2e;border:1px solid #334155;border-radius:8px;padding:10px 14px;margin-top:16px;color:#94a3b8;font-size:.8rem;">
+    ⚠️ <strong style="color:#e2e8f0">Nota:</strong> Midtown test score 33 (Jan 19) excluido — marcado como TEST. · West Midtown: 3 submissions sin score confirmado en emails.
   </div>
 
 </div>
