@@ -975,45 +975,119 @@
 
 </div>
 
-<!-- ===================== FOODSYNC TAB ===================== -->
+<!-- ===================== FOODSYNC AUDIT TAB ===================== -->
 <div id="tab-foodsync" class="tab-panel">
 
-  <div class="alert info" style="margin-bottom:16px;">📧 <strong>Source: FoodSync Platform</strong> · tech@foodsync.ai → forwarded by majo@rrealtacos.com · 37 audit submissions Jan–Mar 2026</div>
+  <div class="alert info" style="margin-bottom:16px;">📧 <strong>Source: FoodSync Audits 2026</strong> · Emails forwarded by majo@rrealtacos.com → lolasuperbot@gmail.com · 37 audit submissions Jan–Mar 2026</div>
 
-  <div class="metrics-grid">
+  <!-- KPI CARDS -->
+  <div class="metrics-grid" style="margin-bottom:20px;">
     <div class="metric-card green">
       <div class="metric-emoji">📊</div>
-      <div class="metric-label">Total Submissions</div>
+      <div class="metric-label">Total Audits 2026</div>
       <div class="metric-value">37</div>
-      <div class="metric-sub">Jan · Feb · Mar 2026</div>
+      <div class="metric-sub">Enero · Febrero · Marzo</div>
     </div>
     <div class="metric-card blue">
       <div class="metric-emoji">🏆</div>
       <div class="metric-label">Top Score</div>
-      <div class="metric-value">Sugar Hill</div>
-      <div class="metric-sub">97/100 — Feb & Mar 🏆</div>
+      <div class="metric-value">Sugar Hill 97</div>
+      <div class="metric-sub">Feb & Mar 2026 — 2 consecutive 🏆</div>
     </div>
     <div class="metric-card orange">
       <div class="metric-emoji">📈</div>
       <div class="metric-label">Avg Trend</div>
       <div class="metric-value">↑ Improving</div>
-      <div class="metric-sub">67.7 → 82.5 → 84.2 avg</div>
+      <div class="metric-sub">Jan 72 → Feb 82 → Mar 84</div>
     </div>
     <div class="metric-card purple">
       <div class="metric-emoji">🔄</div>
-      <div class="metric-label">REDOs</div>
-      <div class="metric-value">5</div>
-      <div class="metric-sub">Midtown, Cumming, Sandy Sp, Beltline, W.Midtown</div>
+      <div class="metric-label">REDOs / Resubmissions</div>
+      <div class="metric-value">6</div>
+      <div class="metric-sub">Midtown, Cumming, Sandy Sp, Beltline ×2, W.Midtown</div>
     </div>
   </div>
 
-  <div class="section-title">📅 Monthly FoodSync Audit Scores</div>
-  <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
-    <button class="month-tab active" id="fs-btn-mar26" onclick="showFSMonth('mar26', this)">Mar 2026 ✅ (10)</button>
-    <button class="month-tab" id="fs-btn-feb26" onclick="showFSMonth('feb26', this)">Feb 2026 (16)</button>
-    <button class="month-tab" id="fs-btn-jan26" onclick="showFSMonth('jan26', this)">Jan 2026 (11)</button>
+  <!-- MONTH TABS -->
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+    <button class="month-tab active" onclick="showFSTab('mar',this)">Marzo 2026 (10)</button>
+    <button class="month-tab" onclick="showFSTab('feb',this)">Febrero 2026 (16)</button>
+    <button class="month-tab" onclick="showFSTab('jan',this)">Enero 2026 (11)</button>
   </div>
-  <div id="fs-audit-table-container" style="margin-bottom:24px;"></div>
+
+  <!-- ── MARZO 2026 ── -->
+  <div id="fs-tab-mar" class="fs-month-panel">
+    <div class="section-title" style="margin-bottom:12px;">📋 Marzo 2026 — FoodSync Audit Scores</div>
+    <table class="audit-table">
+      <thead><tr>
+        <th>#</th><th>Locación</th><th>Score</th><th>Grade</th><th>vs Febrero</th><th>Fecha</th><th>PDF</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">97/100</span><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#94a3b8">= 97</span></td><td>Mar 26, 2026 🏆</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Sugar_Hill_97.pdf','Sugar Hill — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>2</td><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +1 (85)</span></td><td>Mar 24, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Duluth_86.pdf','Duluth — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>3</td><td><strong>Lawrenceville</strong></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +9 (75)</span></td><td>Mar 26, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Lawrenceville_84.pdf','Lawrenceville — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>4</td><td><strong>Chamblee</strong></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +14 (70)</span></td><td>Mar 18, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Chamblee_84.pdf','Chamblee — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>5</td><td><strong>Sandy Springs</strong></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#ef4444">▼ -2 (87)</span></td><td>Mar 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Sandy_Springs_85.pdf','Sandy Springs — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>6</td><td><strong>Buckhead</strong></td><td><span style="color:#22c55e;font-weight:700">88/100</span><div class="progress-bar"><div class="progress-fill" style="width:88%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +7 (81)</span></td><td>Mar 10, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Buckhead_88.pdf','Buckhead — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>7</td><td><strong>Decatur</strong></td><td><span style="color:#f97316;font-weight:700">76/100</span><div class="progress-bar"><div class="progress-fill" style="width:76%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -10 (86)</span></td><td>Mar 10, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Decatur_76.pdf','Decatur — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>8</td><td><strong>Midtown</strong></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -16 (91 REDO)</span></td><td>Mar 19, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Midtown_75.pdf','Midtown — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr><td>9</td><td><strong>Beltline</strong></td><td><span style="color:#f97316;font-weight:700">83/100</span><div class="progress-bar"><div class="progress-fill" style="width:83%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -4 (87 REDO)</span></td><td>Mar 9, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/March_Beltline_83.pdf','Beltline — FoodSync Mar 2026')">📄 PDF</button></td></tr>
+        <tr style="background:#1a1f2e"><td>10</td><td><strong style="color:#94a3b8">West Midtown</strong></td><td><span style="color:#64748b;font-style:italic">Submitted — sin score</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>Mar 18, 2026</td><td><span style="color:#64748b;font-size:.75rem">Sin PDF</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── FEBRERO 2026 ── -->
+  <div id="fs-tab-feb" class="fs-month-panel" style="display:none;">
+    <div class="section-title" style="margin-bottom:12px;">📋 Febrero 2026 — FoodSync Audit Scores</div>
+    <table class="audit-table">
+      <thead><tr>
+        <th>#</th><th>Locación</th><th>Score</th><th>Grade</th><th>vs Enero</th><th>Fecha</th><th>PDF</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">97/100</span><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +7 (90)</span></td><td>Feb 2026 🏆</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Sugar_Hill_97.pdf','Sugar Hill — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>2</td><td><strong>Cumming REDO</strong></td><td><span style="color:#22c55e;font-weight:700">95/100</span><div class="progress-bar"><div class="progress-fill" style="width:95%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +27 (68)</span></td><td>Feb 20, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Cumming_95.pdf','Cumming REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>3</td><td><strong>Midtown REDO</strong></td><td><span style="color:#22c55e;font-weight:700">91/100</span><div class="progress-bar"><div class="progress-fill" style="width:91%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +12 (79)</span></td><td>Feb 27, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Midtown_91.pdf','Midtown REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>4</td><td><strong>Beltline REDO</strong></td><td><span style="color:#22c55e;font-weight:700">87/100</span><div class="progress-bar"><div class="progress-fill" style="width:87%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +57 (30)</span></td><td>Feb 17, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Beltline_87.pdf','Beltline REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>5</td><td><strong>Sandy Springs REDO</strong></td><td><span style="color:#22c55e;font-weight:700">87/100</span><div class="progress-bar"><div class="progress-fill" style="width:87%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +16 (71)</span></td><td>Feb 26, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Sandy_Springs_87.pdf','Sandy Springs REDO — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>6</td><td><strong>Decatur</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +26 (60)</span></td><td>Feb 6, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Decatur_86.pdf','Decatur — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>7</td><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#94a3b8">— (nuevo)</span></td><td>Feb 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Duluth_85.pdf','Duluth — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>8</td><td><strong>Sandy Springs</strong></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#22c55e">▲ +13 (71)</span></td><td>Feb 3, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Sandy_Springs_84.pdf','Sandy Springs — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>9</td><td><strong>Buckhead</strong></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#22c55e">▲ +7 (74)</span></td><td>Feb 12, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Buckhead_81.pdf','Buckhead — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>10</td><td><strong>Beltline</strong></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#22c55e">▲ +45 (30)</span></td><td>Feb 4, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Beltline_75.pdf','Beltline — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>11</td><td><strong>Lawrenceville</strong></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#ef4444">▼ -6 (81)</span></td><td>Feb 25, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Lawrenceville_75.pdf','Lawrenceville — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>12</td><td><strong>Chamblee</strong></td><td><span style="color:#f97316;font-weight:700">70/100</span><div class="progress-bar"><div class="progress-fill" style="width:70%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span style="color:#ef4444">▼ -16 (86)</span></td><td>Feb 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Chamblee_70.pdf','Chamblee — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>13</td><td><strong>Midtown</strong></td><td><span style="color:#f97316;font-weight:700">65/100</span><div class="progress-bar"><div class="progress-fill" style="width:65%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span style="color:#ef4444">▼ -14 (79)</span></td><td>Feb 11, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Midtown_65.pdf','Midtown — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr><td>14</td><td><strong>Cumming</strong></td><td><span style="color:#f97316;font-weight:700">77/100</span><div class="progress-bar"><div class="progress-fill" style="width:77%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span style="color:#22c55e">▲ +9 (68)</span></td><td>Feb 4, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/February_Cumming_77.pdf','Cumming — FoodSync Feb 2026')">📄 PDF</button></td></tr>
+        <tr style="background:#1a1f2e"><td>15</td><td><strong style="color:#94a3b8">West Midtown</strong></td><td><span style="color:#64748b;font-style:italic">Submitted — sin score</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>Feb 10, 2026</td><td><span style="color:#64748b;font-size:.75rem">Sin PDF</span></td></tr>
+        <tr style="background:#1a1f2e"><td>16</td><td><strong style="color:#94a3b8">West Midtown REDO</strong></td><td><span style="color:#64748b;font-style:italic">Submitted — sin score</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>Feb 27, 2026</td><td><span style="color:#64748b;font-size:.75rem">Sin PDF</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── ENERO 2026 ── -->
+  <div id="fs-tab-jan" class="fs-month-panel" style="display:none;">
+    <div class="section-title" style="margin-bottom:12px;">📋 Enero 2026 — FoodSync Audit Scores</div>
+    <table class="audit-table">
+      <thead><tr>
+        <th>#</th><th>Locación</th><th>Score</th><th>Grade</th><th>Fecha</th><th>PDF</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">90/100</span><div class="progress-bar"><div class="progress-fill" style="width:90%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td>Jan 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Sugar_Hill_90.pdf','Sugar Hill — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>2</td><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">95/100</span><div class="progress-bar"><div class="progress-fill" style="width:95%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td>Jan 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Duluth_95.pdf','Duluth — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>3</td><td><strong>Chamblee</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Chamblee_86.pdf','Chamblee — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>4</td><td><strong>Lawrenceville</strong></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td>Jan 28, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Lawrenceville_81.pdf','Lawrenceville — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>5</td><td><strong>Midtown</strong></td><td><span style="color:#f97316;font-weight:700">79/100</span><div class="progress-bar"><div class="progress-fill" style="width:79%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Midtown_79.pdf','Midtown — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>6</td><td><strong>West Midtown</strong></td><td><span style="color:#f97316;font-weight:700">73/100</span><div class="progress-bar"><div class="progress-fill" style="width:73%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_West_Midtown_73.pdf','West Midtown — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>7</td><td><strong>Sandy Springs</strong></td><td><span style="color:#f97316;font-weight:700">71/100</span><div class="progress-bar"><div class="progress-fill" style="width:71%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Sandy_Springs_71.pdf','Sandy Springs — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>8</td><td><strong>Cumming</strong></td><td><span style="color:#ef4444;font-weight:700">68/100</span><div class="progress-bar"><div class="progress-fill" style="width:68%;background:#ef4444"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 23, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Cumming_68.pdf','Cumming — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>9</td><td><strong>Decatur</strong></td><td><span style="color:#ef4444;font-weight:700">60/100</span><div class="progress-bar"><div class="progress-fill" style="width:60%;background:#ef4444"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 20, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Decatur_60.pdf','Decatur — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>10</td><td><strong>Buckhead</strong></td><td><span style="color:#f97316;font-weight:700">74/100</span><div class="progress-bar"><div class="progress-fill" style="width:74%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td>Jan 13, 2026</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Buckhead_74.pdf','Buckhead — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+        <tr><td>11</td><td><strong>Beltline</strong></td><td><span style="color:#ef4444;font-weight:700">30/100</span><div class="progress-bar"><div class="progress-fill" style="width:30%;background:#ef4444"></div></div></td><td><span class="score-badge score-C">C</span></td><td>Jan 20, 2026 🔴</td><td><button class="view-report-btn" onclick="loadPdf('reports/January_Beltline_30.pdf','Beltline — FoodSync Jan 2026')">📄 PDF</button></td></tr>
+      </tbody>
+    </table>
+    <div class="alert warning" style="margin-top:12px;">⚠️ <strong>Midtown test score 33</strong> (Jan 19, 2026) excluido — marcado como TEST en el sistema</div>
+  </div>
 
 </div>
 
@@ -1819,6 +1893,13 @@ function setActiveMonthBtn(prefix, month) {
 }
 
 // ── HEALTH AUDIT TABLE ──
+function showFSTab(month, btn) {
+  document.querySelectorAll('#tab-foodsync .month-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.fs-month-panel').forEach(p => p.style.display = 'none');
+  if (btn) btn.classList.add('active');
+  const panel = document.getElementById('fs-tab-' + month);
+  if (panel) panel.style.display = '';
+}
 function showAuditMonth(month, btn) {
   document.querySelectorAll('#tab-audits .month-tab').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.audit-month-panel').forEach(p => p.style.display = 'none');
