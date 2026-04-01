@@ -104,8 +104,8 @@
 
   /* Content */
   .content { padding: 28px 32px; max-width: 1400px; margin: 0 auto; background:#0f1117; }
-  .tab-panel { display: none; background:#0f1117; padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
-  .tab-panel.active { display: block; }
+  .tab-panel { background:#0f1117; padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+  /* display controlled by JS inline style */
 
   /* Metric Cards */
   .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
@@ -177,7 +177,7 @@
   .footer { text-align: center; padding: 20px; color:#94a3b8; font-size: 0.78rem; border-top:1px solid #2d3748; margin-top: 40px; background: white; }
 
   /* Tab visibility — inline style on active panel overrides everything */
-  .tab-panel:not(.active) { display: none; }
+  /* display controlled by JS inline style */
 
   /* Skeleton loader for charts */
   .chart-container canvas { display: block; }
@@ -192,7 +192,7 @@
 
   @media (max-width: 768px) {
     .content { padding: 16px; }
-    .tab-panel { padding: 16px; }
+    @media(max-width:600px){ .tab-panel { padding: 16px; } }
     .header { padding: 14px 16px; }
     .header h1 { font-size: 1.3rem; }
     .tabs { padding: 0 12px; }
@@ -422,7 +422,7 @@
 
 <!-- ===================== OVERVIEW TAB ===================== -->
 <div class="content">
-<div id="tab-overview" class="tab-panel active">
+<div id="tab-overview" style="display:block" class="tab-panel active">
 
   <!-- KPI ROW -->
   <div class="kpi-grid">
@@ -545,7 +545,7 @@
 </div>
 
 <!-- ===================== REVENUE & GROWTH TAB ===================== -->
-<div id="tab-revenue" class="tab-panel">
+<div id="tab-revenue" style="display:none" class="tab-panel">
 
   <div class="alert info" style="margin-bottom:16px;">📈 <strong>Revenue & Growth — Week 13 (03/23–03/29/2026)</strong> · Ranked by total Toast sales · Click any location card for a full breakdown</div>
 
@@ -579,7 +579,7 @@
 </div>
 
 <!-- ===================== SALES TAB ===================== -->
-<div id="tab-sales" class="tab-panel">
+<div id="tab-sales" style="display:none" class="tab-panel">
 
   <div class="metrics-grid">
     <div class="metric-card green">
@@ -652,7 +652,7 @@
 </div>
 
 <!-- ===================== REVIEWS TAB (unified) ===================== -->
-<div id="tab-reviews" class="tab-panel">
+<div id="tab-reviews" style="display:none" class="tab-panel">
 
   <!-- ═══ REVIEWS SECTION NAV ═══ -->
   <div id="rvw-section-nav" style="display:flex;gap:6px;margin-bottom:24px;border-bottom:2px solid #e2e8f0;padding-bottom:0;">
@@ -848,7 +848,7 @@
 </div>
 
 <!-- ===================== HEALTH AUDITS TAB ===================== -->
-<div id="tab-audits" class="tab-panel">
+<div id="tab-audits" style="display:none" class="tab-panel">
 
   <div class="alert info" style="margin-bottom:16px;">🏥 <strong>Source: Health/Audit Scores 2026</strong> · Health = Reese (Savor Training) · Audit = Majo (FoodSync)</div>
 
@@ -975,7 +975,7 @@
 </div>
 
 <!-- ===================== FOODSYNC AUDIT TAB ===================== -->
-<div id="tab-foodsync" class="tab-panel">
+<div id="tab-foodsync" style="display:none" class="tab-panel">
 <div style="background:#0c1a2e;border-left:4px solid #2563eb;border-radius:8px;padding:12px 16px;margin-bottom:20px;color:#bfdbfe;font-size:.85rem;">
 📧 <strong style="color:#60a5fa">FoodSync Audits 2026</strong> &nbsp;·&nbsp; 37 auditorías Ene–Mar &nbsp;·&nbsp; Una por mes por locación &nbsp;·&nbsp; Reprueban → REDO 🔄
 </div>
@@ -1150,7 +1150,7 @@
 </div>
 
 <!-- ===================== SECRET SHOPPER TAB ===================== -->
-<div id="tab-secretshopper" class="tab-panel">
+<div id="tab-secretshopper" style="display:none" class="tab-panel">
 
   <div class="alert info" style="margin-bottom:16px;">🕵️ <strong>Source: A Closer Look, LLC</strong> · info@a-closer-look.com · Forwarded by majo@rrealtacos.com</div>
 
@@ -1192,7 +1192,7 @@
 </div>
 
 <!-- ===================== ALL LOCATIONS TAB ===================== -->
-<div id="tab-locations" class="tab-panel">
+<div id="tab-locations" style="display:none" class="tab-panel">
 
   <div class="section-title">📍 All 12 Locations — Overview</div>
   <div class="locations-grid" id="locations-grid"></div>
@@ -1200,7 +1200,7 @@
 </div>
 
 <!-- ===================== LABOR TAB ===================== -->
-<div id="tab-labor" class="tab-panel">
+<div id="tab-labor" style="display:none" class="tab-panel">
 
   <div class="alert info" style="margin-bottom:16px;">📊 <strong>Source: Google Sheets — Weekly Labor Tabs</strong> · Week 12 (03/16–03/22/2026) · Live data from all location sheets</div>
 
@@ -1482,7 +1482,7 @@
 </div>
 
 <!-- ===================== MGMT HOURS TAB ===================== -->
-<div id="tab-mgmthours" class="tab-panel">
+<div id="tab-mgmthours" style="display:none" class="tab-panel">
 
   <div class="alert info" style="margin-bottom:16px;">🧑‍💼 <strong>Source: MANAGERS HOURS Sheet</strong> · Weeks 3–13, 2026 · Organized by week & location · 🔀 Multi-location managers flagged</div>
 
@@ -1533,7 +1533,7 @@
 </div>
 
 <!-- ===================== ALERTS TAB ===================== -->
-<div id="tab-alerts" class="tab-panel">
+<div id="tab-alerts" style="display:none" class="tab-panel">
 
   <div class="metrics-grid">
     <div class="metric-card red">
@@ -1566,7 +1566,7 @@
 
 </div>
 <!-- ===================== SCORECARD TAB ===================== -->
-<div id="tab-scorecard" class="tab-panel">
+<div id="tab-scorecard" style="display:none" class="tab-panel">
 <style>
 .sc-month-btns{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
 .sc-month-btn{padding:8px 22px;border-radius:20px;border:2px solid #1e3a5f;background:white;color:#93c5fd;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .2s;}
