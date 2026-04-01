@@ -2906,30 +2906,14 @@ function openRevenueDetail(loc) {
 let _salesBuilt = false, _fsBuilt = false, _locsBuilt = false;
 
 function initTables() {
-  // Restore last active tab first so we know what to prioritize
-  let activeTab = 'overview';
-  try {
-    const saved = localStorage.getItem('rrt_active_tab');
-    if (saved && document.getElementById('tab-' + saved)) activeTab = saved;
-  } catch(e) {}
-
-  // Activate the right tab — use both class AND inline style to beat !important
+  // Always start on overview — no localStorage restore (was causing crashes)
+  document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => {
-    p.classList.remove('active');
-    p.style.display = 'none';
-  });
-  const activePanel = document.getElementById('tab-' + activeTab);
-  if (activePanel) {
-    activePanel.classList.add('active');
-    activePanel.style.display = 'block';
-  }
-  document.querySelectorAll('.tab').forEach(t => {
-    if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + activeTab + "'")) t.classList.add('active');
-  });
-
-  // Build only the active tab immediately
-  _initTab(activeTab);
+  const overview = document.getElementById('tab-overview');
+  if (overview) overview.style.display = 'block';
+  const overviewBtn = document.querySelector('.tab[onclick*="overview"]');
+  if (overviewBtn) overviewBtn.classList.add('active');
+  try { localStorage.removeItem('rrt_active_tab'); } catch(e) {}
 }
 
 function _initTab(name) {
