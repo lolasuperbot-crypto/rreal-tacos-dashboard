@@ -843,45 +843,124 @@
 <!-- ===================== HEALTH AUDITS TAB ===================== -->
 <div id="tab-audits" class="tab-panel">
 
-  <!-- SOURCE: Food Safety Team (answers@savortraining.com) — Savor Training Company LLC -->
-  <div class="alert info" style="margin-bottom:16px;">🏥 <strong>Source: Food Safety Team · Savor Training Company LLC</strong> · answers@savortraining.com · Forwarded by majo@rrealtacos.com</div>
+  <div class="alert info" style="margin-bottom:16px;">🏥 <strong>Source: Health/Audit Scores 2026</strong> · Health = Reese (Savor Training) · Audit = Majo (FoodSync)</div>
 
-  <div class="metrics-grid">
+  <!-- KPI SUMMARY -->
+  <div class="metrics-grid" style="margin-bottom:20px;">
     <div class="metric-card green">
       <div class="metric-emoji">✅</div>
-      <div class="metric-label">Avg Score — March</div>
-      <div class="metric-value">83/100</div>
-      <div class="metric-sub">6 locations reported</div>
+      <div class="metric-label">Top Health — March</div>
+      <div class="metric-value">Duluth 99</div>
+      <div class="metric-sub">Sugar Hill 92 · Cumming 95</div>
     </div>
     <div class="metric-card blue">
-      <div class="metric-emoji">🥇</div>
-      <div class="metric-label">Top Performer</div>
-      <div class="metric-value">Cumming</div>
-      <div class="metric-sub">95/100 🏆</div>
+      <div class="metric-emoji">🏆</div>
+      <div class="metric-label">Top Audit — March</div>
+      <div class="metric-value">Sugar Hill 97</div>
+      <div class="metric-sub">Beltline 96 REDO · Duluth 86</div>
     </div>
     <div class="metric-card orange">
-      <div class="metric-emoji">🚨</div>
-      <div class="metric-label">Critical — Buckhead</div>
-      <div class="metric-value">71/100</div>
-      <div class="metric-sub">7-day retrain required</div>
+      <div class="metric-emoji">🔴</div>
+      <div class="metric-label">Lowest Health — March</div>
+      <div class="metric-value">Beltline 62</div>
+      <div class="metric-sub">West Midtown 60 · Buckhead 66</div>
     </div>
     <div class="metric-card purple">
-      <div class="metric-emoji">🔁</div>
-      <div class="metric-label">Redo — West Midtown</div>
-      <div class="metric-value">71/100</div>
-      <div class="metric-sub">Temp control gaps</div>
+      <div class="metric-emoji">📊</div>
+      <div class="metric-label">Avg Health — March</div>
+      <div class="metric-value">81 / 100</div>
+      <div class="metric-sub">12 locations tracked</div>
     </div>
   </div>
 
-  <div class="section-title">📋 Monthly Health Inspection Training Scores</div>
-  <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
-    <button class="month-tab active" id="ht-btn-mar26" onclick="showHealthMonth('mar26', this)">Mar 2026 ✅ (7)</button>
-    <button class="month-tab" id="ht-btn-feb26" onclick="showHealthMonth('feb26', this)">Feb 2026</button>
-    <button class="month-tab" id="ht-btn-jan26" onclick="showHealthMonth('jan26', this)">Jan 2026</button>
+  <!-- MONTH TABS -->
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+    <button class="month-tab active" onclick="showAuditMonth('mar',this)">Marzo 2026</button>
+    <button class="month-tab" onclick="showAuditMonth('feb',this)">Febrero 2026</button>
+    <button class="month-tab" onclick="showAuditMonth('jan',this)">Enero 2026</button>
   </div>
-  <div id="health-audit-table-container" style="color:#e2e8f0;"></div>
 
-  <div class="section-title">📈 Audit Score Trends</div>
+  <!-- MARCH TABLE -->
+  <div id="audit-month-mar" class="audit-month-panel">
+    <div class="section-title" style="margin-bottom:12px;">📋 Marzo 2026 — Health &amp; Audit Scores</div>
+    <table class="audit-table">
+      <thead><tr>
+        <th>Location</th>
+        <th>🏥 Health Score (Reese)</th>
+        <th>📋 Audit Score (Majo)</th>
+        <th>Health Grade</th>
+        <th>Audit Grade</th>
+        <th>Notes</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">99/100</span><div class="progress-bar"><div class="progress-fill" style="width:99%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>✅ Excellent — Drawer cooler work order placed</td></tr>
+        <tr><td><strong>Cumming</strong></td><td><span style="color:#22c55e;font-weight:700">95/100</span><div class="progress-bar"><div class="progress-fill" style="width:95%;background:#22c55e"></div></div></td><td><span style="color:#94a3b8;font-style:italic">—</span></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#64748b">—</span></td><td>✅ No FoodSync audit submitted Mar</td></tr>
+        <tr><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">92/100</span><div class="progress-bar"><div class="progress-fill" style="width:92%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">97/100</span><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>🏆 Top audit score — 2nd consecutive 97</td></tr>
+        <tr><td><strong>Sandy Springs</strong></td><td><span style="color:#22c55e;font-weight:700">90/100</span><div class="progress-bar"><div class="progress-fill" style="width:90%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>✅ Solid performance both categories</td></tr>
+        <tr><td><strong>Zocalo</strong></td><td><span style="color:#22c55e;font-weight:700">89/100</span><div class="progress-bar"><div class="progress-fill" style="width:89%;background:#22c55e"></div></div></td><td><span style="color:#94a3b8;font-style:italic">—</span></td><td><span class="score-badge score-A">A</span></td><td><span style="color:#64748b">—</span></td><td>✅ Health only — no FoodSync submission</td></tr>
+        <tr><td><strong>Lawrenceville</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>✅ Consistent improvement from Feb</td></tr>
+        <tr><td><strong>Midtown</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-B">B</span></td><td>⚠️ Audit down from 91 REDO Feb</td></tr>
+        <tr><td><strong>Decatur</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span style="color:#f97316;font-weight:700">76/100</span><div class="progress-bar"><div class="progress-fill" style="width:76%;background:#f97316"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-B">B</span></td><td>⚠️ Ice machine dirty · Allergens unknown</td></tr>
+        <tr><td><strong>Chamblee</strong></td><td><span style="color:#f97316;font-weight:700">80/100</span><div class="progress-bar"><div class="progress-fill" style="width:80%;background:#f97316"></div></div></td><td><span style="color:#22c55e;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#22c55e"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-A">A</span></td><td>⚠️ Cooling methods + temp violations</td></tr>
+        <tr><td><strong>Beltline</strong></td><td><span style="color:#ef4444;font-weight:700">62/100</span><div class="progress-bar"><div class="progress-fill" style="width:62%;background:#ef4444"></div></div></td><td><span style="color:#f97316;font-weight:700">83/100</span> + <span style="color:#22c55e;font-weight:700">96 REDO</span></td><td><span class="score-badge score-C">C</span></td><td><span class="score-badge score-A">A</span></td><td>🔴 Dented can · Unwashed veggies · Guac 43°F · Expired steak · REDO=96</td></tr>
+        <tr><td><strong>Buckhead</strong></td><td><span style="color:#ef4444;font-weight:700">66/100</span><div class="progress-bar"><div class="progress-fill" style="width:66%;background:#ef4444"></div></div></td><td><span style="color:#22c55e;font-weight:700">88/100</span><div class="progress-bar"><div class="progress-fill" style="width:88%;background:#22c55e"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span class="score-badge score-A">A</span></td><td>🔴 Cross-contamination · Cold holding violations · REDO scored 71</td></tr>
+        <tr><td><strong>West Midtown</strong></td><td><span style="color:#ef4444;font-weight:700">60/100</span> + <span style="color:#ef4444;font-weight:700">71 REDO</span></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span class="score-badge score-A">A</span></td><td>🔴 Raw eggs over RTE · Line coolers above 41°F · Expired adobo</td></tr>
+        <tr><td><strong>Woodstock</strong></td><td><span style="color:#64748b;font-style:italic">—</span></td><td><span style="color:#64748b;font-style:italic">—</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>⏳ New location — pending first audit</td></tr>
+        <tr><td><strong>Eclipse</strong></td><td><span style="color:#64748b;font-style:italic">—</span></td><td><span style="color:#64748b;font-style:italic">—</span></td><td><span style="color:#64748b">—</span></td><td><span style="color:#64748b">—</span></td><td>⏳ Pending</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FEBRUARY TABLE -->
+  <div id="audit-month-feb" class="audit-month-panel" style="display:none;">
+    <div class="section-title" style="margin-bottom:12px;">📋 Febrero 2026 — Health &amp; Audit Scores</div>
+    <table class="audit-table">
+      <thead><tr>
+        <th>Location</th><th>🏥 Health Score (Reese)</th><th>📋 Audit Score (Majo)</th><th>Health Grade</th><th>Audit Grade</th><th>Notes</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">100/100</span><div class="progress-bar"><div class="progress-fill" style="width:100%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">97/100</span><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>🏆 Perfect health score!</td></tr>
+        <tr><td><strong>Zocalo</strong></td><td><span style="color:#22c55e;font-weight:700">89/100</span><div class="progress-bar"><div class="progress-fill" style="width:89%;background:#22c55e"></div></div></td><td><span style="color:#f97316;font-weight:700">80/100</span><div class="progress-bar"><div class="progress-fill" style="width:80%;background:#f97316"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-B">B</span></td><td>✅</td></tr>
+        <tr><td><strong>Midtown</strong></td><td><span style="color:#22c55e;font-weight:700">83/100</span><div class="progress-bar"><div class="progress-fill" style="width:83%;background:#22c55e"></div></div></td><td><span style="color:#ef4444;font-weight:700">65/100</span> → <span style="color:#22c55e;font-weight:700">91 REDO</span></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>⚠️ Initial 65 · REDO passed at 91</td></tr>
+        <tr><td><strong>Chamblee</strong></td><td><span style="color:#22c55e;font-weight:700">90/100</span><div class="progress-bar"><div class="progress-fill" style="width:90%;background:#22c55e"></div></div></td><td><span style="color:#f97316;font-weight:700">70/100</span><div class="progress-bar"><div class="progress-fill" style="width:70%;background:#f97316"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-C">C</span></td><td>⚠️ Audit score needs improvement</td></tr>
+        <tr><td><strong>Cumming</strong></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span style="color:#f97316;font-weight:700">77/100</span> → <span style="color:#22c55e;font-weight:700">95 REDO</span></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>⚠️ Initial 77 · REDO passed at 95</td></tr>
+        <tr><td><strong>Sandy Springs</strong></td><td><span style="color:#f97316;font-weight:700">79/100</span><div class="progress-bar"><div class="progress-fill" style="width:79%;background:#f97316"></div></div></td><td><span style="color:#22c55e;font-weight:700">84/100</span> → <span style="color:#22c55e;font-weight:700">87 REDO</span></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-A">A</span></td><td>⚠️ Health needs attention · Audit improved</td></tr>
+        <tr><td><strong>Decatur</strong></td><td><span style="color:#f97316;font-weight:700">79/100</span><div class="progress-bar"><div class="progress-fill" style="width:79%;background:#f97316"></div></div></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-A">A</span></td><td>✅ Good improvement from Jan</td></tr>
+        <tr><td><strong>Lawrenceville</strong></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span style="color:#f97316;font-weight:700">75/100</span><div class="progress-bar"><div class="progress-fill" style="width:75%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-B">B</span></td><td>⚠️ Improvement needed both categories</td></tr>
+        <tr><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">88/100</span><div class="progress-bar"><div class="progress-fill" style="width:88%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">85/100</span><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>✅ Consistent performer</td></tr>
+        <tr><td><strong>Buckhead</strong></td><td><span style="color:#ef4444;font-weight:700">73/100</span><div class="progress-bar"><div class="progress-fill" style="width:73%;background:#ef4444"></div></div></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span class="score-badge score-B">B</span></td><td>🔴 Health declined from 84 in Jan</td></tr>
+        <tr><td><strong>West Midtown</strong></td><td><span style="color:#f97316;font-weight:700">82/100</span><div class="progress-bar"><div class="progress-fill" style="width:82%;background:#f97316"></div></div></td><td><span style="color:#ef4444;font-weight:700">65/100</span> → <span style="color:#f97316;font-weight:700">79 REDO</span></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-B">B</span></td><td>⚠️ Audit failed initial · REDO 79</td></tr>
+        <tr><td><strong>Beltline</strong></td><td><span style="color:#f97316;font-weight:700">76/100</span><div class="progress-bar"><div class="progress-fill" style="width:76%;background:#f97316"></div></div></td><td><span style="color:#f97316;font-weight:700">75/100</span> → <span style="color:#22c55e;font-weight:700">87 REDO</span></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-A">A</span></td><td>⚠️ Initial 75 · REDO passed at 87</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- JANUARY TABLE -->
+  <div id="audit-month-jan" class="audit-month-panel" style="display:none;">
+    <div class="section-title" style="margin-bottom:12px;">📋 Enero 2026 — Health &amp; Audit Scores</div>
+    <table class="audit-table">
+      <thead><tr>
+        <th>Location</th><th>🏥 Health Score (Reese)</th><th>📋 Audit Score (Majo)</th><th>Health Grade</th><th>Audit Grade</th><th>Notes</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><strong>Sugar Hill</strong></td><td><span style="color:#22c55e;font-weight:700">97/100</span><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">90/100</span><div class="progress-bar"><div class="progress-fill" style="width:90%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>✅ Strong start to the year</td></tr>
+        <tr><td><strong>Duluth</strong></td><td><span style="color:#22c55e;font-weight:700">93/100</span><div class="progress-bar"><div class="progress-fill" style="width:93%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">95/100</span><div class="progress-bar"><div class="progress-fill" style="width:95%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>✅ Top performer January</td></tr>
+        <tr><td><strong>Zocalo</strong></td><td><span style="color:#22c55e;font-weight:700">83/100</span><div class="progress-bar"><div class="progress-fill" style="width:83%;background:#22c55e"></div></div></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-B">B</span></td><td>✅</td></tr>
+        <tr><td><strong>Chamblee</strong></td><td><span style="color:#22c55e;font-weight:700">91/100</span><div class="progress-bar"><div class="progress-fill" style="width:91%;background:#22c55e"></div></div></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-A">A</span></td><td>✅</td></tr>
+        <tr><td><strong>Cumming</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span style="color:#ef4444;font-weight:700">68/100</span><div class="progress-bar"><div class="progress-fill" style="width:68%;background:#ef4444"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-C">C</span></td><td>⚠️ Audit significantly below health</td></tr>
+        <tr><td><strong>Sandy Springs</strong></td><td><span style="color:#22c55e;font-weight:700">86/100</span><div class="progress-bar"><div class="progress-fill" style="width:86%;background:#22c55e"></div></div></td><td><span style="color:#ef4444;font-weight:700">65/100</span><div class="progress-bar"><div class="progress-fill" style="width:65%;background:#ef4444"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-C">C</span></td><td>🔴 Big gap health vs audit</td></tr>
+        <tr><td><strong>Buckhead</strong></td><td><span style="color:#f97316;font-weight:700">84/100</span><div class="progress-bar"><div class="progress-fill" style="width:84%;background:#f97316"></div></div></td><td><span style="color:#f97316;font-weight:700">74/100</span><div class="progress-bar"><div class="progress-fill" style="width:74%;background:#f97316"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-B">B</span></td><td>⚠️</td></tr>
+        <tr><td><strong>Lawrenceville</strong></td><td><span style="color:#22c55e;font-weight:700">88/100</span><div class="progress-bar"><div class="progress-fill" style="width:88%;background:#22c55e"></div></div></td><td><span style="color:#f97316;font-weight:700">81/100</span><div class="progress-bar"><div class="progress-fill" style="width:81%;background:#f97316"></div></div></td><td><span class="score-badge score-A">A</span></td><td><span class="score-badge score-B">B</span></td><td>✅ Good health · Audit needs work</td></tr>
+        <tr><td><strong>West Midtown</strong></td><td><span style="color:#f97316;font-weight:700">73/100</span><div class="progress-bar"><div class="progress-fill" style="width:73%;background:#f97316"></div></div></td><td><span style="color:#f97316;font-weight:700">73/100</span><div class="progress-bar"><div class="progress-fill" style="width:73%;background:#f97316"></div></div></td><td><span class="score-badge score-C">C</span></td><td><span class="score-badge score-C">C</span></td><td>⚠️ Both scores need improvement</td></tr>
+        <tr><td><strong>Midtown</strong></td><td><span style="color:#ef4444;font-weight:700">69/100</span><div class="progress-bar"><div class="progress-fill" style="width:69%;background:#ef4444"></div></div></td><td><span style="color:#f97316;font-weight:700">79/100</span> <small style="color:#64748b">(test 33 excl.)</small></td><td><span class="score-badge score-C">C</span></td><td><span class="score-badge score-B">B</span></td><td>🔴 Health critical · Test score 33 excluded</td></tr>
+        <tr><td><strong>Decatur</strong></td><td><span style="color:#f97316;font-weight:700">77/100</span><div class="progress-bar"><div class="progress-fill" style="width:77%;background:#f97316"></div></div></td><td><span style="color:#ef4444;font-weight:700">60/100</span><div class="progress-bar"><div class="progress-fill" style="width:60%;background:#ef4444"></div></div></td><td><span class="score-badge score-B">B</span></td><td><span class="score-badge score-C">C</span></td><td>🔴 Audit very low</td></tr>
+        <tr><td><strong>Beltline</strong></td><td><span style="color:#ef4444;font-weight:700">66/100</span> → <span style="color:#f97316;font-weight:700">72 REDO</span></td><td><span style="color:#ef4444;font-weight:700">32/100</span> → <span style="color:#f97316;font-weight:700">75 REDO</span></td><td><span class="score-badge score-C">C</span></td><td><span class="score-badge score-B">B</span></td><td>🔴 Both critical initially · REDOs improved</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TREND CHART -->
+  <div class="section-title" style="margin-top:24px;">📈 Audit Score Trends</div>
   <div class="chart-container">
     <canvas id="auditTrendChart" height="100"></canvas>
   </div>
@@ -1732,6 +1811,13 @@ function setActiveMonthBtn(prefix, month) {
 }
 
 // ── HEALTH AUDIT TABLE ──
+function showAuditMonth(month, btn) {
+  document.querySelectorAll('#tab-audits .month-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.audit-month-panel').forEach(p => p.style.display = 'none');
+  if (btn) btn.classList.add('active');
+  const panel = document.getElementById('audit-month-' + month);
+  if (panel) panel.style.display = '';
+}
 function showHealthMonth(month, btn) {
   document.querySelectorAll('#tab-audits .month-tab').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
