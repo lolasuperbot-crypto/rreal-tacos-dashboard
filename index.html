@@ -407,6 +407,7 @@
 
 <div class="tabs">
   <div class="tab active" onclick="showTab('overview')">🏠 Overview</div>
+  <div class="tab" onclick="showTab('scorecards')">🃏 Score Cards</div>
   <div class="tab" onclick="showTab('sales')">💰 Sales</div>
   <div class="tab" onclick="showTab('revenue')">📈 Revenue & Growth</div>
   <div class="tab" onclick="showTab('reviews')">⭐ Reviews</div>
@@ -544,6 +545,172 @@
 
 </div>
 
+<!-- ===================== SCORE CARDS TAB ===================== -->
+<div id="tab-scorecards" style="display:none" class="tab-panel">
+
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+  <span style="background:#f97316;color:#fff;padding:4px 16px;border-radius:20px;font-weight:800;font-size:.85rem;letter-spacing:.5px;">📍 MIDTOWN</span>
+  <span style="color:#94a3b8;font-size:.85rem;">Weekly Scorecard — Enero 2026 · Wks 1–5</span>
+  <span style="margin-left:auto;background:#0d2818;border:1px solid #16a34a;color:#4ade80;padding:4px 16px;border-radius:20px;font-weight:800;font-size:.9rem;">Overall: 88.0</span>
+</div>
+
+<div style="overflow-x:auto;border-radius:12px;">
+<table style="width:100%;border-collapse:collapse;background:#111827;font-family:'DM Sans',system-ui,sans-serif;font-size:.82rem;min-width:780px;">
+  <thead>
+    <tr style="background:#0d1630;">
+      <th style="text-align:left;padding:12px 14px;color:#f0f2f8;font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;border-right:1px solid #1e2a3a;">Metric</th>
+      <th style="text-align:center;padding:12px 10px;color:#f97316;font-weight:700;font-size:.75rem;border-right:1px solid #f97316;border-top:3px solid #f97316;">Score</th>
+      <th colspan="2" style="text-align:center;padding:10px;color:#f0f2f8;font-weight:700;font-size:.75rem;border-top:3px solid #f97316;border-right:1px solid #1e2a3a;">SEMANA 1</th>
+      <th colspan="2" style="text-align:center;padding:10px;color:#f0f2f8;font-weight:700;font-size:.75rem;border-top:3px solid #f97316;border-right:1px solid #1e2a3a;">SEMANA 2</th>
+      <th colspan="2" style="text-align:center;padding:10px;color:#f0f2f8;font-weight:700;font-size:.75rem;border-top:3px solid #f97316;border-right:1px solid #1e2a3a;">SEMANA 3</th>
+      <th colspan="2" style="text-align:center;padding:10px;color:#f0f2f8;font-weight:700;font-size:.75rem;border-top:3px solid #f97316;border-right:1px solid #1e2a3a;">SEMANA 4</th>
+      <th colspan="2" style="text-align:center;padding:10px;color:#f0f2f8;font-weight:700;font-size:.75rem;border-top:3px solid #f97316;">SEMANA 5</th>
+    </tr>
+    <tr style="background:#0a0f1e;border-bottom:2px solid #1e2a3a;">
+      <th style="text-align:left;padding:8px 14px;color:#64748b;font-size:.7rem;font-weight:600;border-right:1px solid #1e2a3a;">KPI</th>
+      <th style="text-align:center;padding:8px 6px;color:#f97316;font-size:.7rem;font-weight:600;border-right:1px solid #f97316;">0-100</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;">Score</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;border-right:1px solid #1e2a3a;">0-100</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;">Score</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;border-right:1px solid #1e2a3a;">0-100</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;">Score</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;border-right:1px solid #1e2a3a;">0-100</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;">Score</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;border-right:1px solid #1e2a3a;">0-100</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;">Score</th>
+      <th style="text-align:center;padding:8px 6px;color:#64748b;font-size:.7rem;">0-100</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<!-- Helper: sc-cell(val) = colored badge for 0-100 score -->
+<!-- sc-raw(val) = white raw value or dash -->
+
+<tr style="background:#111827;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Sunday Global Score</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">89.8</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.8</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">80.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.85</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">85.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.79</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">79.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.78</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">78.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.77</td><td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#0f1520;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Bad Review Rate</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">94.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">0.65</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">1.62</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">70.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">0</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">0</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">1</td><td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#111827;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Ovation Satisfaction</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">84.8</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.2</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">84.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.5</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">90.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.3</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">86.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.5</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">90.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">3.7</td><td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#0f1520;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Ovation Response Time</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">72.6</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">52</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a0a0a;color:#f87171;border-radius:4px;padding:2px 7px;font-weight:700;">63.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">5</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">5</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">4.9</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">115</td><td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#111827;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Profit %</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">93.5</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">23.46</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">93.5</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;color:#2d3748;">—</td>
+  <td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;color:#2d3748;">—</td>
+  <td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;color:#2d3748;">—</td>
+  <td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td><td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#0f1520;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Labor %</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">96.6</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">34.1</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">95.9</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">34.82</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">95.2</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">32.35</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">97.7</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">34.61</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">95.4</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">31.19</td><td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#111827;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">COG + OP %</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">101.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">25.25</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">104.8</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">27.28</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">102.7</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">31.45</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">98.6</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">37.94</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">92.1</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">23.14</td><td style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#0f1520;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Health Score</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#1a0a0a;color:#f87171;border-radius:4px;padding:2px 7px;font-weight:700;">69.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">69</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a0a0a;color:#f87171;border-radius:4px;padding:2px 7px;font-weight:700;">69.0</span></td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#111827;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Audit Score</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">79.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">79</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#1a1200;color:#fbbf24;border-radius:4px;padding:2px 7px;font-weight:700;">79.0</span></td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#0f1520;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">I.D Check Score</td>
+  <td style="text-align:center;padding:9px 6px;border-right:1px solid #f97316;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td style="text-align:center;padding:9px 6px;color:#f0f2f8;">100</td><td style="text-align:center;padding:9px 6px;border-right:1px solid #1e2a3a;"><span style="background:#0d2818;color:#4ade80;border-radius:4px;padding:2px 7px;font-weight:700;">100.0</span></td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;border-right:1px solid #1e2a3a;">—</td>
+  <td colspan="2" style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#111827;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Secret Shopper</td>
+  <td colspan="11" style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<tr style="background:#0f1520;">
+  <td style="padding:9px 14px;color:#f0f2f8;font-weight:600;border-right:1px solid #1e2a3a;">Missing Invoices</td>
+  <td colspan="11" style="text-align:center;padding:9px 6px;color:#2d3748;">—</td>
+</tr>
+
+<!-- OVERALL SCORE ROW -->
+<tr style="background:#0a0f1e;border-top:2px solid #f97316;">
+  <td style="padding:11px 14px;color:#f97316;font-weight:800;font-size:.9rem;border-right:1px solid #1e2a3a;">⭐ OVERALL SCORE</td>
+  <td colspan="11" style="text-align:center;padding:11px;"><span style="color:#f97316;font-weight:900;font-size:1.3rem;">88.0</span></td>
+</tr>
+
+  </tbody>
+</table>
+</div>
+
+<div style="margin-top:12px;color:#475569;font-size:.75rem;">
+  📊 Score 0-100: <span style="color:#4ade80">■</span> 90–100 excelente &nbsp;·&nbsp; <span style="color:#fbbf24">■</span> 75–89 bueno &nbsp;·&nbsp; <span style="color:#f87171">■</span> &lt;75 necesita atención &nbsp;·&nbsp; <span style="color:#2d3748">—</span> sin datos
+</div>
+
+</div>
 <!-- ===================== REVENUE & GROWTH TAB ===================== -->
 <div id="tab-revenue" style="display:none" class="tab-panel">
 
