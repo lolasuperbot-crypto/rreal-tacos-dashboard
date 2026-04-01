@@ -2691,7 +2691,20 @@ function _initTab(name) {
   if (name === 'overview') { /* overview is static HTML, nothing to build */ }
   if (name === 'sales' && !_salesBuilt) { _salesBuilt = true; initSalesTable(); }
   if (name === 'reviews') { initReviews(); switchReviewSection('marqii'); }
-  if (name === 'audits') { setTimeout(() => { renderHealthAuditTable('mar26'); setActiveMonthBtn('ht', 'mar26'); }, 50); }
+  if (name === 'audits') { setTimeout(() => { try {
+    renderHealthAuditTable('mar26'); setActiveMonthBtn('ht', 'mar26');
+    if (!window._auditChartBuilt) {
+      window._auditChartBuilt = true;
+      const atc = document.getElementById('auditTrendChart');
+      if (atc) {
+        const months = ['Jan 2026','Feb 2026','Mar 2026'];
+        const topLocs = ['Midtown','Sugar Hill','Buckhead','Chamblee'];
+        const monthKeys = ['jan26','feb26','mar26'];
+        const trendColors = ['#ec4899','#06b6d4','#14b8a6','#eab308'];
+        new Chart(atc.getContext('2d'), { type:'line', data:{ labels:months, datasets:topLocs.map((name,i)=>({ label:name, data:monthKeys.map(mk=>{ const row=(auditData[mk]||[]).find(r=>r.loc===name); return row?row.score:null; }), borderColor:trendColors[i], backgroundColor:trendColors[i]+'22', tension:0.4, borderWidth:2.5, pointRadius:4, fill:false })) }, options:{ plugins:{ legend:{ position:'bottom', labels:{color:'#94a3b8'} } }, scales:{ y:{ min:60, max:100, ticks:{color:'#94a3b8'} }, x:{ticks:{color:'#94a3b8'}} } } });
+      }
+    }
+  } catch(e) { console.error('Health audit render error:', e); } }, 150); }
   if (name === 'foodsync' && !_fsBuilt) { _fsBuilt = true; renderFSAuditTable('mar26'); setActiveMonthBtn('fs', 'mar26'); }
   if (name === 'secretshopper') { renderSSTable('mar26'); setActiveMonthBtn('ss', 'mar26'); }
   if (name === 'locations' && !_locsBuilt) { _locsBuilt = true; initLocationsGrid(); }
@@ -2816,29 +2829,7 @@ function initCharts() {
       }
     });
     
-    // Audit Trend Chart
-    const atc = document.getElementById('auditTrendChart').getContext('2d');
-    const months = ['Jan 2026','Feb 2026','Mar 2026'];
-    const topLocs = ['Midtown','Sugar Hill','Buckhead','Chamblee'];
-    const monthKeys = ['jan26','feb26','mar26'];
-    const trendColors = ['#ec4899','#06b6d4','#14b8a6','#eab308'];
-    new Chart(atc, {
-      type: 'line',
-      data: {
-        labels: months,
-        datasets: topLocs.map((name, i) => ({
-          label: name,
-          data: monthKeys.map(mk => {
-            const row = (auditData[mk] || []).find(r => r.loc === name);
-            return row ? row.score : null;
-          }),
-          borderColor: trendColors[i],
-          backgroundColor: trendColors[i] + '22',
-          tension: 0.4, borderWidth: 2.5, pointRadius: 4, fill: false,
-        }))
-      },
-      options: { plugins: { legend: { position: 'bottom' } }, scales: { y: { min: 60, max: 100 } } }
-    });
+    // Audit Trend Chart — deferred to _initTab('audits')
     
     // Labor Chart
     const lc = document.getElementById('laborChart').getContext('2d');
