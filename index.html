@@ -176,9 +176,8 @@
   /* Footer */
   .footer { text-align: center; padding: 20px; color:#94a3b8; font-size: 0.78rem; border-top:1px solid #2d3748; margin-top: 40px; background: white; }
 
-  /* Fast paint: hide non-critical content until JS runs */
-  .tab-panel { contain: content; }
-  .tab-panel:not(.active) { display: none !important; }
+  /* Tab visibility — inline style on active panel overrides everything */
+  .tab-panel:not(.active) { display: none; }
 
   /* Skeleton loader for charts */
   .chart-container canvas { display: block; }
