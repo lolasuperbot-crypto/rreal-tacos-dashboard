@@ -194,13 +194,11 @@ with open(f"{DASHBOARD_DIR}/index.html","w") as f:
 print("  ✅ HTML updated")
 
 # 3.5 Check tunnel URL is still valid
-print("
-🌐 Checking tunnel URL...")
+print("\n🌐 Checking tunnel URL...")
 try:
     import subprocess as sp2
     current_tunnel = sp2.run(["grep","-o","https://[a-z-]*.trycloudflare.com","/tmp/tunnel.log"],
-        capture_output=True, text=True).stdout.strip().split("
-")[-1].strip()
+        capture_output=True, text=True).stdout.strip().split("\n")[-1].strip()
     if current_tunnel:
         with open(f"{DASHBOARD_DIR}/index.html","r") as fi:
             old_html = fi.read()
