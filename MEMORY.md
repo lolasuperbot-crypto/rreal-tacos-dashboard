@@ -1,4 +1,8 @@
 
+## Location Names
+- "Ponce" does NOT exist — the correct name is **Beltline** everywhere
+- All references to Ponce must be corrected to Beltline
+
 ## Daily 6 AM Auto-Update (active)
 - Every day at 6:00 AM ET: pull latest data from ALL sheets, update dashboard, send PDF report to majo@rrealtacos.com
 - Sheet: MANAGERS HOURS (1YTFFTnGD4RLR4uLwHirae4IlirkS82VeeVd8CpAc3SE)
@@ -26,7 +30,7 @@ Drive search works; sheet read/write is blocked until she enables it.
 
 ## GitHub Repository (added 2026-03-31)
 - Repo: https://github.com/lolasuperbot-crypto/rreal-tacos-dashboard (private)
-- Token: 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
+- Token: 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 (updated Apr 1 2026 — has repo+workflow scope)
 - Push: cd workspace/dashboard && git add -A && git commit -m "msg" && git push origin main
 
 ## Marqii API Auth (added 2026-03-31)
