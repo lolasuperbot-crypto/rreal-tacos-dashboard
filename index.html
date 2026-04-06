@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>🌮 Rreal Tacos — Compliance & Rating Reviews Dashboard</title>
+<title>🌮 Rreal Hospitality — Operations & Compliance Hub</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
@@ -13,15 +13,15 @@
   .header{background:linear-gradient(135deg,#0f2d4a 0%,#1e3a5f 50%,#164e7a 100%);color:white;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(30,58,95,.35)}
   .header h1{font-size:1.8rem;font-weight:800;margin:0}
   .live-badge{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:6px}
-  .tabs{background:white;border-bottom:2px solid #e2e8f0;padding:0 32px;display:flex;gap:4px;overflow-x:auto}
+  .tabs{background:#0d1117;border-bottom:1px solid rgba(255,255,255,0.07);padding:0 32px;display:flex;gap:4px;overflow-x:auto}
   .tab{padding:14px 20px;cursor:pointer;font-weight:600;font-size:.88rem;border-bottom:3px solid transparent;white-space:nowrap;color:#94a3b8}
-  .tab.active{color:#93c5fd;border-bottom-color:#93c5fd;background:#e8f0fe}
+  .tab.active{color:#93c5fd;border-bottom-color:#93c5fd;background:rgba(147,197,253,0.08)}
 
   /* ── DARK MODE GLOBAL ── */
   *, *::before, *::after { box-sizing: border-box; }
   :root {
     --bg-page: #0f1117;
-    --bg-card: #1a1f2e;
+    --bg-card: #111827;
     --bg-surface: #161b27;
     --bg-hover: #1e2a3a;
     --border: #2d3748;
@@ -110,21 +110,18 @@
   /* Metric Cards */
   .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
   .metric-card {
-    background:#1a1f2e; border-radius:16px; padding: 20px 24px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
-    border-left: 4px solid;
+    background:#111827; border-radius:16px; padding: 20px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2), 0 4px 16px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.05);
     transition: transform 0.2s, box-shadow 0.2s;
   }
   .metric-card:hover { transform:translateY(-2px); box-shadow:0 4px 20px rgba(59,130,246,0.2); }
-  .metric-card.green { border-left-color:#93c5fd; }
-  .metric-card.blue { border-left-color:#93c5fd; }
-  .metric-card.orange { border-left-color: #0ea5e9; }
-  .metric-card.purple { border-left-color:#93c5fd; }
-  .metric-card.red { border-left-color: #0f2d4a; }
-  .metric-card.teal { border-left-color: #0277bd; }
-  .metric-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color:#94a3b8; font-weight: 600; margin-bottom: 6px; }
-  .metric-value { font-size: 2rem; font-weight: 800; color:#e2e8f0; line-height: 1; }
-  .metric-sub { font-size:0.78rem; color:#94a3b8; margin-top: 4px; }
+  /* Card color classes — no border-left in dark theme */
+  .metric-card.green, .metric-card.blue, .metric-card.orange,
+  .metric-card.purple, .metric-card.red, .metric-card.teal { }
+  .metric-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color:#4e5d82; font-weight: 600; margin-bottom: 6px; }
+  .metric-value { font-size: 2rem; font-weight: 800; color:#c4cde0; line-height: 1; }
+  .metric-sub { font-size:0.78rem; color:#3d4e70; margin-top: 4px; }
   .metric-emoji { font-size: 1.4rem; float: right; margin-top: -4px; }
 
   /* Section title */
@@ -174,7 +171,7 @@
   .alert.info { background:#0f1e3d; border-left:3px solid #3b82f6; color:#93c5fd; }
 
   /* Footer */
-  .footer { text-align: center; padding: 20px; color:#94a3b8; font-size: 0.78rem; border-top:1px solid #2d3748; margin-top: 40px; background: white; }
+  .footer { text-align: center; padding: 20px; color:#94a3b8; font-size: 0.78rem; border-top:1px solid #2d3748; margin-top: 40px; background: #0f1117; }
 
   /* Tab visibility — inline style on active panel overrides everything */
   /* display controlled by JS inline style */
@@ -394,31 +391,31 @@
 
 
 </style>
-</head>
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate"><meta http-equiv="pragma" content="no-cache"><meta http-equiv="expires" content="0"></head>
 <body>
 
 <div class="header">
   <div>
-    <h1>🌮 Rreal Tacos — Compliance & Rating Reviews Dashboard</h1>
-    <div class="subtitle">12 Locations · Atlanta Metro · Powered by Toast POS + Lola AI 🌺</div>
+    <h1>🌮 Rreal Hospitality — Operations & Compliance Hub</h1>
+    <div class="subtitle">Rreal Tacos · Sales · Health · FoodSync · Secret Shopper · Reviews · Atlanta Metro</div>
   </div>
   <div class="live-badge"><span class="live-dot"></span> LIVE DATA</div>
 </div>
 
 <div class="tabs">
   <div class="tab active" onclick="showTab('overview')">🏠 Overview</div>
-  <div class="tab" onclick="showTab('scorecards')">🃏 Score Cards</div>
-  <div class="tab" onclick="showTab('sales')">💰 Sales</div>
-  <div class="tab" onclick="showTab('revenue')">📈 Revenue & Growth</div>
+  <div class="tab" onclick="showTab('scorecards')">🃏 Scorecards</div>
   <div class="tab" onclick="showTab('reviews')">⭐ Reviews</div>
   <div class="tab" onclick="showTab('audits')">🏥 Health Audits</div>
   <div class="tab" onclick="showTab('foodsync')">📋 FoodSync Audits</div>
   <div class="tab" onclick="showTab('secretshopper')">🕵️ Secret Shopper</div>
+  <div class="tab" onclick="showTab('mgmthours')">🧑‍💼 Mgmt Hours</div>
+  <div class="tab" onclick="showTab('sales')">💰 Sales</div>
+  <div class="tab" onclick="showTab('revenue')">📈 Revenue & Growth</div>
   <div class="tab" onclick="showTab('locations')">📍 All Locations</div>
   <div class="tab" onclick="showTab('labor')">👥 Labor</div>
-  <div class="tab" onclick="showTab('mgmthours')">🧑‍💼 Mgmt Hours</div>
-  <div class="tab" onclick="showTab('scorecard')">📊 Scorecard</div>
   <div class="tab" onclick="showTab('alerts')">🚨 Alerts</div>
+  <div class="tab" onclick="showTab('scorecard')">💬 WhatsApp</div>
 </div>
 
 <!-- ===================== OVERVIEW TAB ===================== -->
@@ -749,7 +746,7 @@
 
   <!-- WEEKLY KPIs -->
   <div class="metrics-grid">
-    <div class="metric-card" style="border-left-color:#ef4444">
+    <div class="metric-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
         <div class="metric-emoji">⭐</div>
         <div id="rvw-platform-badges" style="display:flex;gap:5px;align-items:center;margin-top:2px"></div>
@@ -761,31 +758,31 @@
       </div>
       <div class="metric-sub" id="rvw-dates">—</div>
     </div>
-    <div class="metric-card" style="border-left-color:#f59e0b">
+    <div class="metric-card">
       <div class="metric-emoji">🔴</div>
       <div class="metric-label">Worst Location</div>
       <div class="metric-value" id="rvw-worst" style="font-size:1.15rem">—</div>
       <div class="metric-sub" id="rvw-worst-sub">—</div>
     </div>
-    <div class="metric-card" id="rv-food-card" style="border-left-color:#e67e22;cursor:pointer;user-select:none" onclick="toggleComplaintPanel('food')">
+    <div class="metric-card" onclick="toggleComplaintPanel('food')">
       <div class="metric-emoji">🍽️</div>
       <div class="metric-label">Food Complaints <span style="font-size:.7rem;color:#e67e22">▼ tap to expand</span></div>
       <div class="metric-value" id="rvw-food">—</div>
       <div class="metric-sub" id="rvw-food-pct">% of week total</div>
     </div>
-    <div class="metric-card" id="rv-svc-card" style="border-left-color:#9b59b6;cursor:pointer;user-select:none" onclick="toggleComplaintPanel('service')">
+    <div class="metric-card" onclick="toggleComplaintPanel('service')">
       <div class="metric-emoji">🙍</div>
       <div class="metric-label">Service Complaints <span style="font-size:.7rem;color:#9b59b6">▼ tap to expand</span></div>
       <div class="metric-value" id="rvw-service">—</div>
       <div class="metric-sub" id="rvw-service-pct">% of week total</div>
     </div>
-    <div class="metric-card" style="border-left-color:#1e3a5f">
+    <div class="metric-card">
       <div class="metric-emoji">📊</div>
       <div class="metric-label">Per 100K Sales</div>
       <div class="metric-value" id="rvw-avg100k">—</div>
       <div class="metric-sub">Network avg this week</div>
     </div>
-    <div class="metric-card" style="border-left-color:#0ea5e9">
+    <div class="metric-card">
       <div class="metric-emoji">📅</div>
       <div class="metric-label">Week / Month</div>
       <div class="metric-value" id="rvw-wklabel" style="font-size:1.1rem">—</div>
@@ -1193,7 +1190,7 @@
 <!-- ===================== ALL LOCATIONS TAB ===================== -->
 <div id="tab-locations" style="display:none" class="tab-panel">
 
-  <div class="section-title">📍 All 12 Locations — Overview</div>
+  <div class="section-title">📍 All 11 Locations — Overview</div>
   <div class="locations-grid" id="locations-grid"></div>
 
 </div>
@@ -1357,37 +1354,37 @@
 
   <!-- NETWORK KPIs -->
   <div class="metrics-grid" id="sun-kpis">
-    <div class="metric-card" style="border-left-color:#1e3a5f">
+    <div class="metric-card">
       <div class="metric-emoji">⭐</div>
       <div class="metric-label">Network Avg Rating</div>
       <div class="metric-value" id="sun-avg-rating">—</div>
       <div class="metric-sub" id="sun-week-label">—</div>
     </div>
-    <div class="metric-card" style="border-left-color:#ef4444">
+    <div class="metric-card">
       <div class="metric-emoji">🔴</div>
       <div class="metric-label">Total 1★ + 2★</div>
       <div class="metric-value" id="sun-bad-total">—</div>
       <div class="metric-sub" id="sun-bad-split">—</div>
     </div>
-    <div class="metric-card" style="border-left-color:#f59e0b">
+    <div class="metric-card">
       <div class="metric-emoji">🔴</div>
       <div class="metric-label">Worst Location</div>
       <div class="metric-value" id="sun-worst" style="font-size:1.1rem">—</div>
       <div class="metric-sub" id="sun-worst-sub">—</div>
     </div>
-    <div class="metric-card" style="border-left-color:#22c55e">
+    <div class="metric-card">
       <div class="metric-emoji">🏆</div>
       <div class="metric-label">Best Rating</div>
       <div class="metric-value" id="sun-best" style="font-size:1.1rem">—</div>
       <div class="metric-sub" id="sun-best-sub">—</div>
     </div>
-    <div class="metric-card" style="border-left-color:#0ea5e9">
+    <div class="metric-card">
       <div class="metric-emoji">📊</div>
       <div class="metric-label">Total Sunday Reviews</div>
       <div class="metric-value" id="sun-total-rev">—</div>
       <div class="metric-sub">This week, all locations</div>
     </div>
-    <div class="metric-card" style="border-left-color:#9b59b6">
+    <div class="metric-card">
       <div class="metric-emoji">🙍</div>
       <div class="metric-label">Avg Service Score</div>
       <div class="metric-value" id="sun-avg-svc">—</div>
@@ -1435,19 +1432,19 @@
 
     <!-- Summary KPIs -->
     <div class="metrics-grid">
-      <div class="metric-card" style="border-left-color:#1e3a5f">
+      <div class="metric-card">
         <div class="metric-emoji">📊</div>
         <div class="metric-label">Network Avg (per $100K)</div>
         <div class="metric-value" id="p100k-avg">—</div>
         <div class="metric-sub" id="p100k-week-label">—</div>
       </div>
-      <div class="metric-card" style="border-left-color:#ef4444">
+      <div class="metric-card">
         <div class="metric-emoji">🔴</div>
         <div class="metric-label">Worst Location</div>
         <div class="metric-value" id="p100k-worst" style="font-size:1.1rem">—</div>
         <div class="metric-sub" id="p100k-worst-sub">—</div>
       </div>
-      <div class="metric-card" style="border-left-color:#22c55e">
+      <div class="metric-card">
         <div class="metric-emoji">🏆</div>
         <div class="metric-label">Best Location</div>
         <div class="metric-value" id="p100k-best" style="font-size:1.1rem">—</div>
@@ -1493,25 +1490,25 @@
 
   <!-- KPI CARDS -->
   <div class="metrics-grid">
-    <div class="metric-card" style="border-left-color:#1e3a5f">
+    <div class="metric-card">
       <div class="metric-emoji">⏰</div>
       <div class="metric-label">Network Total Hours</div>
       <div class="metric-value" id="mh-total">—</div>
       <div class="metric-sub" id="mh-week-label">—</div>
     </div>
-    <div class="metric-card" style="border-left-color:#0ea5e9">
+    <div class="metric-card">
       <div class="metric-emoji">📍</div>
       <div class="metric-label">Top Location</div>
       <div class="metric-value" id="mh-top" style="font-size:1.1rem">—</div>
       <div class="metric-sub" id="mh-top-sub">Most mgmt hours</div>
     </div>
-    <div class="metric-card" style="border-left-color:#f59e0b">
+    <div class="metric-card">
       <div class="metric-emoji">🔀</div>
       <div class="metric-label">Multi-Location Managers</div>
       <div class="metric-value" id="mh-multi-count">—</div>
       <div class="metric-sub">Covering 2+ locations</div>
     </div>
-    <div class="metric-card" style="border-left-color:#22c55e">
+    <div class="metric-card">
       <div class="metric-emoji">👥</div>
       <div class="metric-label">Total Managers</div>
       <div class="metric-value" id="mh-mgr-count">—</div>
@@ -1829,7 +1826,7 @@ function scTabMonth(month, btn) {
 </div><!-- end content -->
 
 <div class="footer">
-  🌮 Rreal Tacos Operations Dashboard · Powered by Toast POS API · Built by Lola AI 🌺 · Last updated: <span id="last-updated"></span>
+  🌮 Rreal Hospitality — Operations & Compliance Hub · 11 Locations · Built by Lola AI 🌺 · Last updated: <span id="last-updated"></span>
 </div>
 
 <script>
@@ -3345,6 +3342,8 @@ function initCharts() {
 // Only init what's visible on first paint — defer everything else
 function safeInit() {
   initTables();
+  // Pre-initialize reviews so Week 14 shows immediately on tab click
+  setTimeout(() => { try { initReviews(); } catch(e){} }, 100);
   // Charts only after full load, non-blocking
   if (document.readyState === 'complete') {
     setTimeout(initCharts, 50);
