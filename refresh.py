@@ -16,7 +16,7 @@ today_label = now_et.strftime("%B %-d, %Y")
 DASHBOARD_DIR = "/Users/mariajoseduffy/.openclaw/workspace/dashboard"
 CREDENTIALS = {
     "clientId": "NGCaheK337HbbBuOJ3DY92JorvDpgTn0",
-    "clientSecret": "V2S8jk3SAYfUlo8q5sS7JIipr6Tri6mQEEAgP7xoM5VmnnrM7hlA6hoV9gndsq9T",
+    "clientSecret": "KpFjzMDvVXpSwiFHZigYp1PAARK9x7kCsEZIjZXKZzePlVqBUnQvvSCdDphjemdT",
     "userAccessType": "TOAST_MACHINE_CLIENT"
 }
 NAMES = ["Midtown","West Midtown","Chamblee","Sandy Springs","Cumming","Sugar Hill",

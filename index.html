@@ -681,7 +681,7 @@
   <div id="rvw-section-marqii" class="rvw-section">
 
 
-  <div class="alert info" style="margin-bottom:16px;">⭐ <strong>Source: Weekly Resto Reviews · Marqii Platform</strong> · Weeks 1–13, 2026 · Updated by Lola every Monday 🌺</div>
+  <div class="alert info" style="margin-bottom:16px;">⭐ <strong>Source: Weekly Resto Reviews · Marqii Platform</strong> · Weeks 1–14, 2026 · Updated by Lola every Monday 🌺</div>
   <!-- ─── WEEKLY REPORT DOWNLOADS ─── -->
   <div style="background:#1a1f2e;border-radius:12px;padding:18px 20px;margin-bottom:20px;border:1px solid #2d3748;">
     <div style="font-weight:800;font-size:.9rem;color:#93c5fd;margin-bottom:14px;">📥 Download Weekly Review Reports (PDF)</div>
@@ -722,8 +722,11 @@
       <a href="reports/Wk12_Review_Report_Mar_16-22_2026.pdf" target="_blank" download style="display:flex;align-items:center;gap:8px;background:#0f1117;border:1px solid #2d3748;border-radius:8px;padding:8px 12px;text-decoration:none;color:#e2e8f0;font-size:.78rem;font-weight:600;transition:background .15s;" onmouseover="this.style.background='#1e2a3a'" onmouseout="this.style.background='#0f1117'">
         <span style="font-size:1.1rem;">📄</span><span><div style="color:#94a3b8;font-size:.68rem;">WK 12 · Mar</div>Mar 16–22</span>
       </a>
-      <a href="reports/Wk13_Review_Report_Mar_23-29_2026.pdf" target="_blank" download style="display:flex;align-items:center;gap:8px;background:#1e2a3a;border:1px solid #3b82f6;border-radius:8px;padding:8px 12px;text-decoration:none;color:#93c5fd;font-size:.78rem;font-weight:700;transition:background .15s;" onmouseover="this.style.background='#1e3a5f'" onmouseout="this.style.background='#1e2a3a'">
-        <span style="font-size:1.1rem;">📄</span><span><div style="color:#3b82f6;font-size:.68rem;font-weight:800;">WK 13 · Mar ★ LATEST</div>Mar 23–29</span>
+      <a href="reports/Wk13_Review_Report_Mar_23-29_2026.pdf" target="_blank" download style="display:flex;align-items:center;gap:8px;background:#0f1117;border:1px solid #2d3748;border-radius:8px;padding:8px 12px;text-decoration:none;color:#e2e8f0;font-size:.78rem;font-weight:600;transition:background .15s;" onmouseover="this.style.background='#1e2a3a'" onmouseout="this.style.background='#0f1117'">
+        <span style="font-size:1.1rem;">📄</span><span><div style="color:#94a3b8;font-size:.68rem;">WK 13 · Mar</div>Mar 23–29</span>
+      </a>
+      <a href="#" style="display:flex;align-items:center;gap:8px;background:#1e2a3a;border:1px solid #3b82f6;border-radius:8px;padding:8px 12px;text-decoration:none;color:#93c5fd;font-size:.78rem;font-weight:700;transition:background .15s;" onmouseover="this.style.background='#1e3a5f'" onmouseout="this.style.background='#1e2a3a'">
+        <span style="font-size:1.1rem;">📄</span><span><div style="color:#3b82f6;font-size:.68rem;font-weight:800;">WK 14 · Apr ★ LATEST</div>Mar 30–Apr 5</span>
       </a>
     </div>
   </div>
@@ -737,6 +740,7 @@
   <!-- Month quick-jump -->
   <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;">
     <span style="font-size:.75rem;color:#94a3b8;align-self:center;">Jump:</span>
+    <button class="month-tab" style="font-size:.72rem;padding:4px 10px" onclick="jumpToMonth('April')">Apr</button>
     <button class="month-tab" style="font-size:.72rem;padding:4px 10px" onclick="jumpToMonth('March')">Mar</button>
     <button class="month-tab" style="font-size:.72rem;padding:4px 10px" onclick="jumpToMonth('February')">Feb</button>
     <button class="month-tab" style="font-size:.72rem;padding:4px 10px" onclick="jumpToMonth('January')">Jan</button>
@@ -805,7 +809,9 @@
       <tr>
         <th>#</th>
         <th>Location</th>
-        <th>Total Reviews</th>
+        <th>⭐ 1 Star</th>
+        <th>⭐⭐ 2 Star</th>
+        <th>Total</th>
         <th>🍽️ Food</th>
         <th>🙍 Service</th>
         <th>Weekly Sales</th>
@@ -820,6 +826,7 @@
   <div class="section-title" style="margin-top:24px">📈 Weekly Trend — Bad Reviews</div>
   <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
     <button class="month-tab active" id="rvt-btn-all" onclick="setTrendView('all',this)">All Weeks</button>
+    <button class="month-tab" id="rvt-btn-apr" onclick="setTrendView('April',this)">April</button>
     <button class="month-tab" id="rvt-btn-mar" onclick="setTrendView('March',this)">March</button>
     <button class="month-tab" id="rvt-btn-feb" onclick="setTrendView('February',this)">February</button>
     <button class="month-tab" id="rvt-btn-jan" onclick="setTrendView('January',this)">January</button>
@@ -829,6 +836,7 @@
   <!-- MONTHLY SUMMARY -->
   <div class="section-title" style="margin-top:28px">📅 Monthly Summary — All Locations</div>
   <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+    <button class="month-tab" id="rvm-btn-apr" onclick="setReviewMonth('April',this)">April 2026</button>
     <button class="month-tab active" id="rvm-btn-mar" onclick="setReviewMonth('March',this)">March 2026</button>
     <button class="month-tab" id="rvm-btn-feb" onclick="setReviewMonth('February',this)">February 2026</button>
     <button class="month-tab" id="rvm-btn-jan" onclick="setReviewMonth('January',this)">January 2026</button>
@@ -1417,7 +1425,7 @@
   <!-- ─── SECTION: Sales Per 100K ─── -->
   <div id="rvw-section-per100k" class="rvw-section" style="display:none;">
 
-    <div class="alert info" style="margin-bottom:18px;">📈 <strong>Source: Marqii Bad Reviews + WoW Net Sales</strong> · Bad reviews per $100K net sales · Weeks 1–13, 2026</div>
+    <div class="alert info" style="margin-bottom:18px;">📈 <strong>Source: Marqii Bad Reviews + WoW Net Sales</strong> · Bad reviews per $100K net sales · Weeks 1–14, 2026</div>
 
     <!-- Week selector for 100K view -->
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap;">
@@ -1548,7 +1556,7 @@
   </div>
 
   <div class="section-title">🚨 All Alerts</div>
-  <div class="alert info">ℹ️ <strong>Source: Marqii — Wk13 (Mar 23–29):</strong> 19 bad reviews (Google + Yelp). Beltline: 4 · Midtown: 4 · Decatur: 3.</div>
+  <div class="alert info">ℹ️ <strong>Source: Marqii — Wk14 (Mar 30–Apr 5):</strong> 18 bad reviews (Google + Yelp). Decatur: 4 · Chamblee: 2 · Midtown: 2 · Sandy Springs: 2 · Cumming: 2 · Lawrenceville: 2 · Duluth: 2.</div>
   <div class="alert warning">🟡 <strong>Source: Marqii — Wk13:</strong> Beltline 4 bad reviews — 3 unanswered as of Mar 31. Requires immediate response.</div>
   <div class="alert warning">🟡 <strong>Source: Marqii — Wk13:</strong> Lawrenceville — 2 reviews from same guest (Abbey R.) about staff directing them to leave. Unresolved.</div>
   <div class="alert warning">🟡 <strong>Source: Marqii — Wk13:</strong> Decatur — customer complaint names staff (Anderson & Lauren) by name. <em>"terrible customer service"</em>.</div>
@@ -2345,6 +2353,36 @@ const LOCATION_ORDER = ["Midtown","West Midtown","Chamblee","Sandy Springs","Cum
 // food/service breakdown: Lola categorizes from Marqii review text each Monday.
 // themes.food / themes.service = actual complaint topics seen that week (with counts)
 const reviewsWeeks = [
+  {week:14,dates:"03/30–04/05",month:"April",
+   stars1:14,stars2:5,platforms:{google:17,yelp:2,uber:0},
+   foodTotal:8,serviceTotal:7,
+   themes:{
+     food:[
+       {emoji:"🥩",topic:"Raw chicken / food safety",count:2,locs:"Cumming",worst:{loc:"Cumming",stars:"⭐",quote:"Heads up: I was served raw chicken at Rreal Tacos today. I noticed before swallowing and sent it back, but the managers handled it awful. Tried to pass it off as something else until I shined my light on it. I left immediately."}},
+       {emoji:"🌮",topic:"Wrong order / hair in food",count:3,locs:"Decatur, Lawrenceville, Chamblee",worst:{loc:"Decatur",stars:"⭐",quote:"Every time I come here there's an issue. This time there was hair in my burrito. I only noticed it because they also ironically got my order wrong and as I was checking the burrito, I noticed a piece of hair inside."}},
+       {emoji:"🌡️",topic:"Cold food / temperature",count:2,locs:"Duluth, Chamblee",worst:{loc:"Chamblee",stars:"⭐",quote:"I went to Rreal Tacos today and had a horrible experience. I ordered tacos for lunch and they were served cold and lacking flavor. I ordered a salad to go and the order was wrong. Never returning."}},
+       {emoji:"🤢",topic:"Food quality decline",count:2,locs:"West Midtown, Decatur",worst:{loc:"West Midtown",stars:"⭐⭐",quote:"Nah it's not it. About a year ago the food was on point but after my last visit they don't have to ever worry about my feet walking in their building again. Portions smaller, quality down."}},
+       {emoji:"⚠️",topic:"Food poisoning warning",count:1,locs:"Decatur",worst:{loc:"Decatur",stars:"⭐",quote:"‼️beware of Food POISONING‼️ First of all, $20 for parking is absolutely inane. The bartender was rude and unwelcoming. I reported what happened to the health department."}},
+     ],
+     service:[
+       {emoji:"😤",topic:"Rude / dismissive staff",count:5,locs:"Chamblee, Decatur, Duluth, Lawrenceville, Cumming",worst:{loc:"Cumming",stars:"⭐",quote:"I was served raw chicken and sent it back. The managers didn't want to take accountability — making up wild excuses. They ultimately agreed it was raw but the way it was handled was completely unacceptable."}},
+       {emoji:"👻",topic:"Ignored / not greeted",count:2,locs:"Midtown, Beltline",worst:{loc:"Beltline",stars:"⭐",quote:"My server was terrible. I had to grab another server twice to get my server to come to our table and he had us waiting 25 minutes before even acknowledging we were there."}},
+       {emoji:"📦",topic:"Pickup order ignored at bar",count:1,locs:"Midtown",worst:{loc:"Midtown",stars:"⭐",quote:"Went to pick up my order at the bar. I can literally see my order ready and the girls at the bar didn't even address me. They were having a conversation about their lives instead of helping customers."}},
+     ]
+   },
+   locations:{
+    Midtown:      {reviews:2, stars1:2,stars2:0,sales:0,laborPct:0,per100k:0,food:0,service:2},
+    WestMidtown:  {reviews:1, stars1:0,stars2:1,sales:0,laborPct:0,per100k:0,food:1,service:0},
+    Chamblee:     {reviews:2, stars1:2,stars2:0,sales:0,laborPct:0,per100k:0,food:1,service:1},
+    SandySprings: {reviews:2, stars1:1,stars2:1,sales:0,laborPct:0,per100k:0,food:0,service:1},
+    Cumming:      {reviews:2, stars1:2,stars2:0,sales:0,laborPct:0,per100k:0,food:2,service:2},
+    SugarHill:    {reviews:0, stars1:0,stars2:0,sales:0,laborPct:0,per100k:0,food:0,service:0},
+    Buckhead:     {reviews:0, stars1:0,stars2:0,sales:0,laborPct:0,per100k:0,food:0,service:0},
+    Decatur:      {reviews:4, stars1:3,stars2:1,sales:0,laborPct:0,per100k:0,food:2,service:2},
+    Lawrenceville:{reviews:2, stars1:2,stars2:0,sales:0,laborPct:0,per100k:0,food:0,service:2},
+    Beltline:     {reviews:1, stars1:1,stars2:0,sales:0,laborPct:0,per100k:0,food:0,service:1},
+    Duluth:       {reviews:2, stars1:1,stars2:1,sales:0,laborPct:0,per100k:0,food:1,service:1},
+   },total:18,avg100k:0},
   {week:13,dates:"03/23–03/29",month:"March",
    stars1:16,stars2:3,platforms:{google:17,yelp:2,uber:0},
    foodTotal:12,serviceTotal:9,
@@ -2531,7 +2569,11 @@ function initReviews() {
   reviewsWeeks.forEach((w, i) => {
     const btn = document.createElement('button');
     btn.className = 'month-tab' + (i === 0 ? ' active' : '');
-    btn.textContent = 'Wk ' + w.week + ' · ' + w.dates;
+    if (i === 0) {
+      btn.innerHTML = 'Wk ' + w.week + ' · ' + w.dates + ' <span style="font-size:.65rem;background:#1d4ed8;color:#fff;padding:1px 5px;border-radius:6px;margin-left:3px;vertical-align:middle">LATEST</span>';
+    } else {
+      btn.textContent = 'Wk ' + w.week + ' · ' + w.dates;
+    }
     btn.id = 'rv-wk-btn-' + i;
     btn.onclick = () => {
       document.querySelectorAll('#rv-week-tabs .month-tab').forEach(b => b.classList.remove('active'));
@@ -2542,7 +2584,13 @@ function initReviews() {
     el.appendChild(btn);
   });
   renderWeeklyView(0);
-  renderMonthlyView('March');
+  renderMonthlyView('April');
+  // Activate April tab
+  document.querySelectorAll('#tab-reviews .month-tab[id^="rvm-btn"]').forEach(b => b.classList.remove('active'));
+  const aprBtn = document.getElementById('rvm-btn-apr');
+  if (aprBtn) aprBtn.classList.add('active');
+  const marBtn = document.getElementById('rvm-btn-mar');
+  if (marBtn) marBtn.classList.remove('active');
   buildTrendChart('all');
 }
 
@@ -2620,26 +2668,36 @@ function renderWeeklyView(idx) {
     const key = LOC_KEY[loc];
     const d = w.locations[key] || {reviews:0,sales:0,per100k:0,food:0,service:0};
     const rankInWeek = ranked.indexOf(loc) + 1;
+    const s1 = d.stars1 !== undefined ? d.stars1 : (d.reviews > 0 ? d.reviews : 0);
+    const s2 = d.stars2 !== undefined ? d.stars2 : 0;
+    const totalBad = d.reviews || 0;
+    const rowColor = totalBad === 0 ? '#4ade80' : totalBad <= 2 ? '#fbbf24' : '#f87171';
     tbody.innerHTML += `<tr>
       <td style="color:#94a3b8;font-size:.8rem">${i+1}</td>
       <td><strong>${loc}</strong></td>
-      <td style="font-size:1.05rem;font-weight:800;color:${d.reviews>=8?'#ef4444':d.reviews>=4?'#f59e0b':d.reviews>0?'#1e3a5f':'#94a3b8'}">${d.reviews}</td>
+      <td style="font-size:1.05rem;font-weight:800;color:${s1>0?'#ef4444':'#4ade80'}">${s1}</td>
+      <td style="font-size:1.05rem;font-weight:800;color:${s2>0?'#f59e0b':'#4ade80'}">${s2}</td>
+      <td style="font-size:1.05rem;font-weight:800;color:${rowColor}">${totalBad}</td>
       <td style="color:#e67e22;font-weight:700">${d.food||0}</td>
       <td style="color:#9b59b6;font-weight:700">${d.service||0}</td>
       <td style="font-size:.82rem;color:#94a3b8">$${(d.sales||0).toLocaleString('en-US',{maximumFractionDigits:0})}</td>
       <td style="font-weight:700;color:${d.per100k>=5?'#ef4444':d.per100k>=2?'#f59e0b':'#64748b'}">${(d.per100k||0).toFixed(2)}</td>
-      <td>${rvAlert(d.reviews,8,4)}</td>
+      <td>${rvAlert(d.reviews,4,2)}</td>
     </tr>`;
   });
   // Totals
   const totalFood = locs.reduce((s,l) => s + (w.locations[LOC_KEY[l]]||{food:0}).food, 0);
   const totalSvc  = locs.reduce((s,l) => s + (w.locations[LOC_KEY[l]]||{service:0}).service, 0);
+  const totalStars1 = locs.reduce((s,l) => s + (w.locations[LOC_KEY[l]]||{stars1:0}).stars1||0, 0);
+  const totalStars2 = locs.reduce((s,l) => s + (w.locations[LOC_KEY[l]]||{stars2:0}).stars2||0, 0);
   tbody.innerHTML += `<tr style="background:#1e2535;font-weight:700;border-top:2px solid #e2e8f0">
     <td colspan="2">TOTAL</td>
+    <td style="color:#ef4444">${totalStars1}</td>
+    <td style="color:#f59e0b">${totalStars2}</td>
     <td style="color:#93c5fd;font-size:1.05rem">${w.total}</td>
     <td style="color:#e67e22">${totalFood}</td>
     <td style="color:#9b59b6">${totalSvc}</td>
-    <td colspan="3" style="color:#94a3b8;font-size:.78rem">Avg ${w.avg100k}/100K · Note: food/service split estimated until full Marqii access</td>
+    <td colspan="3" style="color:#94a3b8;font-size:.78rem">Avg ${w.avg100k}/100K · Source: Marqii (Google + Yelp)</td>
   </tr>`;
 }
 
