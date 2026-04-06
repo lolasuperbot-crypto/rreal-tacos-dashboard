@@ -1,7 +1,7 @@
 /**
  * generate-review-report.js
  * Rreal Hospitality LLC — Weekly Review Report Generator
- * Pulls data from Weekly Resto Reviews sheet, generates PDF via Python, emails to michelle@rrealtacos.com
+ * Pulls data from Weekly Resto Reviews sheet, generates PDF via Python, emails to majo@rrealtacos.com
  * Run: node generate-review-report.js
  * Auto-runs: Every Monday 8am ET via GitHub Actions
  */
@@ -19,10 +19,9 @@ const CONFIG = {
   python_script: path.join(__dirname, 'generate_review_pdf.py'),
   email: {
     from: process.env.EMAIL_FROM || 'lolasuperbot@gmail.com',
-    to: 'michelle@rrealtacos.com',
-    cc: 'majo@rrealtacos.com',
+    to: 'majo@rrealtacos.com',
     subject: 'Weekly Review Report — 1 & 2 Star Analysis · Week 14 · 03/30–04/05/2026',
-    body: `Hi Michelle,
+    body: `Hi Majo,
 
 Please find attached the weekly 1 and 2 star review report for Week 14 (March 30 – April 5, 2026).
 
