@@ -1,0 +1,104 @@
+# Rreal Hospitality — Report Standards
+# PERMANENT — Do not change without explicit instruction from Maria Jose Duffy
+
+## Approved Design: Style 2 Clean Corporate
+Generated via Puppeteer (HTML → PDF). Template: scripts/report-template.html.js
+
+## Logo
+- File: receipt-logo_1680210631_400.jpg (in /dashboard/ folder)
+- Size: height 36–40px, width auto, max-width 130px
+- Position: TOP LEFT of header, never centered
+
+## Header Layout (Option 1 — side by side)
+- LEFT: Logo + "RREAL HOSPITALITY LLC" label (9px gray uppercase)
+- RIGHT: Report title (20px bold #111827) + subtitle (12px #9ca3af)
+- BOTTOM BORDER: 3px solid #f97316 (orange) — on header row ONLY
+- Subtitle: plain text line (no chip pills), 12px gray, white-space:nowrap
+
+## Email
+- All reports → majo@rrealtacos.com
+- From: lolasuperbot@gmail.com
+- Never send to michelle@rrealtacos.com
+
+## Font Sizes (minimum — never go smaller)
+- Body text: 13px
+- Table cells: 13px
+- Table headers: 11px
+- Section titles: 14px uppercase
+- KPI big numbers: 26–28px bold
+- KPI labels: 11px uppercase
+- Badge text (WATCH/CRITICAL/CLEAN): 11px
+- Location names in tables: 13px bold
+- Footer text: 9px
+- Critical section location names: 18px bold
+- Food/Service labels: 13px font-weight 600
+- Action items: 13px
+- WOW items: 13px
+- Trend summary: 13px
+
+## Active Locations (11 only — no exceptions)
+1. Midtown
+2. West Midtown
+3. Chamblee
+4. Sandy Springs
+5. Cumming
+6. Sugar Hill
+7. Buckhead
+8. Decatur
+9. Lawrenceville
+10. Beltline
+11. Duluth
+
+## NEVER Include in Any Report
+- Ponce (discontinued)
+- Zocalo (not Rreal Tacos)
+- Woodstock (new/ramp-up, excluded from reviews)
+- Eclipse di Luna (different brand)
+- Any location with 0 reviews in WOW if they had 0 in prior week
+
+## Table Rules
+- Critical rows (top 3 by total bad reviews): background #fff0f0, left border 3px solid #dc2626
+- Tiebreaker for top 3: /100K rate (higher = worse)
+- Blank white spacer row (height ~10px) after each location group total row
+- Location names: bold, color #111827 in normal rows; color #991b1b in critical rows
+
+## Badge Colors
+- CLEAN (0 reviews): background #dcfce7, color #166534
+- WATCH (1-2 reviews): background #fef3c7, color #92400e
+- CRITICAL (3+ reviews): background #fee2e2, color #991b1b
+
+## WOW Improvements Section
+- Only include locations where Wk14 reviews < Wk13 reviews (actual improvement)
+- NEVER include locations where both weeks = 0 (no movement)
+- Sort by biggest drop in /100K rate (best recovery first)
+
+## Manager Hours Report Rules
+- Threshold: 45 hours/week — flag anyone under
+- MIT section ALWAYS at end (Hospitality Training job code employees)
+- Spacer row after each location group
+- Critical badge: < 30h → 🚨 Critical, 30-44h → ⚠️ Under 45, 45h+ → ✅ OK
+- MIT badge: < 20h → 🔴 Low Hours, 20-44h → ⚠️ Under 45, 45h+ → ✅ OK
+
+## Automated Schedule (GitHub Actions)
+- Weekly Review Report: every Monday 8:00 AM ET (cron: 0 12 * * 1)
+  → pulls from Weekly Resto Reviews Sheet + Marqii
+  → sends to majo@rrealtacos.com
+- Manager Hours Report: every Monday 8:00 PM ET (cron: 0 0 * * 2)
+  → pulls from MANAGERS HOURS sheet (1YTFFTnGD4RLR4uLwHirae4IlirkS82VeeVd8CpAc3SE)
+  → sends to majo@rrealtacos.com
+
+## Data Sources
+- Weekly Resto Reviews Sheet: 1kAIFHy7xQggErdAf3Wd70PTRrahgC-gHtW6kWi9ZC3w (tab: weekly_KPI)
+- Manager Hours Sheet: 1YTFFTnGD4RLR4uLwHirae4IlirkS82VeeVd8CpAc3SE
+- Marqii: app.marqii.com (Google + Yelp only — NO UberEats in review reports)
+- Account: lolasuperbot@gmail.com
+
+## Report Files
+- Template: scripts/report-template.html.js
+- Review generator: scripts/gen_review_report.js
+- Hours generator: scripts/gen_mgr_hours.js
+- Output: reports/ folder
+
+## Last Approved
+- Date: April 6, 2026
+- Approved by: Maria Jose Duffy

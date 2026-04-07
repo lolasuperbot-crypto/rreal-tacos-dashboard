@@ -1,0 +1,60 @@
+name: Manager Hours Report — Week 14
+
+on:
+  # Every Monday at 8:00 PM ET (00:00 UTC Tuesday)
+  schedule:
+    - cron: '0 0 * * 2'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  generate-and-send:
+    runs-on: ubuntu-latest
+    name: Generate Manager Hours PDF & Email to Majo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install puppeteer nodemailer
+
+      - name: Pull manager hours data from sheet
+        run: |
+          echo "Pulling from Manager Hours sheet..."
+
+      - name: Generate Manager Hours PDF
+        run: |
+          node scripts/gen_mgr_hours.js
+
+      - name: Send email to majo@rrealtacos.com
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_FROM: lolasuperbot@gmail.com
+          EMAIL_TO: majo@rrealtacos.com
+        run: |
+          node -e "
+          const nodemailer = require('nodemailer');
+          const fs = require('fs');
+          const t = nodemailer.createTransport({ service:'gmail', auth:{ user:process.env.EMAIL_FROM, pass:process.env.GMAIL_APP_PASSWORD }});
+          t.sendMail({
+            from: process.env.EMAIL_FROM,
+            to: process.env.EMAIL_TO,
+            subject: 'Manager Hours Report — Weekly · Rreal Tacos',
+            text: 'Hi Majo,\n\nAttached is the weekly Manager Hours Report.\n\n— Lola AI 🌺',
+            attachments: [{ filename: 'Manager_Hours_Report.pdf', path: 'reports/Wk14_Manager_Hours_Report.pdf' }]
+          }).then(() => console.log('✅ Sent')).catch(e => { console.error(e); process.exit(1); });
+          "
+
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manager-hours-report
+          path: reports/Wk14_Manager_Hours_Report.pdf
+          retention-days: 90
