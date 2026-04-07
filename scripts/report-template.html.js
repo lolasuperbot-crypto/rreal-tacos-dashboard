@@ -204,7 +204,7 @@ const BASE_CSS = `
   .data-table tr:nth-child(even) td { background: ${B.bgPage}; }
   .data-table .total-row td { background: ${B.bgTblHdr}; font-weight: 700; border-top: 1px solid ${B.border}; }
   .data-table .spacer-row td { height: 10px; background: #ffffff; border: none; }
-  .data-table .loc-total-row td { background: ${B.bgTblHdr}; font-weight: 700; font-size: 9px; border-top: 1px solid ${B.border}; border-bottom: 1px solid ${B.border}; }
+  .data-table .loc-total-row td { background: #f9fafb; font-weight: 700; font-size: 13px; color: #f97316; border-top: 1px solid ${B.border}; border-bottom: 1px solid ${B.border}; }
 
   /* ── BADGES ── */
   .badge { border-radius: 3px; padding: 2px 8px; font-size: 11px; font-weight: 700; display: inline-block; white-space: nowrap; }

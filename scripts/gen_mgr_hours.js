@@ -160,7 +160,7 @@ function buildHTML() {
   for (const m of flagged) {
     html += `<tr>
       <td>${m.name}</td>
-      <td>${m.loc}</td>
+      <td style="font-size:14px;font-weight:700;color:#0d1630">${m.loc}</td>
       <td class="${hrsColor(m.hrs)}">${m.hrs.toFixed(2)}h</td>
       <td>${badge(m.hrs)}</td>
     </tr>`;
@@ -186,16 +186,16 @@ function buildHTML() {
     for (const m of mgrs) {
       html += `<tr>
         <td>${m.name}</td>
-        <td>${m.loc}</td>
+        <td style="font-size:14px;font-weight:700;color:#0d1630">${m.loc}</td>
         <td class="${hrsColor(m.hrs)}">${m.hrs.toFixed(2)}h</td>
         <td>${badge(m.hrs)}</td>
       </tr>`;
     }
     html += `<tr class="loc-total-row">
-      <td>─── ${loc} Total</td>
-      <td>${mgrs.length} mgrs</td>
-      <td>${locTotal.toFixed(1)}h</td>
-      <td>Avg ${locAvg.toFixed(1)}h</td>
+      <td style="font-size:13px;font-weight:700;color:#f97316;background:#f9fafb">─── ${loc} Total</td>
+      <td style="font-size:13px;font-weight:700;color:#f97316;background:#f9fafb">${mgrs.length} mgrs</td>
+      <td style="font-size:13px;font-weight:700;color:#f97316;background:#f9fafb">${locTotal.toFixed(1)}h</td>
+      <td style="font-size:13px;font-weight:700;color:#f97316;background:#f9fafb">Avg ${locAvg.toFixed(1)}h</td>
     </tr>`;
     html += `<tr class="spacer-row"><td colspan="4"></td></tr>`;
   }
@@ -216,7 +216,7 @@ function buildHTML() {
     html += `<tr>
       <td>${m.name}</td>
       <td class="${hrsColor(m.hrs)}">${m.hrs.toFixed(2)}h</td>
-      <td style="text-align:left">${m.locs}</td>
+      <td style="text-align:left;font-size:14px;font-weight:700;color:#0d1630">${m.locs}</td>
       <td>${st}</td>
     </tr>`;
     html += `<tr class="spacer-row"><td colspan="4"></td></tr>`;
