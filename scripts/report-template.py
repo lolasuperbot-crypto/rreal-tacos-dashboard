@@ -215,21 +215,30 @@ def kpi_row(kpis, page_width=PAGE_W):
 
 # ── PAGE NUMBERING ─────────────────────────────────────────────────────────────
 def _make_page_fn(title, total_pages_ref):
+    _logo = os.path.join(os.path.dirname(__file__), "..", "dashboard", "receipt-logo_1680210631_400.jpg")
     def page_fn(canvas, doc):
         canvas.saveState()
         w, h = letter
-        y = 0.45 * inch
+        y = 0.40 * inch
 
         # Top border line
         canvas.setStrokeColor(C["border"])
         canvas.setLineWidth(0.5)
         canvas.line(MARGINS, y + 14, w - MARGINS, y + 14)
 
+        # Logo in footer (left side, small)
+        if os.path.exists(_logo):
+            try:
+                canvas.drawImage(_logo, MARGINS, y - 2, width=0.55*inch, height=0.18*inch,
+                                 preserveAspectRatio=True, mask="auto")
+            except:
+                pass
+
         canvas.setFont("Helvetica", 8)
         canvas.setFillColor(C["text_light"])
 
-        # Left
-        canvas.drawString(MARGINS, y, "Rreal Hospitality LLC  ·  Rreal Tacos Operations")
+        # Left text (after logo)
+        canvas.drawString(MARGINS + 0.6*inch, y, "Rreal Hospitality LLC  ·  Rreal Tacos Operations")
         # Center
         canvas.drawCentredString(w / 2, y, "Confidential — Internal Use Only")
         # Right
@@ -251,7 +260,7 @@ def build_cover(title, subtitle, week, date_range, extra_chips=None, page_width=
     story.append(Spacer(1, 0.6*inch))
 
     # Logo placeholder (if logo file exists)
-    logo_path = os.path.join(os.path.dirname(__file__), "..", "receipt-logo_1680210631_400.jpg")
+    logo_path = os.path.join(os.path.dirname(__file__), "..", "dashboard", "receipt-logo_1680210631_400.jpg")
     if os.path.exists(logo_path):
         from reportlab.platypus import Image as RLImage
         try:
