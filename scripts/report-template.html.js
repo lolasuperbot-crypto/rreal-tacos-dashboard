@@ -46,7 +46,7 @@ const BASE_CSS = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 11px;
+    font-size: 13px;
     color: ${B.body};
     background: #ffffff;
     width: 100%;
@@ -95,7 +95,7 @@ const BASE_CSS = `
     white-space: nowrap;
   }
   .header-right .report-sub {
-    font-size: 10px;
+    font-size: 12px;
     color: ${B.light};
     white-space: nowrap;
   }
@@ -127,7 +127,7 @@ const BASE_CSS = `
 
   /* ── SECTION HEADER ── */
   .section-hdr {
-    font-size: 9px;
+    font-size: 13px;
     font-weight: 700;
     color: ${B.body};
     text-transform: uppercase;
@@ -156,8 +156,8 @@ const BASE_CSS = `
     border-right: 1px solid ${B.border};
   }
   .kpi-card:last-child { border-right: none; }
-  .kpi-value { font-size: 26px; font-weight: 700; color: ${B.dark}; line-height: 1.1; }
-  .kpi-label { font-size: 8px; font-weight: 700; color: ${B.light}; text-transform: uppercase; margin-top: 4px; }
+  .kpi-value { font-size: 28px; font-weight: 700; color: ${B.dark}; line-height: 1.1; }
+  .kpi-label { font-size: 11px; font-weight: 700; color: ${B.light}; text-transform: uppercase; margin-top: 4px; }
 
   /* ── TWO-COL ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
@@ -167,7 +167,7 @@ const BASE_CSS = `
     border-radius: 6px;
     padding: 12px 14px;
   }
-  .col-title { font-size: 8px; font-weight: 700; color: ${B.light}; text-transform: uppercase; margin-bottom: 8px; }
+  .col-title { font-size: 11px; font-weight: 700; color: ${B.light}; text-transform: uppercase; margin-bottom: 8px; }
 
   /* ── TABLE ── */
   .data-table {
@@ -184,7 +184,7 @@ const BASE_CSS = `
     background: ${B.bgTblHdr};
     color: ${B.body};
     font-weight: 700;
-    font-size: 8px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 7px 8px;
@@ -193,19 +193,20 @@ const BASE_CSS = `
   }
   .data-table th:first-child { text-align: left; }
   .data-table td {
-    padding: 5px 8px;
+    padding: 6px 8px;
     text-align: center;
     border-bottom: 1px solid ${B.borderLt};
     color: ${B.body};
+    font-size: 13px;
   }
-  .data-table td:first-child { text-align: left; font-weight: 700; color: ${B.dark}; }
+  .data-table td:first-child { text-align: left; font-weight: 700; color: ${B.dark}; font-size: 13px; }
   .data-table tr:nth-child(even) td { background: ${B.bgPage}; }
   .data-table .total-row td { background: ${B.bgTblHdr}; font-weight: 700; border-top: 1px solid ${B.border}; }
   .data-table .spacer-row td { height: 10px; background: #ffffff; border: none; }
   .data-table .loc-total-row td { background: ${B.bgTblHdr}; font-weight: 700; font-size: 9px; border-top: 1px solid ${B.border}; border-bottom: 1px solid ${B.border}; }
 
   /* ── BADGES ── */
-  .badge { border-radius: 3px; padding: 2px 6px; font-size: 8px; font-weight: 700; display: inline-block; white-space: nowrap; }
+  .badge { border-radius: 3px; padding: 2px 8px; font-size: 11px; font-weight: 700; display: inline-block; white-space: nowrap; }
   .badge-green  { background: ${B.greenBg};  color: ${B.greenTxt}; }
   .badge-amber  { background: ${B.amberBg};  color: ${B.amberTxt}; }
   .badge-red    { background: ${B.redBg};    color: ${B.redTxt}; }
@@ -253,7 +254,7 @@ const BASE_CSS = `
     padding: 6px 40px;
     border-top: 1px solid ${B.border};
     margin-top: 16px;
-    font-size: 8px;
+    font-size: 9px;
     color: ${B.light};
     background: #ffffff;
   }
@@ -266,8 +267,8 @@ const BASE_CSS = `
 
   /* ── WOW / TREND ── */
   .wow-trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .wow-item { font-size: 10px; font-weight: 700; color: ${B.greenTxt}; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; }
-  .trend-item { display: grid; grid-template-columns: 70px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; font-size: 9px; }
+  .wow-item { font-size: 12px; font-weight: 700; color: ${B.greenTxt}; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; }
+  .trend-item { display: grid; grid-template-columns: 80px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; font-size: 11px; }
   .trend-label { font-weight: 700; color: ${B.body}; }
   .trend-val   { color: ${B.body}; }
 `;
@@ -284,7 +285,7 @@ function coverHTML(title, subtitle, week, dateRange, generatedDate = 'April 6, 2
     <div class="report-sub">${week}  ·  ${dateRange}  ·  Confidential</div>
   </div>
 </div>
-<p style="font-size:10px; color:#9ca3af; margin-top:12px; padding:0 40px; white-space:nowrap; overflow:hidden;">${week} &nbsp;·&nbsp; ${dateRange} &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Generated ${generatedDate}</p>`;
+<p style="font-size:12px; color:#9ca3af; margin-top:12px; padding:0 40px; white-space:nowrap; overflow:hidden;">${week} &nbsp;·&nbsp; ${dateRange} &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Generated ${generatedDate}</p>`;
 }
 
 function footerHTML() {
