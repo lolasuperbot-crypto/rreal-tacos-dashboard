@@ -127,7 +127,7 @@ const BASE_CSS = `
 
   /* ── SECTION HEADER ── */
   .section-hdr {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     color: ${B.body};
     text-transform: uppercase;
@@ -165,9 +165,10 @@ const BASE_CSS = `
     background: #ffffff;
     border: 1px solid ${B.border};
     border-radius: 6px;
-    padding: 12px 14px;
+    padding: 14px 16px;
+    font-size: 13px;
   }
-  .col-title { font-size: 11px; font-weight: 700; color: ${B.light}; text-transform: uppercase; margin-bottom: 8px; }
+  .col-title { font-size: 13px; font-weight: 700; color: ${B.light}; text-transform: uppercase; margin-bottom: 8px; }
 
   /* ── TABLE ── */
   .data-table {
@@ -227,12 +228,12 @@ const BASE_CSS = `
     align-items: center;
     margin-bottom: 0;
   }
-  .critical-hdr .loc-name { font-size: 13px; font-weight: 700; color: ${B.dark}; }
-  .critical-hdr .loc-meta { font-size: 9px; font-weight: 700; color: ${B.redTxt}; text-align: right; }
+  .critical-hdr .loc-name { font-size: 18px; font-weight: 700; color: ${B.dark}; }
+  .critical-hdr .loc-meta { font-size: 13px; font-weight: 700; color: ${B.redTxt}; text-align: right; }
   .food-svc-grid { display: grid; grid-template-columns: 1fr 1fr; background: #ffffff; border: 1px solid ${B.border}; border-top: none; }
   .food-col, .svc-col { padding: 10px 12px; }
   .food-col { border-right: 1px solid ${B.border}; }
-  .col-lbl { font-size: 9px; font-weight: 700; margin-bottom: 4px; }
+  .col-lbl { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
   .col-lbl.food { color: ${B.amber}; }
   .col-lbl.svc  { color: ${B.dark}; }
   .actions-block {
@@ -240,9 +241,9 @@ const BASE_CSS = `
     border: 1px solid ${B.border};
     border-top: none;
     border-left: 3px solid ${B.orange};
-    padding: 7px 14px;
-    font-size: 9px;
-    line-height: 1.8;
+    padding: 9px 14px;
+    font-size: 13px;
+    line-height: 1.9;
     margin-bottom: 12px;
   }
 
@@ -267,8 +268,8 @@ const BASE_CSS = `
 
   /* ── WOW / TREND ── */
   .wow-trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .wow-item { font-size: 12px; font-weight: 700; color: ${B.greenTxt}; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; }
-  .trend-item { display: grid; grid-template-columns: 80px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; font-size: 11px; }
+  .wow-item { font-size: 13px; font-weight: 700; color: ${B.greenTxt}; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; }
+  .trend-item { display: grid; grid-template-columns: 80px 1fr; gap: 8px; padding: 6px 0; border-bottom: 1px solid ${B.borderLt}; font-size: 13px; }
   .trend-label { font-weight: 700; color: ${B.body}; }
   .trend-val   { color: ${B.body}; }
 `;

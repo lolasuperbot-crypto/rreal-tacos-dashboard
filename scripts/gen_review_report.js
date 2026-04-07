@@ -124,17 +124,17 @@ function buildHTML() {
   html += `<div class="section-hdr">Top 3 Critical Locations — Detail &amp; Action Items</div>`;
   for (const c of CRITICAL) {
     html += `<div class="critical-hdr">
-      <span class="loc-name">${c.loc}</span>
-      <span class="loc-meta">CRITICAL · ${c.reviews} reviews · ${c.r100k.toFixed(2)}/100K · ↑ worse vs Wk13</span>
+      <span class="loc-name" style="font-size:18px;font-weight:700;color:#111827">${c.loc}</span>
+      <span class="loc-meta" style="font-size:13px;font-weight:700;color:#991b1b;text-align:right">${c.reviews} reviews · ${c.r100k.toFixed(2)}/100K · ↑ worse vs Wk13 · CRITICAL</span>
     </div>`;
     html += `<div class="food-svc-grid">
       <div class="food-col">
-        <div class="col-lbl food">Food →</div>
-        ${c.food.length ? c.food.map(f=>`<p style="font-size:9px;margin-bottom:3px;color:${f.startsWith('🚨')?B.red:B.body};font-weight:${f.startsWith('🚨')?'700':'400'}">${f}</p>`).join('') : '<p style="font-size:9px;color:'+B.muted+'">n/a</p>'}
+        <div class="col-lbl food" style="font-size:13px;font-weight:600">Food →</div>
+        ${c.food.length ? c.food.map(f=>`<p style="font-size:13px;margin-bottom:3px;color:${f.startsWith('🚨')?B.red:B.body};font-weight:${f.startsWith('🚨')?'700':'400'}">${f}</p>`).join('') : '<p style="font-size:9px;color:'+B.muted+'">n/a</p>'}
       </div>
       <div class="svc-col">
-        <div class="col-lbl svc">Service →</div>
-        ${c.svc.map(s=>`<p style="font-size:9px;margin-bottom:3px;">${s}</p>`).join('')}
+        <div class="col-lbl svc" style="font-size:13px;font-weight:600">Service →</div>
+        ${c.svc.map(s=>`<p style="font-size:13px;margin-bottom:3px;">${s}</p>`).join('')}
       </div>
     </div>`;
     html += `<div class="actions-block">${c.actions.map((a,i)=>`□ ${i===0&&c.loc==='Cumming'?'<strong>':''}${a}${i===0&&c.loc==='Cumming'?'</strong>':''}`).join('<br>')}</div>`;
