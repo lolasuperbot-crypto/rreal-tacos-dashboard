@@ -251,64 +251,106 @@ def _make_page_fn(title, total_pages_ref):
 
 # ── COVER PAGE ─────────────────────────────────────────────────────────────────
 def build_cover(title, subtitle, week, date_range, extra_chips=None, page_width=PAGE_W):
-    """Returns story elements for the cover page."""
+    """
+    Option 1 layout — left/right side-by-side:
+      LEFT:  Logo (44px) + 'Rreal Hospitality LLC' label
+      RIGHT: Report title (bold) + subtitle (muted)
+      BOTTOM BORDER: 3px solid orange spanning full width
+    Chips row below, no wrapping.
+    """
+    from reportlab.platypus import Image as RLImage
     story = []
     now = datetime.now(tz=timezone(timedelta(hours=-4))).strftime("%B %d, %Y")
     chips = [week, date_range, "Confidential"] + (extra_chips or [])
 
-    # Orange accent bar (thin horizontal line)
-    story.append(Spacer(1, 0.6*inch))
+    _logo = os.path.join(os.path.dirname(__file__), "..", "dashboard", "receipt-logo_1680210631_400.jpg")
 
-    # Logo placeholder (if logo file exists)
-    logo_path = os.path.join(os.path.dirname(__file__), "..", "dashboard", "receipt-logo_1680210631_400.jpg")
-    if os.path.exists(logo_path):
-        from reportlab.platypus import Image as RLImage
+    # ── LEFT COL: Logo + brand label ──
+    left_items = []
+    if os.path.exists(_logo):
         try:
-            img = RLImage(logo_path, width=1.8*inch, height=0.5*inch)
-            story.append(img)
-            story.append(Spacer(1, 0.15*inch))
+            left_items.append(RLImage(_logo, width=1.5*inch, height=0.42*inch))  # ~44px at 72dpi
         except:
             pass
+    left_items.append(Paragraph(
+        "RREAL HOSPITALITY LLC",
+        style("brand_lbl", fontSize=9, fontName="Helvetica-Bold",
+              textColor=C["text_muted"], spaceAfter=0, leading=11, alignment=TA_LEFT)
+    ))
+    left_col = Table([[item] for item in left_items], colWidths=[page_width * 0.45])
+    left_col.setStyle(TableStyle([
+        ("ALIGN",         (0,0), (-1,-1), "LEFT"),
+        ("VALIGN",        (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING",    (0,0), (-1,-1), 2),
+        ("BOTTOMPADDING", (0,0), (-1,-1), 2),
+        ("LEFTPADDING",   (0,0), (-1,-1), 0),
+        ("RIGHTPADDING",  (0,0), (-1,-1), 0),
+    ]))
 
-    # Orange accent bar
-    story.append(HRFlowable(width=0.4*inch, thickness=4, color=C["orange"],
-                             lineCap="round", spaceAfter=12))
+    # ── RIGHT COL: Title + subtitle ──
+    right_col = Table([
+        [Paragraph(title, style("cover_rpt", fontSize=18, fontName="Helvetica-Bold",
+                                textColor=C["text_dark"], spaceAfter=2, leading=22, alignment=TA_RIGHT))],
+        [Paragraph(f"{week}  ·  {date_range}  ·  Confidential",
+                   style("cover_sub", fontSize=10, textColor=C["text_light"],
+                         spaceAfter=0, leading=13, alignment=TA_RIGHT))],
+    ], colWidths=[page_width * 0.55])
+    right_col.setStyle(TableStyle([
+        ("ALIGN",         (0,0), (-1,-1), "RIGHT"),
+        ("VALIGN",        (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING",    (0,0), (-1,-1), 2),
+        ("BOTTOMPADDING", (0,0), (-1,-1), 2),
+        ("LEFTPADDING",   (0,0), (-1,-1), 0),
+        ("RIGHTPADDING",  (0,0), (-1,-1), 0),
+    ]))
 
-    # Title
-    story.append(Paragraph(title, STYLES["cover_title"]))
-    story.append(Paragraph(subtitle, STYLES["cover_sub"]))
+    # ── HEADER ROW: left | right — orange bottom border ──
+    header_row = Table([[left_col, right_col]], colWidths=[page_width * 0.45, page_width * 0.55])
+    header_row.setStyle(TableStyle([
+        ("BACKGROUND",    (0,0), (-1,-1), C["white"]),
+        ("VALIGN",        (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING",    (0,0), (-1,-1), 14),
+        ("BOTTOMPADDING", (0,0), (-1,-1), 14),
+        ("LEFTPADDING",   (0,0), (-1,-1), 0),
+        ("RIGHTPADDING",  (0,0), (-1,-1), 0),
+        ("LINEBELOW",     (0,0), (-1,-1), 3, C["orange"]),  # Orange ONLY at bottom of header
+    ]))
+    story.append(header_row)
+    story.append(Spacer(1, 14))
 
-    # Chips row
+    # ── CHIPS ROW: no wrapping, single line ──
+    chip_widths = {
+        "Week 14": 0.72*inch, "Week 15": 0.72*inch, "Week 16": 0.72*inch,
+    }
+    default_chip_w = 1.1*inch
     chip_cells = []
     for chip in chips:
-        ct = Table([[Paragraph(chip, STYLES["chip"])]],
-                   colWidths=[None])
+        cw = chip_widths.get(chip, default_chip_w)
+        # Estimate width from text length
+        cw = max(len(chip) * 0.075 * inch, 0.65*inch)
+        ct = Table([[Paragraph(chip, style(
+            f"chip_{chip[:4]}", fontSize=9, textColor=C["text_body"],
+            spaceAfter=0, leading=11, alignment=TA_CENTER, wordWrap=None
+        ))]], colWidths=[cw])
         ct.setStyle(TableStyle([
-            ('BACKGROUND',    (0,0), (-1,-1), C["chip_bg"]),
-            ('TOPPADDING',    (0,0), (-1,-1), 4),
-            ('BOTTOMPADDING', (0,0), (-1,-1), 4),
-            ('LEFTPADDING',   (0,0), (-1,-1), 10),
-            ('RIGHTPADDING',  (0,0), (-1,-1), 10),
-            ('ROUNDEDCORNERS',[10,10,10,10]),
+            ("BACKGROUND",    (0,0), (-1,-1), C["chip_bg"]),
+            ("TOPPADDING",    (0,0), (-1,-1), 4),
+            ("BOTTOMPADDING", (0,0), (-1,-1), 4),
+            ("LEFTPADDING",   (0,0), (-1,-1), 8),
+            ("RIGHTPADDING",  (0,0), (-1,-1), 8),
         ]))
         chip_cells.append(ct)
 
-    chips_row = Table([chip_cells + [""]], colWidths=[0.8*inch, 1.5*inch, 0.9*inch] + [None])
-    chips_row.setStyle(TableStyle([
-        ('LEFTPADDING',  (0,0), (-1,-1), 4),
-        ('RIGHTPADDING', (0,0), (-1,-1), 4),
-        ('VALIGN',       (0,0), (-1,-1), 'MIDDLE'),
+    total_chip_w = sum(max(len(c) * 0.075 * inch, 0.65*inch) for c in chips)
+    chips_t = Table([chip_cells], colWidths=[max(len(c)*0.075*inch,0.65*inch) for c in chips])
+    chips_t.setStyle(TableStyle([
+        ("LEFTPADDING",   (0,0), (-1,-1), 3),
+        ("RIGHTPADDING",  (0,0), (-1,-1), 3),
+        ("VALIGN",        (0,0), (-1,-1), "MIDDLE"),
+        ("TOPPADDING",    (0,0), (-1,-1), 0),
+        ("BOTTOMPADDING", (0,0), (-1,-1), 0),
     ]))
-    story.append(chips_row)
-
-    story.append(Spacer(1, 0.5*inch))
-
-    # Generated timestamp
-    story.append(Paragraph(f"Generated {now}", STYLES["body_muted"]))
-    story.append(Spacer(1, 0.3*inch))
-
-    # Bottom orange line
-    story.append(HRFlowable(width=page_width, thickness=3, color=C["orange"], spaceAfter=0))
+    story.append(chips_t)
 
     return story
 
