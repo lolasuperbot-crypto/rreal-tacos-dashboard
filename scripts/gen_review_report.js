@@ -90,10 +90,21 @@ function buildHTML() {
   <th>Location</th><th>Sales</th><th>1★</th><th>2★</th><th>Total</th>
   <th>/100K</th><th>Wk13</th><th>Swing</th><th>Food</th><th>Svc</th><th>Status</th>
 </tr></thead><tbody>`;
+  // Determine top 3 critical rows by total desc, then /100K desc
+  const sorted = [...TABLE_DATA].sort((a,b) => b.total - a.total || b.r100k - a.r100k);
+  const top3Locs = new Set(sorted.slice(0,3).filter(r=>r.total>0).map(r=>r.loc));
+
   for (const r of TABLE_DATA) {
     const sc = swingColor(r.swing);
-    html += `<tr>
-      <td>${r.loc}</td>
+    const isCrit = top3Locs.has(r.loc);
+    const rowStyle = isCrit
+      ? 'background:#fff0f0; border-left:3px solid #dc2626;'
+      : '';
+    const locStyle = isCrit
+      ? 'font-weight:700; color:#991b1b;'
+      : 'font-weight:700; color:#111827;';
+    html += `<tr style="${rowStyle}">
+      <td style="${locStyle}">${r.loc}</td>
       <td>$${r.sales}K</td>
       <td>${r.s1}</td><td>${r.s2}</td>
       <td style="color:${r.total===0?B.green:r.total<=2?B.amber:B.red};font-weight:700">${r.total}</td>
