@@ -15,7 +15,7 @@ const TABLE_DATA = [
   {loc:'Buckhead',      sales:152, s1:0, s2:0, total:0,  r100k:0.00, wk13:0.00, swing:'→ 0',     food:0, svc:0,  status:'CLEAN'},
   {loc:'Decatur',       sales:147, s1:3, s2:1, total:4,  r100k:2.71, wk13:1.99, swing:'↑ +0.72', food:2, svc:2,  status:'CRITICAL'},
   {loc:'Lawrenceville', sales:195, s1:2, s2:0, total:2,  r100k:1.02, wk13:0.96, swing:'↑ +0.06', food:0, svc:2,  status:'WATCH'},
-  {loc:'Ponce',         sales:85,  s1:0, s2:0, total:0,  r100k:0.00, wk13:0.00, swing:'→ 0',     food:0, svc:0,  status:'CLEAN'},
+  {loc:'Beltline',      sales:210, s1:1, s2:0, total:2,  r100k:0.95, wk13:1.83, swing:'↓ -0.88', food:0, svc:2,  status:'WATCH'},
   {loc:'Duluth',        sales:127, s1:1, s2:1, total:2,  r100k:1.58, wk13:0.79, swing:'↑ +0.79', food:1, svc:1,  status:'WATCH'},
 ];
 
@@ -79,7 +79,7 @@ function buildHTML() {
     <p style="color:${B.red};font-weight:700;font-size:11px;margin-bottom:4px;">🔴 Decatur — 4 reviews · 2.71/100K</p>
     <p style="color:${B.red};font-weight:700;font-size:11px;margin-bottom:4px;">🔴 Cumming — 3 reviews · 4.77/100K</p>
     <p style="color:${B.red};font-weight:700;font-size:11px;margin-bottom:8px;">🔴 Sandy Springs — 3 reviews · 2.10/100K</p>
-    <p style="color:${B.green};font-weight:700;font-size:11px;">✅ Buckhead · Ponce — 0 bad reviews</p>
+    <p style="color:${B.green};font-weight:700;font-size:11px;">✅ Buckhead · Beltline — 0 bad reviews</p>
   </div>
 </div>`;
 
@@ -137,7 +137,7 @@ function buildHTML() {
     <div class="wow-item">✅ Midtown · 2.16 → 1.01 · Strongest Recovery 🏆</div>
     <div class="wow-item">✅ Beltline · 1.83 → 0.95 · Improved ↓</div>
     <div class="wow-item">✅ Buckhead · Clean Sheet ✅</div>
-    <div class="wow-item">✅ Ponce · Clean Sheet ✅</div>
+
   </div>
   <div class="col-card">
     <div class="col-title">Network Trend Summary</div>
@@ -146,7 +146,7 @@ function buildHTML() {
     <div class="trend-item"><span class="trend-label">Food</span><span class="trend-val">36% food-related · Safety, wrong orders, temp</span></div>
     <div class="trend-item"><span class="trend-label">Service</span><span class="trend-val">55% service-related · Staff dismissing guests</span></div>
     <div class="trend-item"><span class="trend-label">Safety</span><span class="trend-val">2 critical incidents — Cumming raw chicken · Decatur food poisoning</span></div>
-    <div class="trend-item"><span class="trend-label">Best</span><span class="trend-val">Buckhead &amp; Ponce — only clean locations</span></div>
+    <div class="trend-item"><span class="trend-label">Best</span><span class="trend-val">Buckhead — only clean location</span></div>
     <div class="trend-item"><span class="trend-label">Response</span><span class="trend-val">Multiple Wk14 reviews unreplied this week</span></div>
   </div>
 </div>`;
