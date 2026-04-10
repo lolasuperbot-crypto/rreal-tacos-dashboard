@@ -1,0 +1,40 @@
+name: Keep Alive — Lola Heartbeat
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # Daily at 12pm UTC (8am ET)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load Lola Memory
+        run: cat memory/LOLA-MEMORY.md || echo "Memory file not yet checked out"
+
+      - uses: actions/checkout@v4
+
+      - name: Load Lola Memory (post-checkout)
+        run: |
+          echo "=== LOLA MEMORY LOADED ==="
+          cat memory/LOLA-MEMORY.md
+          echo "=========================="
+
+      - name: Write heartbeat
+        run: |
+          mkdir -p memory
+          echo "Lola alive $(date -u '+%Y-%m-%d %H:%M UTC')" >> memory/heartbeat.log
+          # Keep only last 30 lines
+          tail -30 memory/heartbeat.log > memory/heartbeat.log.tmp && mv memory/heartbeat.log.tmp memory/heartbeat.log
+
+      - name: Commit heartbeat
+        run: |
+          git config user.email 'lola@rrealtacos.com'
+          git config user.name 'Lola AI'
+          git add memory/heartbeat.log
+          DATE=$(date '+%Y-%m-%d')
+          git diff --staged --quiet || git commit -m "Lola heartbeat ${DATE}"
+          git push || true

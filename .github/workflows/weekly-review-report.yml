@@ -16,6 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Load Lola Memory
+        run: |
+          echo "=== LOLA MEMORY ==="
+          cat memory/LOLA-MEMORY.md || echo "Memory file not found"
+          echo "==================="
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
