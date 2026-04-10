@@ -22,7 +22,7 @@ Last updated: April 10, 2026
 
 ---
 
-## Active Locations (11 only — NEVER add or remove without explicit permission)
+## Active Locations (12 — NEVER add or remove without explicit permission)
 1. Midtown
 2. West Midtown
 3. Chamblee
@@ -34,15 +34,21 @@ Last updated: April 10, 2026
 9. Lawrenceville
 10. Beltline
 11. Duluth
+12. Woodstock ← NEW location, now active and operating (added April 10, 2026)
 
-## Removed Locations (NEVER include these in any report, tab, or data)
-- ~~Ponce~~ (renamed/removed — always use "Beltline" instead)
+**Woodstock notes:**
+- Must be included in ALL tabs, ALL reports, ALL location lists
+- Place at position 12 — last in standard order
+- Show `—` or "New Location — data pending" where no historical data exists
+- Include in EOD Reports monitoring
+- Include in Manager Hours, Weekly Review, Health Audits, FoodSync, Secret Shopper
+
+## Removed Locations (NEVER include in any report, tab, or data)
+- ~~Ponce~~ → "Ponce" does NOT exist. Always use **Beltline**
 - ~~Zocalo~~
-- ~~Woodstock~~ (was Location 12 — now inactive for reporting)
 - ~~Eclipse~~
-- ~~Beltline (old)~~
 
-> ⚠️ "Ponce" does NOT exist. The correct name is **Beltline** everywhere.
+> ⚠️ **Critical rule:** "Ponce" = Beltline. Zero exceptions.
 
 ---
 
@@ -82,6 +88,7 @@ Last updated: April 10, 2026
 - **Top 3 critical always highlighted**
 - **WOW improvements:** only real improvements (not 0→0)
 - **Never include removed locations in any report**
+- **New locations with no data:** show `—` or "New Location — data pending"
 
 ---
 
@@ -118,10 +125,11 @@ Last updated: April 10, 2026
 | 05 | Cumming | `7a689bf3-b739-41ca-a5a0-2480aa99b28e` |
 | 06 | Sugar Hill | `8cfa57c2-9f91-41e5-abb8-2c509deb7ef0` |
 | 07 | Buckhead | `d291863f-b651-4061-a0a3-d8420f2484e8` |
-| 08 | Decatur | `8d062d29-7937-434b-a8ff-0cc8dab3722f` |
+| 08 | Decatur | `8d062d29-7937-434b-a8ff-0cc8dab3272f` |
 | 09 | Lawrenceville | `ec1b2c91-2502-4ea0-9059-ffc65709d403` |
 | 10 | Beltline | `bf33a95f-480d-4797-8c02-e283ce6c71bc` |
 | 11 | Duluth | `35e9cefe-fd09-40c3-a700-31757d983e2e` |
+| 12 | Woodstock | `fab137f5-90b8-4611-96f1-107b48de7bfb` |
 
 ---
 
@@ -134,6 +142,7 @@ Last updated: April 10, 2026
 - Spacer rows between location groups
 - WOW improvements: only real improvements (not 0→0)
 - Never include removed locations in any report
+- Woodstock: show "New Location — data pending" where no data
 
 ---
 
@@ -157,11 +166,12 @@ Last updated: April 10, 2026
 ---
 
 ## Changelog
-- **2026-04-10:** EOD Reports tab (🌙) added to dashboard
+- **2026-04-10:** Woodstock added as Location #12 — now active in ALL tabs + reports
+- **2026-04-10:** Header updated to "12 Locations" everywhere
+- **2026-04-10:** EOD Reports tab (🌙) added — monitors all 12 locations
 - **2026-04-10:** Switched deployment from Surge → GitHub Pages
-- **2026-04-10:** GH_PAT secret added to repo
-- **2026-04-10:** Repo made public (required for free GitHub Pages)
-- **2026-04-10:** LOLA-MEMORY.md + RECONNECT.md + keep-alive workflow created
+- **2026-04-10:** Permanent memory system created (LOLA-MEMORY.md + RECONNECT.md + keep-alive)
+- **2026-04-10:** GH_PAT secret added to repo · repo made public
 - **2026-04-07:** Week 14 review report finalized and sent
 - **2026-04-06:** Manager Hours Wk13 PDF report generated
 - **2026-04-02:** Scorecard payouts (Abril 2026 Week 1) added
