@@ -25,13 +25,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare dashboard files
+        run: |
+          mkdir -p /tmp/site
+          # Copy only the dashboard files — exclude heavy/private directories
+          rsync -av \
+            --exclude='whatsapp-bridge/' \
+            --exclude='node_modules/' \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='memory/' \
+            --exclude='playbooks/' \
+            --exclude='credentials.md' \
+            --exclude='BOOTSTRAP.md' \
+            --exclude='SOUL.md' \
+            --exclude='USER.md' \
+            --exclude='AGENTS.md' \
+            --exclude='HEARTBEAT.md' \
+            --exclude='IDENTITY.md' \
+            --exclude='TOOLS.md' \
+            --exclude='MEMORY.md' \
+            --exclude='refresh_log.json' \
+            . /tmp/site/
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '/tmp/site'
 
       - name: Deploy to GitHub Pages
         id: deployment
