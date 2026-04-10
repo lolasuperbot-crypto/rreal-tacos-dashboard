@@ -1,128 +1,192 @@
 # Rreal Hospitality — Report Standards
 # PERMANENT — Do not change without explicit instruction from Maria Jose Duffy
+# Last approved: April 10, 2026
 
-## Approved Design: Style 2 Clean Corporate
-Generated via Puppeteer (HTML → PDF). Template: scripts/report-template.html.js
+---
+
+## Approved Design: Gold Standard — April 2026 Operations Scorecard Style
+Reference file: `reports/APPROVED_FORMAT_REFERENCE.pdf`
+Generated via Puppeteer (HTML → PDF). Template: `scripts/report-template.html.js`
+
+---
 
 ## Logo
-- File: receipt-logo_1680210631_400.jpg (in /dashboard/ folder)
+- File: `receipt-logo_1680210631_400.jpg` (in /dashboard/ folder)
 - Size: height 36–40px, width auto, max-width 130px
-- Position: TOP LEFT of header, never centered
+- Position: **TOP LEFT** of header — never centered
+
+---
 
 ## Header Layout (Option 1 — side by side)
-- LEFT: Logo + "RREAL HOSPITALITY LLC" label (9px gray uppercase)
-- RIGHT: Report title (20px bold #111827) + subtitle (12px #9ca3af)
-- BOTTOM BORDER: 3px solid #f97316 (orange) — on header row ONLY
-- Subtitle: plain text line (no chip pills), 12px gray, white-space:nowrap
+- **LEFT:** Logo + "RREAL HOSPITALITY LLC" label (9px gray uppercase)
+- **RIGHT:** Report title (20px bold #111827) + subtitle (12px #9ca3af)
+- **BOTTOM BORDER:** 3px solid `#f97316` (orange) — on header row ONLY
+- Subtitle: plain text line, 12px gray, white-space:nowrap
 
-## Email
-- All reports → majo@rrealtacos.com
-- From: lolasuperbot@gmail.com
-- Never send to michelle@rrealtacos.com
+---
 
-## Font Sizes (minimum — never go smaller)
-- Body text: 13px
-- Table cells: 13px
-- Table headers: 11px
-- Section titles: 14px uppercase
-- KPI big numbers: 26–28px bold
-- KPI labels: 11px uppercase
-- Badge text (WATCH/CRITICAL/CLEAN): 11px
-- Location names in tables: 13px bold
-- Footer text: 9px
-- Critical section location names: 18px bold
-- Food/Service labels: 13px font-weight 600
-- Action items: 13px
-- WOW items: 13px
-- Trend summary: 13px
+## Report Structure — Gold Standard
 
-## Active Locations (11 only — no exceptions)
-1. Midtown
-2. West Midtown
-3. Chamblee
-4. Sandy Springs
-5. Cumming
-6. Sugar Hill
-7. Buckhead
-8. Decatur
-9. Lawrenceville
-10. Beltline
-11. Duluth
+### COVER PAGE
+- Brand/dark header bar with logo
+- Report title centered, large
+- Subtitle with date range and data note (italic)
+- "Data reflects Week X · Weeks Y–Z pending" note
 
-## NEVER Include in Any Report
-- Ponce (discontinued)
-- Zocalo (not Rreal Tacos)
-- Woodstock (new/ramp-up, excluded from reviews)
-- Eclipse di Luna (different brand)
-- Any location with 0 reviews in WOW if they had 0 in prior week
+### PAGE 2 — EXECUTIVE SUMMARY
+- 4 large KPI numbers at top: System Avg · Top Score · Lowest Score · Locations Scored
+- Full rankings table:
+  - Columns: # · Location · Score · Grade · Progress · Highlights/Flags
+  - Color-coded grades
+  - Emoji progress indicators
+- Critical alerts block at bottom (red background)
+- Most Improved callout
 
-## Table Rules
-- Critical rows (top 3 by total bad reviews): background #fff0f0, left border 3px solid #dc2626
-- Tiebreaker for top 3: /100K rate (higher = worse)
-- Blank white spacer row (height ~10px) after each location group total row
-- Location names: bold, color #111827 in normal rows; color #991b1b in critical rows
+### DETAIL PAGES — one per location (or 2 per page for space)
+- Header: `[##] · [LOCATION NAME]   [EMOJI] #[RANK]   [SCORE]` (right-aligned)
+- **6 KPI Cards** in 2×3 grid:
+  - Row 1: Sunday Global Score · Bad Review Rate · Ovation Satisfaction
+  - Row 2: Ovation Response Time · Labor % · COG + OP %
+  - Each card: KPI label (small caps, top) · Big score number (0–100) · Raw value + emoji flag (below)
+- Narrative paragraph: 2–4 sentences, specific numbers, system comparisons
+- Action items:
+  - `📌 Keep an eye on:` — yellow/watch
+  - `🔧 Priority Fix:` — orange/fix
+  - `🚨 CRITICAL:` — red/urgent
+
+### GROUPING HEADERS
+- `🏆 TOP PERFORMERS — LOCATION DETAIL` (A grades, score ≥90)
+- `📈 SOLID PERFORMERS — FINE-TUNING NEEDED` (B+, score 87–89)
+- `⚠️ NEEDS IMMEDIATE ATTENTION` (B grades, score 80–86)
+- `🚨 CRITICAL` (D or below, score <80)
+
+---
+
+## Writing Style Rules
+- Always use **real numbers** — never vague ("improved" → "improved from 41.83% → 37.16%")
+- Always compare to **system average** and **best in system**
+- Always end each location with a **bottom-line summary sentence**
+- Use **Most Improved** badge when a location shows measurable improvement
+- Flag **contradictions** (e.g., "4.8/5 stars but 4.77% bad reviews — explain this")
+- Lead with positives, then address gaps specifically
+- Action items must be **concrete** ("Pull all negative Google reviews from past 30 days" not "improve reviews")
+
+---
+
+## Font Sizes — MINIMUM (never go smaller)
+- Body text: **13px**
+- Table cells: **13px**
+- Table headers: **11px**
+- Section titles: **14px uppercase**
+- KPI big numbers: **26–28px bold**
+- KPI labels: **11px uppercase**
+- Badge text (WATCH/CRITICAL/CLEAN): **11px**
+- Location names in tables: **13px bold**
+- Location page titles: **18px bold**
+- Footer text: **9px**
+- Critical section location names: **18px bold**
+- Action items: **13px**
+
+---
 
 ## Badge Colors
-- CLEAN (0 reviews): background #dcfce7, color #166534
-- WATCH (1-2 reviews): background #fef3c7, color #92400e
-- CRITICAL (3+ reviews): background #fee2e2, color #991b1b
+| Status | Background | Text Color |
+|--------|-----------|------------|
+| CLEAN (0 reviews) | `#dcfce7` | `#166534` |
+| WATCH (1–2 reviews) | `#fef3c7` | `#92400e` |
+| CRITICAL (3+ reviews) | `#fee2e2` | `#991b1b` |
+
+---
+
+## Table Rules
+- Critical rows (top 3 by total bad reviews): `background: #fff0f0`, `border-left: 3px solid #dc2626`
+- Tiebreaker for top 3: /100K rate (higher = worse)
+- Blank white spacer row (~10px height) after each location group total row
+- Location names: bold `#111827` in normal rows; `#991b1b` in critical rows
+- Total row: `background: #f3f4f6`, bold, border-top `#e5e7eb`
+
+---
+
+## KPI Score Color Thresholds (0–100 scale)
+- ≥90: `#16a34a` (green) — `badge-green`
+- 87–89: `#d97706` (amber) — `badge-amber`
+- 84–86: `#ea580c` (orange-red)
+- <84: `#dc2626` (red) — `badge-red`
+
+---
+
+## Labor % Color Thresholds
+- >20%: red `#dc2626`
+- >17%: amber `#d97706`
+- ≤17%: green `#16a34a`
+
+---
+
+## Active Locations (12 — exact order)
+1. Midtown · 2. West Midtown · 3. Chamblee · 4. Sandy Springs · 5. Cumming
+6. Sugar Hill · 7. Buckhead · 8. Decatur · 9. Lawrenceville · 10. Beltline
+11. Duluth · 12. **Woodstock** ← new, mark with ⚡
+
+## NEVER Include in Any Report
+- Ponce (discontinued — use Beltline)
+- Zocalo (not Rreal Tacos)
+- Eclipse di Luna (different brand)
+- Any location not in the 12 above
+
+---
 
 ## WOW Improvements Section
-- Only include locations where Wk14 reviews < Wk13 reviews (actual improvement)
+- Only include locations where current week reviews < prior week reviews (actual improvement)
 - NEVER include locations where both weeks = 0 (no movement)
 - Sort by biggest drop in /100K rate (best recovery first)
 
+---
+
 ## Manager Hours Report Rules
 - Threshold: 45 hours/week — flag anyone under
-- MIT section ALWAYS at end (Hospitality Training job code employees)
+- MIT section ALWAYS at end
 - Spacer row after each location group
-- Critical badge: < 30h → 🚨 Critical, 30-44h → ⚠️ Under 45, 45h+ → ✅ OK
-- MIT badge: < 20h → 🔴 Low Hours, 20-44h → ⚠️ Under 45, 45h+ → ✅ OK
+- Critical badge: <30h → 🚨 Critical · 30–44h → ⚠️ Under 45 · ≥45h → ✅ OK
+- MIT badge: <20h → 🔴 Low Hours · 20–44h → ⚠️ Under 45 · ≥45h → ✅ OK
 
-## Automated Schedule (GitHub Actions)
-- Weekly Review Report: every Monday 8:00 AM ET (cron: 0 12 * * 1)
-  → pulls from Weekly Resto Reviews Sheet + Marqii
-  → sends to majo@rrealtacos.com
-- Manager Hours Report: every Monday 8:00 PM ET (cron: 0 0 * * 2)
-  → pulls from MANAGERS HOURS sheet (1YTFFTnGD4RLR4uLwHirae4IlirkS82VeeVd8CpAc3SE)
-  → sends to majo@rrealtacos.com
+---
 
-## Data Sources
-- Weekly Resto Reviews Sheet: 1kAIFHy7xQggErdAf3Wd70PTRrahgC-gHtW6kWi9ZC3w (tab: weekly_KPI)
-- Manager Hours Sheet: 1YTFFTnGD4RLR4uLwHirae4IlirkS82VeeVd8CpAc3SE
-- Marqii: app.marqii.com (Google + Yelp only — NO UberEats in review reports)
-- Account: lolasuperbot@gmail.com
+## EOD Report Rules
+- Check all 12 locations every night
+- MISSING = no report by 2:00 AM ET
+- Critical keywords (auto-flag red): health department · injury · fight · theft · police · fire · flood · emergency · ambulance · raw · contamination · poisoning
+- Maintenance keywords (auto-flag orange): broken · not working · repair · fix · leak · AC · heat · freezer · cooler · oven · fryer · plumbing · electrical · pest · roach · mouse
+- PDF sent daily at 6am ET to majo@rrealtacos.com
+
+---
+
+## Email Rules — ABSOLUTE
+- **Always send to:** majo@rrealtacos.com
+- **Never send to:** michelle@rrealtacos.com or any other address
+- Always attach PDF
+- Always include brief summary in body
+- From: lolasuperbot@gmail.com
+
+---
+
+## Footer — Every Page
+`Rreal Tacos · [Report Name] · [Month Year] · Generated by Lola 🌺`
+
+---
 
 ## Report Files
-- Template: scripts/report-template.html.js
-- Review generator: scripts/gen_review_report.js
-- Hours generator: scripts/gen_mgr_hours.js
-- Output: reports/ folder
+- Main template: `scripts/report-template.html.js`
+- Review generator: `scripts/gen_review_report.js`
+- Hours generator: `scripts/gen_mgr_hours.js`
+- Daily report: `scripts/gen_daily_report.js`
+- EOD report: `scripts/eod-report.js`
+- Output: `reports/` folder
+- Reference PDF: `reports/APPROVED_FORMAT_REFERENCE.pdf`
 
-## Last Approved
-- Date: April 6, 2026
-- Approved by: Maria Jose Duffy
+---
 
-## Approved Reference File
-- File: reports/APPROVED_FORMAT_REFERENCE.pdf
-- This is the exact format Maria Jose approved on April 10, 2026
-- Use this as the visual reference for ALL future reports
-
-## Scorecard Report Format (approved April 10, 2026)
-- Cover: 🌮 logo, dark header bar with location rankings overview
-- Page 2: Overall Rankings table — location, score, grade, progress emoji, highlights
-- KPI stats: 4 big numbers (System Avg, Top Score, Lowest Score, Locations Scored)
-- Pages 3+: One page per location — 6 KPI cards (3x2 grid) + narrative + action items
-- KPI cards: label at top (small caps), big number, metric value below
-- Top performers section header: 🏆 TOP PERFORMERS — LOCATION DETAIL
-- Needs attention section header: ⚠ NEEDS IMMEDIATE ATTENTION
-- Footer: "Rreal Tacos · Operations Scorecard · [Month] · Generated by Lola 🌺"
-
-## Daily Report Format (approved April 10, 2026)
-- Same Style 2 Clean Corporate header (logo left, title right, orange bottom border)
-- KPI grid: 6 columns (Total Sales, Checks, Avg Ticket, Labor Cost, Labor %, Locations)
-- Sales & Labor table: all locations sorted by standard order
-- Sales Ranking table: sorted by sales desc, medals 🏆🥈🥉 for top 3, top 3 rows highlighted amber
-- Woodstock marked with ⚡ as new location
-- Labor % color: red >20%, amber >17%, green otherwise
-- Footer: logo, date, "Generated by Lola AI 🌺 · [email]"
+## Automated Schedule (GitHub Actions)
+- Daily Operations Report: 6am ET (`0 10 * * *`) → majo@rrealtacos.com
+- EOD Report: 6am ET (`0 10 * * *`) → majo@rrealtacos.com
+- Weekly Review Report: Monday 6pm ET (`0 23 * * 1`) → majo@rrealtacos.com
+- Manager Hours Report: Monday 6pm ET (`0 23 * * 1`) → majo@rrealtacos.com

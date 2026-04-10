@@ -21,6 +21,8 @@ jobs:
         run: |
           echo "=== LOLA MEMORY ==="
           cat memory/LOLA-MEMORY.md || echo "Memory file not found"
+          echo '=== REPORT STANDARDS ==='
+          cat scripts/REPORT-STANDARDS.md || echo "Standards file not found"
           echo "==================="
 
       - name: Set up Node.js

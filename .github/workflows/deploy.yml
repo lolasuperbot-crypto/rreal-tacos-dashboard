@@ -25,6 +25,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Load Lola Memory
+        run: |
+          echo '=== LOLA MEMORY ==='
+          cat memory/LOLA-MEMORY.md || echo "Memory file not found"
+          echo '=== REPORT STANDARDS ==='
+          cat scripts/REPORT-STANDARDS.md || echo "Standards file not found"
+
       - name: Prepare dashboard files
         run: |
           mkdir -p /tmp/site
