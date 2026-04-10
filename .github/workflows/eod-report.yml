@@ -1,0 +1,42 @@
+name: Daily EOD Report
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # 6:00 AM ET daily (10:00 AM UTC)
+  workflow_dispatch:       # Manual trigger from GitHub Actions UI
+
+jobs:
+  generate-eod-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install imapflow nodemailer
+
+      - name: Pull EOD emails and generate report
+        run: node scripts/eod-report.js
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+
+      - name: Commit EOD data to repo
+        run: |
+          git config user.email 'lola@rrealtacos.com'
+          git config user.name 'Lola AI'
+          git add data/eod-reports/
+          DATE=$(date '+%Y-%m-%d')
+          git diff --staged --quiet || git commit -m "Auto: Daily EOD report ${DATE}"
+          git push || true
+
+      - name: Deploy dashboard to Surge
+        run: npx surge . rrealtacos-dashboard.surge.sh || echo "Surge deploy skipped"
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        continue-on-error: true

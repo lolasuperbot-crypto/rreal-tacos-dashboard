@@ -416,6 +416,7 @@
   <div class="tab" onclick="showTab('labor')">👥 Labor</div>
   <div class="tab" onclick="showTab('alerts')">🚨 Alerts</div>
   <div class="tab" onclick="showTab('scorecard')">💬 WhatsApp</div>
+  <div class="tab" onclick="showTab('eod')">🌙 EOD Reports</div>
 </div>
 
 <!-- ===================== OVERVIEW TAB ===================== -->
@@ -1913,6 +1914,67 @@ function scTabMonth(month, btn) {
 </div>
 <!-- ===================== END SCORECARD TAB ===================== -->
 
+<!-- ===================== EOD REPORTS TAB ===================== -->
+<div id="tab-eod" style="display:none" class="tab-panel">
+  <div style="margin-bottom:24px;">
+    <h2 style="font-size:1.5rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;">🌙 End of Day Reports — All Locations</h2>
+    <p style="color:#64748b;font-size:.88rem;">Pulled daily from reports@operations.rrealtacos.com · Auto-updated every night</p>
+  </div>
+  <!-- Summary Bar -->
+  <div id="eod-summary-bar" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;">
+    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
+      <div id="eod-total-count" style="font-size:2rem;font-weight:900;color:#4ade80;">—</div>
+      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">EODs Received Tonight</div>
+    </div>
+    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
+      <div id="eod-missing-count" style="font-size:2rem;font-weight:900;color:#f87171;">—</div>
+      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">Missing Locations</div>
+    </div>
+    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
+      <div id="eod-critical-count" style="font-size:2rem;font-weight:900;color:#ef4444;">—</div>
+      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">🚨 Critical Alerts</div>
+    </div>
+    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
+      <div id="eod-maint-count" style="font-size:2rem;font-weight:900;color:#f97316;">—</div>
+      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">🔧 Maintenance Requests</div>
+    </div>
+  </div>
+  <!-- Date selector -->
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+    <label style="color:#94a3b8;font-size:.85rem;font-weight:600;">Report Date:</label>
+    <input type="date" id="eod-date-picker" style="background:#1a1f2e;border:1px solid #334155;border-radius:8px;padding:7px 12px;color:#e2e8f0;font-size:.85rem;cursor:pointer;" onchange="loadEODData(this.value)">
+    <button onclick="loadEODData()" style="background:#3b82f6;color:white;border:none;border-radius:8px;padding:8px 18px;font-weight:700;font-size:.83rem;cursor:pointer;">↺ Refresh</button>
+    <span id="eod-last-updated" style="color:#475569;font-size:.78rem;margin-left:8px;"></span>
+  </div>
+  <!-- Location cards grid -->
+  <div id="eod-cards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;">
+    <div style="grid-column:1/-1;text-align:center;padding:60px;color:#475569;">
+      <div style="font-size:2rem;margin-bottom:12px;">🌙</div>
+      <div style="font-size:1rem;font-weight:600;">No EOD data loaded yet</div>
+      <div style="font-size:.85rem;margin-top:8px;">Select a date or wait for tonight's reports to arrive</div>
+    </div>
+  </div>
+  <!-- Maintenance table -->
+  <div id="eod-maint-section" style="display:none;margin-top:32px;">
+    <div style="color:#f97316;font-size:1rem;font-weight:800;margin-bottom:14px;letter-spacing:.4px;">🔧 MAINTENANCE REQUESTS</div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;background:#111827;border-radius:12px;overflow:hidden;">
+        <thead>
+          <tr style="background:#1e2a3a;">
+            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Location</th>
+            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Issue Reported</th>
+            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Priority</th>
+            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Reported By</th>
+            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Date</th>
+          </tr>
+        </thead>
+        <tbody id="eod-maint-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- ===================== END EOD REPORTS TAB ===================== -->
+
 </div><!-- end content -->
 
 <div class="footer">
@@ -3278,7 +3340,138 @@ function _initTab(name) {
   if (name === 'sunday') { initSunday(); }
   if (name === 'mgmthours') { initMgmtHours(); }
   if (name === 'scorecard') { initScorecard(); }
+  if (name === 'eod') { initEODTab(); }
 }
+
+// ── EOD REPORTS ──
+const EOD_LOCATIONS = [
+  'Midtown','West Midtown','Chamblee','Sandy Springs','Cumming',
+  'Sugar Hill','Buckhead','Decatur','Lawrenceville','Beltline','Duluth'
+];
+const CRITICAL_KEYWORDS = ['health department','injury','fight','theft','police','fire','flood','broken','emergency','ambulance','raw','contamination','poisoning'];
+const MAINT_KEYWORDS = ['broken','not working','repair','fix','leak','ac ','heat','freezer','cooler','oven','fryer','plumbing','electrical','pest','roach','mouse'];
+
+let _eodLoaded = false;
+
+function initEODTab() {
+  if (_eodLoaded) return;
+  _eodLoaded = true;
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const dp = document.getElementById('eod-date-picker');
+  if (dp) dp.value = yesterday.toISOString().split('T')[0];
+  loadEODData(dp ? dp.value : null);
+}
+
+async function loadEODData(dateStr) {
+  if (!dateStr) {
+    const dp = document.getElementById('eod-date-picker');
+    dateStr = dp ? dp.value : new Date().toISOString().split('T')[0];
+  }
+  const grid = document.getElementById('eod-cards-grid');
+  if (grid) grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#475569;"><div style="font-size:1.5rem;margin-bottom:8px;">⏳</div><div>Loading EOD data...</div></div>';
+  let data = null;
+  try {
+    const resp = await fetch(`data/eod-reports/${dateStr}.json?_=${Date.now()}`);
+    if (resp.ok) data = await resp.json();
+  } catch(e) { console.log('No EOD data for', dateStr); }
+  renderEODCards(data, dateStr);
+  const lu = document.getElementById('eod-last-updated');
+  if (lu) lu.textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
+}
+
+function eodIsCritical(text) {
+  const t = (text||'').toLowerCase();
+  return CRITICAL_KEYWORDS.some(k => t.includes(k));
+}
+
+function eodIsMaintenance(text) {
+  const t = (text||'').toLowerCase();
+  return MAINT_KEYWORDS.some(k => t.includes(k));
+}
+
+function renderEODCards(data, dateStr) {
+  const grid = document.getElementById('eod-cards-grid');
+  if (!grid) return;
+  if (!data || !data.locations) {
+    grid.innerHTML = '';
+    EOD_LOCATIONS.forEach(loc => { grid.innerHTML += buildEODCard({ location: loc, status: 'MISSING', date: dateStr }); });
+    updateEODSummary([]);
+    return;
+  }
+  grid.innerHTML = '';
+  const reports = data.locations || {};
+  const allMaint = [];
+  EOD_LOCATIONS.forEach(loc => {
+    const r = reports[loc];
+    if (!r) {
+      grid.innerHTML += buildEODCard({ location: loc, status: 'MISSING', date: dateStr });
+    } else {
+      const fullText = [r.sales_summary,r.staff_issues,r.customer_complaints,r.maintenance_needs,r.critical_incidents,r.notes].join(' ');
+      r.is_critical = r.is_critical || eodIsCritical(fullText);
+      r.has_maintenance = r.has_maintenance || eodIsMaintenance(fullText);
+      if (r.has_maintenance && r.maintenance_needs) allMaint.push({ location: loc, issue: r.maintenance_needs, manager: r.manager_on_duty, date: r.date || dateStr });
+      grid.innerHTML += buildEODCard({ ...r, location: loc });
+    }
+  });
+  updateEODSummary(Object.values(reports));
+  renderEODMaintTable(allMaint, dateStr);
+}
+
+function buildEODCard(r) {
+  const status = r.status || (r.is_critical ? 'CRITICAL' : 'ON TIME');
+  const statusColor = status==='ON TIME'?'#4ade80':status==='LATE'?'#f59e0b':status==='MISSING'?'#f87171':'#ef4444';
+  const statusBg = status==='ON TIME'?'#0d2818':status==='LATE'?'#1a1200':status==='MISSING'?'#1a0a0a':'#200808';
+  const borderColor = status==='MISSING'?'#7f1d1d':(r.is_critical?'#dc2626':'#1e2a3a');
+  let highlights = '';
+  if (r.sales_summary) highlights += `<div style="margin-bottom:6px;font-size:.82rem;color:#cbd5e1;">💰 ${r.sales_summary}</div>`;
+  if (r.manager_on_duty) highlights += `<div style="margin-bottom:6px;font-size:.82rem;color:#94a3b8;">👤 MOD: ${r.manager_on_duty}</div>`;
+  if (r.closing_time) highlights += `<div style="margin-bottom:6px;font-size:.82rem;color:#94a3b8;">🕐 Closed: ${r.closing_time}</div>`;
+  const criticalBanner = (r.is_critical && r.critical_incidents) ? `<div style="background:#1a0808;border:1px solid #dc2626;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:.8rem;color:#f87171;font-weight:600;">🚨 CRITICAL: ${r.critical_incidents}</div>` : '';
+  const maintBanner = (r.has_maintenance && r.maintenance_needs) ? `<div style="background:#1a0f00;border:1px solid #f97316;border-radius:8px;padding:8px 12px;margin-top:6px;font-size:.8rem;color:#fb923c;font-weight:600;">🔧 ${r.maintenance_needs}</div>` : '';
+  const missingBody = status==='MISSING' ? '<div style="color:#f87171;font-size:.85rem;margin-top:12px;font-weight:600;">No EOD report received by 2:00 AM</div>' : '';
+  return `<div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid ${borderColor};position:relative;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+      <div style="font-size:1rem;font-weight:800;color:#f1f5f9;">${r.location}</div>
+      <span style="background:${statusBg};color:${statusColor};padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800;letter-spacing:.5px;">${status}</span>
+    </div>
+    ${r.date?`<div style="font-size:.75rem;color:#475569;margin-bottom:10px;">📅 ${r.date}</div>`:''}
+    ${highlights}${criticalBanner}${maintBanner}${missingBody}
+  </div>`;
+}
+
+function updateEODSummary(reports) {
+  const received = reports.filter(r=>r&&r.status!=='MISSING').length;
+  const missing = 11 - received;
+  const critical = reports.filter(r=>r&&r.is_critical).length;
+  const maint = reports.filter(r=>r&&r.has_maintenance).length;
+  const el = (id,val) => { const e=document.getElementById(id); if(e) e.textContent=val; };
+  el('eod-total-count',`${received}/11`);
+  el('eod-missing-count',missing);
+  el('eod-critical-count',critical);
+  el('eod-maint-count',maint);
+}
+
+function renderEODMaintTable(items, dateStr) {
+  const section = document.getElementById('eod-maint-section');
+  const tbody = document.getElementById('eod-maint-tbody');
+  if (!section||!tbody) return;
+  if (!items.length) { section.style.display='none'; return; }
+  section.style.display='block';
+  tbody.innerHTML = items.map(m => {
+    const priority = /urgent|emergency|broken|not working/i.test(m.issue) ? 'URGENT' : 'NORMAL';
+    const pBg = priority==='URGENT'?'#fee2e2':'#fef3c7';
+    const pColor = priority==='URGENT'?'#991b1b':'#92400e';
+    return `<tr style="border-top:1px solid #1e2a3a;">
+      <td style="padding:10px 14px;color:#e2e8f0;font-weight:600;">${m.location}</td>
+      <td style="padding:10px 14px;color:#cbd5e1;">${m.issue}</td>
+      <td style="padding:10px 14px;"><span style="background:${pBg};color:${pColor};padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:700;">${priority}</span></td>
+      <td style="padding:10px 14px;color:#94a3b8;">${m.manager||'—'}</td>
+      <td style="padding:10px 14px;color:#64748b;">${m.date||dateStr}</td>
+    </tr>`;
+  }).join('');
+}
+// ── END EOD REPORTS ──
 
 function initSalesTable() {
   const salesBody = document.getElementById('sales-table-body');
