@@ -544,8 +544,12 @@
 </div>
 
 <!-- ===================== SCORE CARDS TAB ===================== -->
-<div id="tab-scorecards" style="display:none" class="tab-panel">
-<div style="color:#94a3b8;text-align:center;padding:40px;">🔄 Score Cards en construcción...</div>
+<div id="tab-scorecard" style="display:none" class="tab-panel">
+<div style="color:#94a3b8;text-align:center;padding:60px 40px;">
+  <div style="font-size:2rem;margin-bottom:16px;">💬</div>
+  <div style="font-size:1.1rem;font-weight:700;color:#e2e8f0;margin-bottom:8px;">WhatsApp Groups</div>
+  <div style="font-size:.88rem;color:#64748b;">Location group links coming soon.</div>
+</div>
 </div>
 
 <!-- ===================== REVENUE & GROWTH TAB ===================== -->
@@ -1563,7 +1567,7 @@
 
 </div>
 <!-- ===================== SCORECARD TAB ===================== -->
-<div id="tab-scorecard" style="display:none" class="tab-panel">
+<div id="tab-scorecards" style="display:none" class="tab-panel">
 
 <!-- Month selector buttons -->
 <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
@@ -3341,7 +3345,7 @@ function _initTab(name) {
   if (name === 'revenue') { initRevenueTiers(); }
   if (name === 'sunday') { initSunday(); }
   if (name === 'mgmthours') { initMgmtHours(); }
-  if (name === 'scorecard') { initScorecard(); }
+  if (name === 'scorecards') { initScorecard(); }
   if (name === 'eod') { initEODTab(); }
 }
 
