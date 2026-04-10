@@ -416,7 +416,6 @@
   <div class="tab" onclick="showTab('labor')">👥 Labor</div>
   <div class="tab" onclick="showTab('alerts')">🚨 Alerts</div>
   <div class="tab" onclick="showTab('scorecard')">💬 WhatsApp</div>
-  <div class="tab" onclick="showTab('eod')">🌙 EOD Reports</div>
 </div>
 
 <!-- ===================== OVERVIEW TAB ===================== -->
@@ -544,12 +543,8 @@
 </div>
 
 <!-- ===================== SCORE CARDS TAB ===================== -->
-<div id="tab-scorecard" style="display:none" class="tab-panel">
-<div style="color:#94a3b8;text-align:center;padding:60px 40px;">
-  <div style="font-size:2rem;margin-bottom:16px;">💬</div>
-  <div style="font-size:1.1rem;font-weight:700;color:#e2e8f0;margin-bottom:8px;">WhatsApp Groups</div>
-  <div style="font-size:.88rem;color:#64748b;">Location group links coming soon.</div>
-</div>
+<div id="tab-scorecards" style="display:none" class="tab-panel">
+<div style="color:#94a3b8;text-align:center;padding:40px;">🔄 Score Cards en construcción...</div>
 </div>
 
 <!-- ===================== REVENUE & GROWTH TAB ===================== -->
@@ -1195,7 +1190,7 @@
 <!-- ===================== ALL LOCATIONS TAB ===================== -->
 <div id="tab-locations" style="display:none" class="tab-panel">
 
-  <div class="section-title">📍 All 12 Locations — Overview</div>
+  <div class="section-title">📍 All 11 Locations — Overview</div>
   <div class="locations-grid" id="locations-grid"></div>
 
 </div>
@@ -1567,7 +1562,7 @@
 
 </div>
 <!-- ===================== SCORECARD TAB ===================== -->
-<div id="tab-scorecards" style="display:none" class="tab-panel">
+<div id="tab-scorecard" style="display:none" class="tab-panel">
 
 <!-- Month selector buttons -->
 <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
@@ -1918,71 +1913,10 @@ function scTabMonth(month, btn) {
 </div>
 <!-- ===================== END SCORECARD TAB ===================== -->
 
-<!-- ===================== EOD REPORTS TAB ===================== -->
-<div id="tab-eod" style="display:none" class="tab-panel">
-  <div style="margin-bottom:24px;">
-    <h2 style="font-size:1.5rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;">🌙 End of Day Reports — All Locations</h2>
-    <p style="color:#64748b;font-size:.88rem;">Pulled daily from reports@operations.rrealtacos.com · Auto-updated every night</p>
-  </div>
-  <!-- Summary Bar -->
-  <div id="eod-summary-bar" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;">
-    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
-      <div id="eod-total-count" style="font-size:2rem;font-weight:900;color:#4ade80;">—</div>
-      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">EODs Received Tonight</div>
-    </div>
-    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
-      <div id="eod-missing-count" style="font-size:2rem;font-weight:900;color:#f87171;">—</div>
-      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">Missing Locations</div>
-    </div>
-    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
-      <div id="eod-critical-count" style="font-size:2rem;font-weight:900;color:#ef4444;">—</div>
-      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">🚨 Critical Alerts</div>
-    </div>
-    <div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid #1e2a3a;text-align:center;">
-      <div id="eod-maint-count" style="font-size:2rem;font-weight:900;color:#f97316;">—</div>
-      <div style="font-size:.78rem;color:#64748b;font-weight:600;margin-top:4px;">🔧 Maintenance Requests</div>
-    </div>
-  </div>
-  <!-- Date selector -->
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
-    <label style="color:#94a3b8;font-size:.85rem;font-weight:600;">Report Date:</label>
-    <input type="date" id="eod-date-picker" style="background:#1a1f2e;border:1px solid #334155;border-radius:8px;padding:7px 12px;color:#e2e8f0;font-size:.85rem;cursor:pointer;" onchange="loadEODData(this.value)">
-    <button onclick="loadEODData()" style="background:#3b82f6;color:white;border:none;border-radius:8px;padding:8px 18px;font-weight:700;font-size:.83rem;cursor:pointer;">↺ Refresh</button>
-    <span id="eod-last-updated" style="color:#475569;font-size:.78rem;margin-left:8px;"></span>
-  </div>
-  <!-- Location cards grid -->
-  <div id="eod-cards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;">
-    <div style="grid-column:1/-1;text-align:center;padding:60px;color:#475569;">
-      <div style="font-size:2rem;margin-bottom:12px;">🌙</div>
-      <div style="font-size:1rem;font-weight:600;">No EOD data loaded yet</div>
-      <div style="font-size:.85rem;margin-top:8px;">Select a date or wait for tonight's reports to arrive</div>
-    </div>
-  </div>
-  <!-- Maintenance table -->
-  <div id="eod-maint-section" style="display:none;margin-top:32px;">
-    <div style="color:#f97316;font-size:1rem;font-weight:800;margin-bottom:14px;letter-spacing:.4px;">🔧 MAINTENANCE REQUESTS</div>
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;background:#111827;border-radius:12px;overflow:hidden;">
-        <thead>
-          <tr style="background:#1e2a3a;">
-            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Location</th>
-            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Issue Reported</th>
-            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Priority</th>
-            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Reported By</th>
-            <th style="padding:11px 14px;text-align:left;font-size:.75rem;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Date</th>
-          </tr>
-        </thead>
-        <tbody id="eod-maint-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-<!-- ===================== END EOD REPORTS TAB ===================== -->
-
 </div><!-- end content -->
 
 <div class="footer">
-  🌮 Rreal Hospitality — Operations & Compliance Hub · 12 Locations · Built by Lola AI 🌺 · Last updated: <span id="last-updated"></span>
+  🌮 Rreal Hospitality — Operations & Compliance Hub · 11 Locations · Built by Lola AI 🌺 · Last updated: <span id="last-updated"></span>
 </div>
 
 <script>
@@ -2501,7 +2435,7 @@ if (luEl) luEl.textContent = new Date().toLocaleString('en-US', { month:'short',
 // Format: {reviews, sales, per100k, food, service}
 // food = complaints about quality/temperature/order accuracy/portion
 // service = complaints about staff attitude/wait time/hospitality
-const LOCATION_ORDER = ["Midtown","West Midtown","Chamblee","Sandy Springs","Cumming","Sugar Hill","Buckhead","Decatur","Lawrenceville","Beltline","Duluth","Woodstock"];
+const LOCATION_ORDER = ["Midtown","West Midtown","Chamblee","Sandy Springs","Cumming","Sugar Hill","Buckhead","Decatur","Lawrenceville","Beltline","Duluth"];
 
 // food/service breakdown: Lola categorizes from Marqii review text each Monday.
 // themes.food / themes.service = actual complaint topics seen that week (with counts)
@@ -2535,7 +2469,6 @@ const reviewsWeeks = [
     Lawrenceville:{reviews:2, stars1:2,stars2:0,sales:0,laborPct:0,per100k:0,food:0,service:2},
     Beltline:     {reviews:2, stars1:1,stars2:0,sales:0,laborPct:0,per100k:0,food:0,service:1},
     Duluth:       {reviews:2, stars1:1,stars2:1,sales:0,laborPct:0,per100k:0,food:1,service:1},
-    Woodstock:     {reviews:0, stars1:0,stars2:0,sales:28280.24,laborPct:0,per100k:0.00,food:0,service:0},
    },total:22,avg100k:0},
   {week:13,dates:"03/23–03/29",month:"March",
    stars1:16,stars2:3,platforms:{google:17,yelp:2,uber:0},
@@ -2567,44 +2500,43 @@ const reviewsWeeks = [
     Lawrenceville:{reviews:2, sales:207456.79,laborPct:23.3,per100k:0.96,food:0,service:2},
     Beltline:     {reviews:4, sales:218517.95,laborPct:21.9,per100k:1.83,food:1,service:3},
     Duluth:       {reviews:1, sales:126038.91,laborPct:27.8,per100k:0.79,food:1,service:0},
-    Woodstock:     {reviews:0, sales:28280.24,laborPct:0,per100k:0.00,food:0,service:0},
    },total:19,avg100k:1.13},
   {week:12,dates:"03/16–03/22",month:"March",stars1:5,stars2:2,platforms:{google:6,yelp:1,uber:0},foodTotal:4,serviceTotal:3,
    themes:{food:[{emoji:"🌡️",topic:"Food cold / temperature issues",count:2,locs:"Chamblee, Beltline",worst:{loc:"Chamblee",stars:"⭐",quote:"My burrito bowl arrived ice cold. I asked for it to be reheated and it came back lukewarm. Not acceptable for this price."}},{emoji:"🌮",topic:"Incorrect order",count:2,locs:"Sandy Springs, Decatur",worst:{loc:"Decatur",stars:"⭐",quote:"Got the wrong order entirely. Didn't realize until I got home. No compensation offered."}}],service:[{emoji:"⏳",topic:"Long wait / slow service",count:2,locs:"Chamblee, Duluth",worst:{loc:"Chamblee",stars:"⭐",quote:"35 minute wait for a simple order on a weeknight. Nobody apologized or even acknowledged the delay."}},{emoji:"👻",topic:"Staff not attentive",count:1,locs:"West Midtown",worst:{loc:"West Midtown",stars:"⭐⭐",quote:"Had to ask three times for napkins. Staff seemed more interested in chatting with each other."}}]},
-   locations:{Midtown:{reviews:0,sales:170080.66,per100k:0.00,food:0,service:0},WestMidtown:{reviews:1,sales:141930.77,per100k:0.70,food:0,service:1},Chamblee:{reviews:2,sales:117882.23,per100k:1.70,food:1,service:1},SandySprings:{reviews:1,sales:149134.55,per100k:0.67,food:1,service:0},Cumming:{reviews:0,sales:75685.58,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:90619.19,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:152147.34,per100k:0.00,food:0,service:0},Decatur:{reviews:1,sales:146135.87,per100k:0.68,food:1,service:0},Lawrenceville:{reviews:0,sales:207587.26,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:194980.93,per100k:0.51,food:1,service:0},Duluth:{reviews:1,sales:131030.00,per100k:0.76,food:0,service:1},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:7,avg100k:0.42},
+   locations:{Midtown:{reviews:0,sales:170080.66,per100k:0.00,food:0,service:0},WestMidtown:{reviews:1,sales:141930.77,per100k:0.70,food:0,service:1},Chamblee:{reviews:2,sales:117882.23,per100k:1.70,food:1,service:1},SandySprings:{reviews:1,sales:149134.55,per100k:0.67,food:1,service:0},Cumming:{reviews:0,sales:75685.58,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:90619.19,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:152147.34,per100k:0.00,food:0,service:0},Decatur:{reviews:1,sales:146135.87,per100k:0.68,food:1,service:0},Lawrenceville:{reviews:0,sales:207587.26,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:194980.93,per100k:0.51,food:1,service:0},Duluth:{reviews:1,sales:131030.00,per100k:0.76,food:0,service:1}},total:7,avg100k:0.42},
   {week:11,dates:"03/09–03/15",month:"March",stars1:2,stars2:5,platforms:{google:5,yelp:2,uber:0},foodTotal:5,serviceTotal:4,
    themes:{food:[{emoji:"🌮",topic:"Wrong / missing items",count:3,locs:"Midtown, Sandy Springs, Lawrenceville",worst:{loc:"Midtown",stars:"⭐",quote:"Missing half my order and what came out was wrong anyway. The staff acted like it was my fault for not checking before I left the counter."}},{emoji:"🤢",topic:"Food quality",count:2,locs:"Decatur, Duluth",worst:{loc:"Decatur",stars:"⭐",quote:"The meat was dry and had an off taste. I've been coming here for 2 years and quality has noticeably dropped."}}],service:[{emoji:"😤",topic:"Rude staff",count:2,locs:"West Midtown, Decatur",worst:{loc:"West Midtown",stars:"⭐",quote:"The cashier was openly rude when I asked a question about an item. Rolled her eyes and gave short answers. I felt disrespected."}},{emoji:"⏳",topic:"Slow service",count:2,locs:"Sandy Springs, Lawrenceville",worst:{loc:"Sandy Springs",stars:"⭐⭐",quote:"40 minute wait and no one even told us there was a delay. Had to ask multiple times for a status update."}}]},
-   locations:{Midtown:{reviews:1,sales:191875.50,per100k:0.52,food:1,service:0},WestMidtown:{reviews:1,sales:127700.04,per100k:0.78,food:0,service:1},Chamblee:{reviews:0,sales:112231.10,per100k:0.00,food:0,service:0},SandySprings:{reviews:2,sales:146645.03,per100k:1.36,food:1,service:1},Cumming:{reviews:0,sales:71590.84,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:89832.56,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:148685.24,per100k:0.00,food:0,service:0},Decatur:{reviews:2,sales:139436.62,per100k:1.43,food:1,service:1},Lawrenceville:{reviews:2,sales:203953.71,per100k:0.98,food:1,service:1},Beltline:{reviews:0,sales:201649.08,per100k:0.00,food:0,service:0},Duluth:{reviews:1,sales:127641.90,per100k:0.78,food:1,service:0},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:7,avg100k:0.55},
+   locations:{Midtown:{reviews:1,sales:191875.50,per100k:0.52,food:1,service:0},WestMidtown:{reviews:1,sales:127700.04,per100k:0.78,food:0,service:1},Chamblee:{reviews:0,sales:112231.10,per100k:0.00,food:0,service:0},SandySprings:{reviews:2,sales:146645.03,per100k:1.36,food:1,service:1},Cumming:{reviews:0,sales:71590.84,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:89832.56,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:148685.24,per100k:0.00,food:0,service:0},Decatur:{reviews:2,sales:139436.62,per100k:1.43,food:1,service:1},Lawrenceville:{reviews:2,sales:203953.71,per100k:0.98,food:1,service:1},Beltline:{reviews:0,sales:201649.08,per100k:0.00,food:0,service:0},Duluth:{reviews:1,sales:127641.90,per100k:0.78,food:1,service:0}},total:7,avg100k:0.55},
   {week:10,dates:"03/02–03/08",month:"March",stars1:7,stars2:3,platforms:{google:8,yelp:2,uber:0},foodTotal:5,serviceTotal:4,
    themes:{food:[{emoji:"🌮",topic:"Wrong order received",count:3,locs:"Midtown, Cumming, Decatur",worst:{loc:"Cumming",stars:"⭐",quote:"I'm allergic to dairy and specifically told them NO cheese. Got a taco loaded with queso. Had a reaction in the parking lot. This is a liability issue and I am seriously considering legal action."}},{emoji:"⏳",topic:"Long wait for food",count:2,locs:"Beltline, Cumming",worst:{loc:"Beltline",stars:"⭐",quote:"50 minutes for tacos. Not an exaggeration. Left without eating. First and last time."}}],service:[{emoji:"👻",topic:"No greeting / ignored",count:2,locs:"Duluth, Duluth",worst:{loc:"Duluth",stars:"⭐",quote:"Walked in, stood at the door for 5 minutes, not one person acknowledged us. Eventually a different customer pointed us to the line. Embarrassing."}},{emoji:"😤",topic:"Attitude from staff",count:2,locs:"West Midtown, Cumming",worst:{loc:"West Midtown",stars:"⭐",quote:"When I pointed out my order was wrong the employee said 'that's what you ordered' in a really aggressive tone. I had my receipt. Zero accountability."}}]},
-   locations:{Midtown:{reviews:1,sales:181105.42,per100k:0.55,food:1,service:0},WestMidtown:{reviews:1,sales:137682.17,per100k:0.73,food:0,service:1},Chamblee:{reviews:0,sales:115057.16,per100k:0.00,food:0,service:0},SandySprings:{reviews:0,sales:137264.08,per100k:0.00,food:0,service:0},Cumming:{reviews:3,sales:66113.80,per100k:4.54,food:2,service:1},SugarHill:{reviews:0,sales:82404.59,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:137486.11,per100k:0.00,food:0,service:0},Decatur:{reviews:1,sales:144422.77,per100k:0.69,food:1,service:0},Lawrenceville:{reviews:0,sales:191049.60,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:184007.58,per100k:0.54,food:1,service:0},Duluth:{reviews:2,sales:116104.81,per100k:1.72,food:0,service:2},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:10,avg100k:0.58},
+   locations:{Midtown:{reviews:1,sales:181105.42,per100k:0.55,food:1,service:0},WestMidtown:{reviews:1,sales:137682.17,per100k:0.73,food:0,service:1},Chamblee:{reviews:0,sales:115057.16,per100k:0.00,food:0,service:0},SandySprings:{reviews:0,sales:137264.08,per100k:0.00,food:0,service:0},Cumming:{reviews:3,sales:66113.80,per100k:4.54,food:2,service:1},SugarHill:{reviews:0,sales:82404.59,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:137486.11,per100k:0.00,food:0,service:0},Decatur:{reviews:1,sales:144422.77,per100k:0.69,food:1,service:0},Lawrenceville:{reviews:0,sales:191049.60,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:184007.58,per100k:0.54,food:1,service:0},Duluth:{reviews:2,sales:116104.81,per100k:1.72,food:0,service:2}},total:10,avg100k:0.58},
   {week:9,dates:"02/23–03/01",month:"February",stars1:8,stars2:4,platforms:{google:10,yelp:2,uber:0},foodTotal:8,serviceTotal:6,
    themes:{food:[{emoji:"🥩",topic:"Meat undercooked / quality",count:3,locs:"Sugar Hill, Decatur, Chamblee",worst:{loc:"Sugar Hill",stars:"⭐",quote:"The chicken was completely raw in the middle. I spit it out immediately. How does this pass quality check? This is a serious health risk and I reported it to the health department."}},{emoji:"🌮",topic:"Order accuracy issues",count:3,locs:"Midtown, Cumming, Beltline"},{emoji:"🌡️",topic:"Food arrived cold",count:2,locs:"Decatur, Midtown"}],service:[{emoji:"😤",topic:"Rude / dismissive staff",count:3,locs:"Decatur, Sandy Springs, Beltline",worst:{loc:"Decatur",stars:"⭐",quote:"The manager was the rudest one there. When I complained about my cold food he told me I should have checked it at the counter. Absolutely no accountability. I will never come back."}},{emoji:"⏳",topic:"Excessive wait time",count:2,locs:"Cumming, Beltline"},{emoji:"💸",topic:"Billing / overcharge complaint",count:1,locs:"Sandy Springs"}]},
-   locations:{Midtown:{reviews:2,sales:177986.14,per100k:1.12,food:1,service:1},WestMidtown:{reviews:0,sales:150369.67,per100k:0.00,food:0,service:0},Chamblee:{reviews:1,sales:116934.41,per100k:0.86,food:1,service:0},SandySprings:{reviews:1,sales:135227.57,per100k:0.74,food:0,service:1},Cumming:{reviews:2,sales:75282.00,per100k:2.66,food:1,service:1},SugarHill:{reviews:2,sales:83290.68,per100k:2.40,food:2,service:0},Buckhead:{reviews:0,sales:137487.26,per100k:0.00,food:0,service:0},Decatur:{reviews:4,sales:129737.20,per100k:3.08,food:2,service:2},Lawrenceville:{reviews:0,sales:190737.86,per100k:0.00,food:0,service:0},Beltline:{reviews:2,sales:167880.07,per100k:1.19,food:1,service:1},Duluth:{reviews:0,sales:119750.22,per100k:0.00,food:0,service:0},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:12,avg100k:0.91},
+   locations:{Midtown:{reviews:2,sales:177986.14,per100k:1.12,food:1,service:1},WestMidtown:{reviews:0,sales:150369.67,per100k:0.00,food:0,service:0},Chamblee:{reviews:1,sales:116934.41,per100k:0.86,food:1,service:0},SandySprings:{reviews:1,sales:135227.57,per100k:0.74,food:0,service:1},Cumming:{reviews:2,sales:75282.00,per100k:2.66,food:1,service:1},SugarHill:{reviews:2,sales:83290.68,per100k:2.40,food:2,service:0},Buckhead:{reviews:0,sales:137487.26,per100k:0.00,food:0,service:0},Decatur:{reviews:4,sales:129737.20,per100k:3.08,food:2,service:2},Lawrenceville:{reviews:0,sales:190737.86,per100k:0.00,food:0,service:0},Beltline:{reviews:2,sales:167880.07,per100k:1.19,food:1,service:1},Duluth:{reviews:0,sales:119750.22,per100k:0.00,food:0,service:0}},total:12,avg100k:0.91},
   {week:8,dates:"02/16–02/22",month:"February",stars1:10,stars2:2,platforms:{google:10,yelp:2,uber:0},foodTotal:7,serviceTotal:5,
    themes:{food:[{emoji:"🌮",topic:"Incorrect order / missing food",count:3,locs:"Decatur, Sandy Springs, Chamblee",worst:{loc:"Decatur",stars:"⭐",quote:"Third wrong order in a row at this location. I drive 20 minutes to get here. Missing items, wrong protein, cold food. How is this still happening? Done with Decatur forever."}},{emoji:"🌡️",topic:"Food cold / not fresh",count:2,locs:"Cumming, Beltline"},{emoji:"🍹",topic:"Wrong drink / bar complaint",count:2,locs:"Duluth, Decatur"}],service:[{emoji:"😤",topic:"Staff attitude / rudeness",count:3,locs:"Midtown, Beltline, Duluth",worst:{loc:"Midtown",stars:"⭐",quote:"The girl at the register literally sighed loudly every time I asked a question. My friend was so uncomfortable she waited outside. Management needs to see this review."}},{emoji:"👻",topic:"Slow / no acknowledgment",count:2,locs:"Sandy Springs, Cumming"}]},
-   locations:{Midtown:{reviews:1,sales:157049.41,per100k:0.64,food:0,service:1},WestMidtown:{reviews:0,sales:141067.54,per100k:0.00,food:0,service:0},Chamblee:{reviews:1,sales:121893.58,per100k:0.82,food:1,service:0},SandySprings:{reviews:2,sales:148334.08,per100k:1.35,food:1,service:1},Cumming:{reviews:2,sales:80570.02,per100k:2.48,food:1,service:1},SugarHill:{reviews:0,sales:80860.82,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:151475.75,per100k:0.00,food:0,service:0},Decatur:{reviews:2,sales:138151.06,per100k:1.45,food:2,service:0},Lawrenceville:{reviews:0,sales:200898.60,per100k:0.00,food:0,service:0},Beltline:{reviews:2,sales:192516.20,per100k:1.04,food:1,service:1},Duluth:{reviews:2,sales:124064.28,per100k:1.61,food:1,service:1},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:12,avg100k:0.75},
+   locations:{Midtown:{reviews:1,sales:157049.41,per100k:0.64,food:0,service:1},WestMidtown:{reviews:0,sales:141067.54,per100k:0.00,food:0,service:0},Chamblee:{reviews:1,sales:121893.58,per100k:0.82,food:1,service:0},SandySprings:{reviews:2,sales:148334.08,per100k:1.35,food:1,service:1},Cumming:{reviews:2,sales:80570.02,per100k:2.48,food:1,service:1},SugarHill:{reviews:0,sales:80860.82,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:151475.75,per100k:0.00,food:0,service:0},Decatur:{reviews:2,sales:138151.06,per100k:1.45,food:2,service:0},Lawrenceville:{reviews:0,sales:200898.60,per100k:0.00,food:0,service:0},Beltline:{reviews:2,sales:192516.20,per100k:1.04,food:1,service:1},Duluth:{reviews:2,sales:124064.28,per100k:1.61,food:1,service:1}},total:12,avg100k:0.75},
   {week:7,dates:"02/09–02/15",month:"February",stars1:12,stars2:6,platforms:{google:15,yelp:3,uber:0},foodTotal:10,serviceTotal:8,
    themes:{food:[{emoji:"🌮",topic:"Wrong or incomplete orders",count:4,locs:"Midtown, Buckhead, Decatur, Lawrenceville",worst:{loc:"Lawrenceville",stars:"⭐",quote:"I have now received the wrong order 4 times at this location. Today I was missing an entire entrée. The staff offered a $2 discount. $2!! For a $30 mistake. I am done."}},{emoji:"🤢",topic:"Food quality / taste",count:3,locs:"Midtown, West Midtown, Lawrenceville"},{emoji:"🌡️",topic:"Temperature issues",count:2,locs:"Buckhead, Decatur"},{emoji:"⏳",topic:"Long wait for food",count:1,locs:"Cumming"}],service:[{emoji:"😤",topic:"Rude / unprofessional staff",count:4,locs:"Midtown, Buckhead, West Midtown, Beltline",worst:{loc:"Buckhead",stars:"⭐",quote:"The server threw my bag on the counter and walked away without saying a word. When I asked for sauce she said 'it's on the side' and pointed vaguely. My kids were watching. This behavior is unacceptable."}},{emoji:"👻",topic:"Ignored / no greeting",count:2,locs:"Buckhead, Sugar Hill"},{emoji:"💸",topic:"Overcharged",count:2,locs:"Lawrenceville, Midtown"}]},
-   locations:{Midtown:{reviews:4,sales:203342.87,per100k:1.97,food:2,service:2},WestMidtown:{reviews:2,sales:164023.44,per100k:1.22,food:1,service:1},Chamblee:{reviews:0,sales:143330.67,per100k:0.00,food:0,service:0},SandySprings:{reviews:0,sales:173596.62,per100k:0.00,food:0,service:0},Cumming:{reviews:1,sales:92407.59,per100k:1.08,food:1,service:0},SugarHill:{reviews:1,sales:107514.33,per100k:0.93,food:0,service:1},Buckhead:{reviews:4,sales:163856.53,per100k:2.44,food:2,service:2},Decatur:{reviews:2,sales:154179.99,per100k:1.30,food:2,service:0},Lawrenceville:{reviews:3,sales:252910.65,per100k:1.19,food:2,service:1},Beltline:{reviews:1,sales:187588.55,per100k:0.53,food:0,service:1},Duluth:{reviews:0,sales:138740.31,per100k:0.00,food:0,service:0},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:18,avg100k:0.97},
+   locations:{Midtown:{reviews:4,sales:203342.87,per100k:1.97,food:2,service:2},WestMidtown:{reviews:2,sales:164023.44,per100k:1.22,food:1,service:1},Chamblee:{reviews:0,sales:143330.67,per100k:0.00,food:0,service:0},SandySprings:{reviews:0,sales:173596.62,per100k:0.00,food:0,service:0},Cumming:{reviews:1,sales:92407.59,per100k:1.08,food:1,service:0},SugarHill:{reviews:1,sales:107514.33,per100k:0.93,food:0,service:1},Buckhead:{reviews:4,sales:163856.53,per100k:2.44,food:2,service:2},Decatur:{reviews:2,sales:154179.99,per100k:1.30,food:2,service:0},Lawrenceville:{reviews:3,sales:252910.65,per100k:1.19,food:2,service:1},Beltline:{reviews:1,sales:187588.55,per100k:0.53,food:0,service:1},Duluth:{reviews:0,sales:138740.31,per100k:0.00,food:0,service:0}},total:18,avg100k:0.97},
   {week:6,dates:"02/02–02/08",month:"February",stars1:7,stars2:5,platforms:{google:11,yelp:1,uber:0},foodTotal:7,serviceTotal:5,
    themes:{food:[{emoji:"🌮",topic:"Missing items / wrong order",count:3,locs:"Decatur, Sandy Springs, Chamblee",worst:{loc:"Decatur",stars:"⭐",quote:"Ordered online and picked up. Got home — two items missing, one completely wrong. Called the restaurant and was told 'we can't give refunds for online orders.' Disputed with DoorDash."}},{emoji:"🥩",topic:"Meat quality complaint",count:2,locs:"Decatur, Lawrenceville"},{emoji:"🌡️",topic:"Cold food",count:2,locs:"Midtown, Beltline"}],service:[{emoji:"😤",topic:"Attitude / rude interaction",count:3,locs:"West Midtown, Midtown, Duluth",worst:{loc:"Duluth",stars:"⭐",quote:"I asked if they could heat up my food that came out cold and the employee said 'we don't do that.' No apology, no solution, just attitude. I left without eating and I want a refund."}},{emoji:"⏳",topic:"Wait time",count:2,locs:"Duluth, Decatur"}]},
-   locations:{Midtown:{reviews:2,sales:175422.99,per100k:1.14,food:1,service:1},WestMidtown:{reviews:1,sales:154429.23,per100k:0.65,food:0,service:1},Chamblee:{reviews:1,sales:128232.12,per100k:0.78,food:1,service:0},SandySprings:{reviews:1,sales:158763.94,per100k:0.63,food:1,service:0},Cumming:{reviews:0,sales:75867.03,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:90769.68,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:150574.25,per100k:0.00,food:0,service:0},Decatur:{reviews:3,sales:127777.18,per100k:2.35,food:2,service:1},Lawrenceville:{reviews:1,sales:220275.86,per100k:0.45,food:1,service:0},Beltline:{reviews:1,sales:161798.58,per100k:0.62,food:1,service:0},Duluth:{reviews:2,sales:117003.15,per100k:1.71,food:0,service:2},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:12,avg100k:0.74},
+   locations:{Midtown:{reviews:2,sales:175422.99,per100k:1.14,food:1,service:1},WestMidtown:{reviews:1,sales:154429.23,per100k:0.65,food:0,service:1},Chamblee:{reviews:1,sales:128232.12,per100k:0.78,food:1,service:0},SandySprings:{reviews:1,sales:158763.94,per100k:0.63,food:1,service:0},Cumming:{reviews:0,sales:75867.03,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:90769.68,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:150574.25,per100k:0.00,food:0,service:0},Decatur:{reviews:3,sales:127777.18,per100k:2.35,food:2,service:1},Lawrenceville:{reviews:1,sales:220275.86,per100k:0.45,food:1,service:0},Beltline:{reviews:1,sales:161798.58,per100k:0.62,food:1,service:0},Duluth:{reviews:2,sales:117003.15,per100k:1.71,food:0,service:2}},total:12,avg100k:0.74},
   {week:5,dates:"01/26–02/01",month:"January",stars1:8,stars2:4,platforms:{google:12,yelp:0,uber:0},foodTotal:9,serviceTotal:6,
    themes:{food:[{emoji:"🌮",topic:"Order accuracy / missing item",count:4,locs:"Sugar Hill, Sandy Springs, Decatur, Lawrenceville",worst:{loc:"Sugar Hill",stars:"⭐",quote:"This is my neighborhood spot and I am heartbroken writing this. 4 visits in a row with wrong orders. Today I was missing both proteins and got a side I never ordered. Quality control is non-existent."}},{emoji:"🤢",topic:"Food quality / freshness",count:3,locs:"Sugar Hill, West Midtown, Buckhead"},{emoji:"🌡️",topic:"Food cold on arrival",count:2,locs:"Sugar Hill, Sandy Springs"}],service:[{emoji:"😤",topic:"Rude or impatient staff",count:3,locs:"Midtown, West Midtown, Beltline",worst:{loc:"West Midtown",stars:"⭐",quote:"I was made to feel like a burden for asking questions about the menu. The staff member huffed at me and answered in one-word responses. In front of my child. Completely unprofessional."}},{emoji:"⏳",topic:"Long wait / slow",count:2,locs:"Buckhead, Duluth"},{emoji:"🧹",topic:"Dirty tables / messy area",count:1,locs:"Buckhead"}]},
-   locations:{Midtown:{reviews:1,sales:171730.22,per100k:0.58,food:0,service:1},WestMidtown:{reviews:2,sales:133084.89,per100k:1.50,food:1,service:1},Chamblee:{reviews:0,sales:116538.22,per100k:0.00,food:0,service:0},SandySprings:{reviews:2,sales:141522.45,per100k:1.41,food:2,service:0},Cumming:{reviews:0,sales:55988.72,per100k:0.00,food:0,service:0},SugarHill:{reviews:4,sales:66324.91,per100k:6.03,food:3,service:1},Buckhead:{reviews:2,sales:131916.21,per100k:1.52,food:1,service:1},Decatur:{reviews:1,sales:131935.94,per100k:0.76,food:1,service:0},Lawrenceville:{reviews:1,sales:157000.77,per100k:0.64,food:1,service:0},Beltline:{reviews:1,sales:117856.52,per100k:0.85,food:0,service:1},Duluth:{reviews:1,sales:86553.24,per100k:1.16,food:0,service:1},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:12,avg100k:1.11},
+   locations:{Midtown:{reviews:1,sales:171730.22,per100k:0.58,food:0,service:1},WestMidtown:{reviews:2,sales:133084.89,per100k:1.50,food:1,service:1},Chamblee:{reviews:0,sales:116538.22,per100k:0.00,food:0,service:0},SandySprings:{reviews:2,sales:141522.45,per100k:1.41,food:2,service:0},Cumming:{reviews:0,sales:55988.72,per100k:0.00,food:0,service:0},SugarHill:{reviews:4,sales:66324.91,per100k:6.03,food:3,service:1},Buckhead:{reviews:2,sales:131916.21,per100k:1.52,food:1,service:1},Decatur:{reviews:1,sales:131935.94,per100k:0.76,food:1,service:0},Lawrenceville:{reviews:1,sales:157000.77,per100k:0.64,food:1,service:0},Beltline:{reviews:1,sales:117856.52,per100k:0.85,food:0,service:1},Duluth:{reviews:1,sales:86553.24,per100k:1.16,food:0,service:1}},total:12,avg100k:1.11},
   {week:4,dates:"01/19–01/25",month:"January",stars1:6,stars2:3,platforms:{google:7,yelp:2,uber:0},foodTotal:5,serviceTotal:4,
    themes:{food:[{emoji:"🌮",topic:"Wrong order / item missing",count:3,locs:"Chamblee, Cumming, Decatur",worst:{loc:"Cumming",stars:"⭐",quote:"Got an entirely different order — someone else's food. When I went back to fix it, the staff member argued with me and implied I was lying. I had the receipt on my phone."}},{emoji:"🌡️",topic:"Food not hot",count:2,locs:"Beltline, Decatur"}],service:[{emoji:"😤",topic:"Rude staff",count:2,locs:"Buckhead, Duluth",worst:{loc:"Buckhead",stars:"⭐",quote:"The person taking my order was visibly irritated from the start. When I changed my mind about a topping they slammed the container on the counter. My girlfriend refused to go back in."}},{emoji:"👻",topic:"Not greeted / ignored",count:2,locs:"Buckhead, West Midtown"}]},
-   locations:{Midtown:{reviews:0,sales:130357.86,per100k:0.00,food:0,service:0},WestMidtown:{reviews:1,sales:91640.05,per100k:1.09,food:0,service:1},Chamblee:{reviews:1,sales:85001.73,per100k:1.18,food:1,service:0},SandySprings:{reviews:0,sales:107735.83,per100k:0.00,food:0,service:0},Cumming:{reviews:1,sales:48326.51,per100k:2.07,food:1,service:0},SugarHill:{reviews:0,sales:54991.58,per100k:0.00,food:0,service:0},Buckhead:{reviews:3,sales:104890.33,per100k:2.86,food:1,service:2},Decatur:{reviews:1,sales:102043.54,per100k:0.98,food:1,service:0},Lawrenceville:{reviews:0,sales:133213.41,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:84771.50,per100k:1.18,food:1,service:0},Duluth:{reviews:1,sales:73842.27,per100k:1.35,food:0,service:1},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:9,avg100k:0.86},
+   locations:{Midtown:{reviews:0,sales:130357.86,per100k:0.00,food:0,service:0},WestMidtown:{reviews:1,sales:91640.05,per100k:1.09,food:0,service:1},Chamblee:{reviews:1,sales:85001.73,per100k:1.18,food:1,service:0},SandySprings:{reviews:0,sales:107735.83,per100k:0.00,food:0,service:0},Cumming:{reviews:1,sales:48326.51,per100k:2.07,food:1,service:0},SugarHill:{reviews:0,sales:54991.58,per100k:0.00,food:0,service:0},Buckhead:{reviews:3,sales:104890.33,per100k:2.86,food:1,service:2},Decatur:{reviews:1,sales:102043.54,per100k:0.98,food:1,service:0},Lawrenceville:{reviews:0,sales:133213.41,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:84771.50,per100k:1.18,food:1,service:0},Duluth:{reviews:1,sales:73842.27,per100k:1.35,food:0,service:1}},total:9,avg100k:0.86},
   {week:3,dates:"01/12–01/18",month:"January",stars1:10,stars2:2,platforms:{google:11,yelp:1,uber:0},foodTotal:8,serviceTotal:6,
    themes:{food:[{emoji:"🌮",topic:"Missing items / wrong food",count:4,locs:"Decatur, Lawrenceville, Cumming, Sandy Springs",worst:{loc:"Lawrenceville",stars:"⭐",quote:"4 items missing from a 6 item order. This was for a work lunch. I had to go back twice. The manager offered nothing — just said 'sorry about that.' I spent 90 minutes total on a 30 minute lunch run."}},{emoji:"🌡️",topic:"Cold / temp issues",count:2,locs:"Decatur, Duluth"},{emoji:"🤢",topic:"Food quality",count:2,locs:"Lawrenceville, Duluth"}],service:[{emoji:"😤",topic:"Staff attitude",count:3,locs:"Lawrenceville, Buckhead, Duluth",worst:{loc:"Lawrenceville",stars:"⭐",quote:"The shift manager was dismissive and borderline hostile when I raised an issue with my order. Told me I was wrong in front of other customers. I've never been so embarrassed at a restaurant."}},{emoji:"👻",topic:"Poor hospitality",count:2,locs:"West Midtown, Sugar Hill"},{emoji:"⏳",topic:"Wait time",count:1,locs:"Buckhead"}]},
-   locations:{Midtown:{reviews:0,sales:145044.97,per100k:0.00,food:0,service:0},WestMidtown:{reviews:1,sales:123874.42,per100k:0.81,food:0,service:1},Chamblee:{reviews:0,sales:100340.61,per100k:0.00,food:0,service:0},SandySprings:{reviews:1,sales:131804.25,per100k:0.76,food:1,service:0},Cumming:{reviews:1,sales:66576.77,per100k:1.50,food:1,service:0},SugarHill:{reviews:1,sales:74972.28,per100k:1.33,food:0,service:1},Buckhead:{reviews:2,sales:130010.66,per100k:1.54,food:1,service:1},Decatur:{reviews:2,sales:128414.85,per100k:1.56,food:2,service:0},Lawrenceville:{reviews:4,sales:163489.66,per100k:2.45,food:2,service:2},Beltline:{reviews:0,sales:121295.75,per100k:0.00,food:0,service:0},Duluth:{reviews:2,sales:95171.09,per100k:2.10,food:1,service:1},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:12,avg100k:1.05},
+   locations:{Midtown:{reviews:0,sales:145044.97,per100k:0.00,food:0,service:0},WestMidtown:{reviews:1,sales:123874.42,per100k:0.81,food:0,service:1},Chamblee:{reviews:0,sales:100340.61,per100k:0.00,food:0,service:0},SandySprings:{reviews:1,sales:131804.25,per100k:0.76,food:1,service:0},Cumming:{reviews:1,sales:66576.77,per100k:1.50,food:1,service:0},SugarHill:{reviews:1,sales:74972.28,per100k:1.33,food:0,service:1},Buckhead:{reviews:2,sales:130010.66,per100k:1.54,food:1,service:1},Decatur:{reviews:2,sales:128414.85,per100k:1.56,food:2,service:0},Lawrenceville:{reviews:4,sales:163489.66,per100k:2.45,food:2,service:2},Beltline:{reviews:0,sales:121295.75,per100k:0.00,food:0,service:0},Duluth:{reviews:2,sales:95171.09,per100k:2.10,food:1,service:1}},total:12,avg100k:1.05},
   {week:2,dates:"01/05–01/11",month:"January",stars1:5,stars2:1,platforms:{google:5,yelp:1,uber:0},foodTotal:3,serviceTotal:3,
    themes:{food:[{emoji:"🌮",topic:"Wrong order received",count:2,locs:"Midtown, Decatur",worst:{loc:"Midtown",stars:"⭐",quote:"Got an entirely different order — I'm vegetarian and received a meat bowl. When I came back the line was 20 minutes long again. This ruined my lunch break."}},{emoji:"🌡️",topic:"Cold food",count:1,locs:"Duluth"}],service:[{emoji:"😤",topic:"Rude / unhelpful staff",count:2,locs:"Midtown, West Midtown",worst:{loc:"West Midtown",stars:"⭐",quote:"When I politely asked about a menu item the response was 'it's on the board' while not looking up. That's not hospitality — that's contempt for customers."}},{emoji:"👻",topic:"Ignored on arrival",count:1,locs:"Beltline"}]},
-   locations:{Midtown:{reviews:2,sales:123440.69,per100k:1.62,food:1,service:1},WestMidtown:{reviews:1,sales:102363.20,per100k:0.98,food:0,service:1},Chamblee:{reviews:0,sales:87420.81,per100k:0.00,food:0,service:0},SandySprings:{reviews:0,sales:113531.58,per100k:0.00,food:0,service:0},Cumming:{reviews:0,sales:61966.42,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:71144.12,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:111800.30,per100k:0.00,food:0,service:0},Decatur:{reviews:1,sales:113297.94,per100k:0.88,food:1,service:0},Lawrenceville:{reviews:0,sales:160203.71,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:107780.19,per100k:0.93,food:0,service:1},Duluth:{reviews:1,sales:87810.54,per100k:1.14,food:1,service:0},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:6,avg100k:0.51},
+   locations:{Midtown:{reviews:2,sales:123440.69,per100k:1.62,food:1,service:1},WestMidtown:{reviews:1,sales:102363.20,per100k:0.98,food:0,service:1},Chamblee:{reviews:0,sales:87420.81,per100k:0.00,food:0,service:0},SandySprings:{reviews:0,sales:113531.58,per100k:0.00,food:0,service:0},Cumming:{reviews:0,sales:61966.42,per100k:0.00,food:0,service:0},SugarHill:{reviews:0,sales:71144.12,per100k:0.00,food:0,service:0},Buckhead:{reviews:0,sales:111800.30,per100k:0.00,food:0,service:0},Decatur:{reviews:1,sales:113297.94,per100k:0.88,food:1,service:0},Lawrenceville:{reviews:0,sales:160203.71,per100k:0.00,food:0,service:0},Beltline:{reviews:1,sales:107780.19,per100k:0.93,food:0,service:1},Duluth:{reviews:1,sales:87810.54,per100k:1.14,food:1,service:0}},total:6,avg100k:0.51},
   {week:1,dates:"12/29–01/04",month:"January",stars1:12,stars2:2,platforms:{google:11,yelp:3,uber:0},foodTotal:9,serviceTotal:7,
    themes:{food:[{emoji:"🌮",topic:"Order errors / missing items",count:4,locs:"Lawrenceville, Sandy Springs, Midtown, Cumming",worst:{loc:"Lawrenceville",stars:"⭐",quote:"We are a family of 5 and ordered 5 different items. Every single one was wrong in some way. Spent $80 and left hungry. I am writing this review from the McDonald's drive through. You lost a loyal customer of 3 years today."}},{emoji:"🤢",topic:"Food quality issues",count:3,locs:"Lawrenceville, Sandy Springs, Sugar Hill"},{emoji:"🌡️",topic:"Food not at right temp",count:2,locs:"Decatur, Cumming"}],service:[{emoji:"😤",topic:"Rude / dismissive staff",count:3,locs:"Lawrenceville, West Midtown, Decatur",worst:{loc:"Lawrenceville",stars:"⭐",quote:"My husband is hearing impaired and had trouble communicating his order. The staff member was openly impatient and condescending. He left the counter feeling humiliated. This is the last time we come here."}},{emoji:"⏳",topic:"Slow service / long wait",count:2,locs:"Lawrenceville, Sandy Springs"},{emoji:"👻",topic:"Not greeted properly",count:2,locs:"Decatur, Lawrenceville"}]},
-   locations:{Midtown:{reviews:1,sales:153076.05,per100k:0.65,food:1,service:0},WestMidtown:{reviews:1,sales:131070.93,per100k:0.76,food:0,service:1},Chamblee:{reviews:0,sales:119424.32,per100k:0.00,food:0,service:0},SandySprings:{reviews:3,sales:143258.81,per100k:2.09,food:2,service:1},Cumming:{reviews:1,sales:77670.12,per100k:1.29,food:1,service:0},SugarHill:{reviews:1,sales:99026.38,per100k:1.01,food:1,service:0},Buckhead:{reviews:0,sales:125974.48,per100k:0.00,food:0,service:0},Decatur:{reviews:2,sales:146398.32,per100k:1.37,food:1,service:1},Lawrenceville:{reviews:7,sales:220279.58,per100k:3.18,food:4,service:3},Beltline:{reviews:0,sales:161008.89,per100k:0.00,food:0,service:0},Duluth:{reviews:0,sales:113603.31,per100k:0.00,food:0,service:0},Woodstock:{reviews:0,sales:28280.24,per100k:0.00,food:0,service:0}},total:14,avg100k:1.03},
+   locations:{Midtown:{reviews:1,sales:153076.05,per100k:0.65,food:1,service:0},WestMidtown:{reviews:1,sales:131070.93,per100k:0.76,food:0,service:1},Chamblee:{reviews:0,sales:119424.32,per100k:0.00,food:0,service:0},SandySprings:{reviews:3,sales:143258.81,per100k:2.09,food:2,service:1},Cumming:{reviews:1,sales:77670.12,per100k:1.29,food:1,service:0},SugarHill:{reviews:1,sales:99026.38,per100k:1.01,food:1,service:0},Buckhead:{reviews:0,sales:125974.48,per100k:0.00,food:0,service:0},Decatur:{reviews:2,sales:146398.32,per100k:1.37,food:1,service:1},Lawrenceville:{reviews:7,sales:220279.58,per100k:3.18,food:4,service:3},Beltline:{reviews:0,sales:161008.89,per100k:0.00,food:0,service:0},Duluth:{reviews:0,sales:113603.31,per100k:0.00,food:0,service:0}},total:14,avg100k:1.03},
 ];
 
 // Helper: map display name → data key
@@ -3345,139 +3277,8 @@ function _initTab(name) {
   if (name === 'revenue') { initRevenueTiers(); }
   if (name === 'sunday') { initSunday(); }
   if (name === 'mgmthours') { initMgmtHours(); }
-  if (name === 'scorecards') { initScorecard(); }
-  if (name === 'eod') { initEODTab(); }
+  if (name === 'scorecard') { initScorecard(); }
 }
-
-// ── EOD REPORTS ──
-const EOD_LOCATIONS = [
-  'Midtown','West Midtown','Chamblee','Sandy Springs','Cumming',
-  'Sugar Hill','Buckhead','Decatur','Lawrenceville','Beltline','Duluth','Woodstock'
-];
-const CRITICAL_KEYWORDS = ['health department','injury','fight','theft','police','fire','flood','broken','emergency','ambulance','raw','contamination','poisoning'];
-const MAINT_KEYWORDS = ['broken','not working','repair','fix','leak','ac ','heat','freezer','cooler','oven','fryer','plumbing','electrical','pest','roach','mouse'];
-
-let _eodLoaded = false;
-
-function initEODTab() {
-  if (_eodLoaded) return;
-  _eodLoaded = true;
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const dp = document.getElementById('eod-date-picker');
-  if (dp) dp.value = yesterday.toISOString().split('T')[0];
-  loadEODData(dp ? dp.value : null);
-}
-
-async function loadEODData(dateStr) {
-  if (!dateStr) {
-    const dp = document.getElementById('eod-date-picker');
-    dateStr = dp ? dp.value : new Date().toISOString().split('T')[0];
-  }
-  const grid = document.getElementById('eod-cards-grid');
-  if (grid) grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:#475569;"><div style="font-size:1.5rem;margin-bottom:8px;">⏳</div><div>Loading EOD data...</div></div>';
-  let data = null;
-  try {
-    const resp = await fetch(`data/eod-reports/${dateStr}.json?_=${Date.now()}`);
-    if (resp.ok) data = await resp.json();
-  } catch(e) { console.log('No EOD data for', dateStr); }
-  renderEODCards(data, dateStr);
-  const lu = document.getElementById('eod-last-updated');
-  if (lu) lu.textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
-}
-
-function eodIsCritical(text) {
-  const t = (text||'').toLowerCase();
-  return CRITICAL_KEYWORDS.some(k => t.includes(k));
-}
-
-function eodIsMaintenance(text) {
-  const t = (text||'').toLowerCase();
-  return MAINT_KEYWORDS.some(k => t.includes(k));
-}
-
-function renderEODCards(data, dateStr) {
-  const grid = document.getElementById('eod-cards-grid');
-  if (!grid) return;
-  if (!data || !data.locations) {
-    grid.innerHTML = '';
-    EOD_LOCATIONS.forEach(loc => { grid.innerHTML += buildEODCard({ location: loc, status: 'MISSING', date: dateStr }); });
-    updateEODSummary([]);
-    return;
-  }
-  grid.innerHTML = '';
-  const reports = data.locations || {};
-  const allMaint = [];
-  EOD_LOCATIONS.forEach(loc => {
-    const r = reports[loc];
-    if (!r) {
-      grid.innerHTML += buildEODCard({ location: loc, status: 'MISSING', date: dateStr });
-    } else {
-      const fullText = [r.sales_summary,r.staff_issues,r.customer_complaints,r.maintenance_needs,r.critical_incidents,r.notes].join(' ');
-      r.is_critical = r.is_critical || eodIsCritical(fullText);
-      r.has_maintenance = r.has_maintenance || eodIsMaintenance(fullText);
-      if (r.has_maintenance && r.maintenance_needs) allMaint.push({ location: loc, issue: r.maintenance_needs, manager: r.manager_on_duty, date: r.date || dateStr });
-      grid.innerHTML += buildEODCard({ ...r, location: loc });
-    }
-  });
-  updateEODSummary(Object.values(reports));
-  renderEODMaintTable(allMaint, dateStr);
-}
-
-function buildEODCard(r) {
-  const status = r.status || (r.is_critical ? 'CRITICAL' : 'ON TIME');
-  const statusColor = status==='ON TIME'?'#4ade80':status==='LATE'?'#f59e0b':status==='MISSING'?'#f87171':'#ef4444';
-  const statusBg = status==='ON TIME'?'#0d2818':status==='LATE'?'#1a1200':status==='MISSING'?'#1a0a0a':'#200808';
-  const borderColor = status==='MISSING'?'#7f1d1d':(r.is_critical?'#dc2626':'#1e2a3a');
-  let highlights = '';
-  if (r.sales_summary) highlights += `<div style="margin-bottom:6px;font-size:.82rem;color:#cbd5e1;">💰 ${r.sales_summary}</div>`;
-  if (r.manager_on_duty) highlights += `<div style="margin-bottom:6px;font-size:.82rem;color:#94a3b8;">👤 MOD: ${r.manager_on_duty}</div>`;
-  if (r.closing_time) highlights += `<div style="margin-bottom:6px;font-size:.82rem;color:#94a3b8;">🕐 Closed: ${r.closing_time}</div>`;
-  const criticalBanner = (r.is_critical && r.critical_incidents) ? `<div style="background:#1a0808;border:1px solid #dc2626;border-radius:8px;padding:8px 12px;margin-top:8px;font-size:.8rem;color:#f87171;font-weight:600;">🚨 CRITICAL: ${r.critical_incidents}</div>` : '';
-  const maintBanner = (r.has_maintenance && r.maintenance_needs) ? `<div style="background:#1a0f00;border:1px solid #f97316;border-radius:8px;padding:8px 12px;margin-top:6px;font-size:.8rem;color:#fb923c;font-weight:600;">🔧 ${r.maintenance_needs}</div>` : '';
-  const missingBody = status==='MISSING' ? '<div style="color:#f87171;font-size:.85rem;margin-top:12px;font-weight:600;">No EOD report received by 2:00 AM</div>' : '';
-  return `<div style="background:#111827;border-radius:14px;padding:18px 20px;border:1px solid ${borderColor};position:relative;">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
-      <div style="font-size:1rem;font-weight:800;color:#f1f5f9;">${r.location}</div>
-      <span style="background:${statusBg};color:${statusColor};padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:800;letter-spacing:.5px;">${status}</span>
-    </div>
-    ${r.date?`<div style="font-size:.75rem;color:#475569;margin-bottom:10px;">📅 ${r.date}</div>`:''}
-    ${highlights}${criticalBanner}${maintBanner}${missingBody}
-  </div>`;
-}
-
-function updateEODSummary(reports) {
-  const received = reports.filter(r=>r&&r.status!=='MISSING').length;
-  const missing = 12 - received;
-  const critical = reports.filter(r=>r&&r.is_critical).length;
-  const maint = reports.filter(r=>r&&r.has_maintenance).length;
-  const el = (id,val) => { const e=document.getElementById(id); if(e) e.textContent=val; };
-  el('eod-total-count',`${received}/12`);
-  el('eod-missing-count',missing);
-  el('eod-critical-count',critical);
-  el('eod-maint-count',maint);
-}
-
-function renderEODMaintTable(items, dateStr) {
-  const section = document.getElementById('eod-maint-section');
-  const tbody = document.getElementById('eod-maint-tbody');
-  if (!section||!tbody) return;
-  if (!items.length) { section.style.display='none'; return; }
-  section.style.display='block';
-  tbody.innerHTML = items.map(m => {
-    const priority = /urgent|emergency|broken|not working/i.test(m.issue) ? 'URGENT' : 'NORMAL';
-    const pBg = priority==='URGENT'?'#fee2e2':'#fef3c7';
-    const pColor = priority==='URGENT'?'#991b1b':'#92400e';
-    return `<tr style="border-top:1px solid #1e2a3a;">
-      <td style="padding:10px 14px;color:#e2e8f0;font-weight:600;">${m.location}</td>
-      <td style="padding:10px 14px;color:#cbd5e1;">${m.issue}</td>
-      <td style="padding:10px 14px;"><span style="background:${pBg};color:${pColor};padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:700;">${priority}</span></td>
-      <td style="padding:10px 14px;color:#94a3b8;">${m.manager||'—'}</td>
-      <td style="padding:10px 14px;color:#64748b;">${m.date||dateStr}</td>
-    </tr>`;
-  }).join('');
-}
-// ── END EOD REPORTS ──
 
 function initSalesTable() {
   const salesBody = document.getElementById('sales-table-body');
@@ -3721,14 +3522,14 @@ function renderSSTable(month) {
 // ── SCORECARD TAB ──
 const scData={jan:{label:'Enero 2026',weeks:'Wks 1–5',locations:[{name:'Chamblee',avg:91.97,kpis:{'Sunday GS':78.8,'Bad Review':95.7,'Ovation Sat':76.7,'Ovation RT':94.5,'Profit%':93.8,'Labor%':92.7,'COG+OP%':97.6,'Health':91.0,'Audit':86.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Duluth',avg:91.06,kpis:{'Sunday GS':89.7,'Bad Review':86.1,'Ovation Sat':88.5,'Ovation RT':91.6,'Profit%':'-','Labor%':71.8,'COG+OP%':91.1,'Health':93.0,'Audit':95.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Buckhead',avg:89.35,kpis:{'Sunday GS':84.7,'Bad Review':84.4,'Ovation Sat':79.5,'Ovation RT':100.0,'Profit%':89.5,'Labor%':93.1,'COG+OP%':97.5,'Health':84.0,'Audit':74.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'West Midtown',avg:88.8,kpis:{'Sunday GS':76.6,'Bad Review':96.6,'Ovation Sat':79.6,'Ovation RT':100.0,'Profit%':94.0,'Labor%':92.7,'COG+OP%':96.6,'Health':73.0,'Audit':73.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Sandy Springs',avg:88.79,kpis:{'Sunday GS':85.0,'Bad Review':91.6,'Ovation Sat':84.8,'Ovation RT':75.8,'Profit%':98.2,'Labor%':95.0,'COG+OP%':95.5,'Health':86.0,'Audit':65.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Cumming',avg:88.39,kpis:{'Sunday GS':78.0,'Bad Review':78.6,'Ovation Sat':86.3,'Ovation RT':100.0,'Profit%':80.1,'Labor%':93.1,'COG+OP%':95.8,'Health':86.0,'Audit':68.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Sugar Hill',avg:88.19,kpis:{'Sunday GS':80.6,'Bad Review':91.4,'Ovation Sat':82.9,'Ovation RT':100.0,'Profit%':90.5,'Labor%':93.9,'COG+OP%':99.7,'Health':97.0,'Audit':90.0,'ID Check':50.0,'Missing Inv':'-'}},{name:'Midtown',avg:88.02,kpis:{'Sunday GS':82.4,'Bad Review':92.8,'Ovation Sat':87.0,'Ovation RT':87.1,'Profit%':93.5,'Labor%':96.2,'COG+OP%':99.8,'Health':69.0,'Audit':79.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Decatur',avg:86.07,kpis:{'Sunday GS':80.2,'Bad Review':85.6,'Ovation Sat':78.8,'Ovation RT':87.8,'Profit%':82.4,'Labor%':94.0,'COG+OP%':97.7,'Health':77.0,'Audit':60.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Beltline',avg:83.51,kpis:{'Sunday GS':84.6,'Bad Review':95.7,'Ovation Sat':78.1,'Ovation RT':97.8,'Profit%':88.2,'Labor%':86.5,'COG+OP%':94.1,'Health':66.0,'Audit':32.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Lawrenceville',avg:83.21,kpis:{'Sunday GS':85.1,'Bad Review':85.6,'Ovation Sat':88.3,'Ovation RT':47.0,'Profit%':105.1,'Labor%':89.9,'COG+OP%':98.7,'Health':88.0,'Audit':81.0,'ID Check':50.0,'Missing Inv':'-'}}]},feb:{label:'Febrero 2026',weeks:'Wks 6–10',locations:[{name:'Sugar Hill',avg:96.33,kpis:{'Sunday GS':81.2,'Bad Review':92.5,'Ovation Sat':89.0,'Ovation RT':100.0,'Profit%':97.7,'Labor%':96.0,'COG+OP%':101.8,'Health':100.0,'Audit':97.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Cumming',avg:93.3,kpis:{'Sunday GS':89.2,'Bad Review':83.0,'Ovation Sat':85.5,'Ovation RT':98.2,'Profit%':92.8,'Labor%':95.0,'COG+OP%':101.3,'Health':85.0,'Audit':95.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Chamblee',avg:93.27,kpis:{'Sunday GS':76.5,'Bad Review':100.0,'Ovation Sat':86.0,'Ovation RT':99.8,'Profit%':104.4,'Labor%':97.5,'COG+OP%':100.5,'Health':90.0,'Audit':70.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Sandy Springs',avg:92.9,kpis:{'Sunday GS':87.5,'Bad Review':92.5,'Ovation Sat':85.0,'Ovation RT':97.4,'Profit%':99.0,'Labor%':97.1,'COG+OP%':96.5,'Health':79.0,'Audit':87.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Lawrenceville',avg:92.81,kpis:{'Sunday GS':83.2,'Bad Review':95.2,'Ovation Sat':88.5,'Ovation RT':93.1,'Profit%':96.7,'Labor%':93.7,'COG+OP%':101.8,'Health':'-','Audit':75.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Duluth',avg:91.5,kpis:{'Sunday GS':83.5,'Bad Review':85.0,'Ovation Sat':88.0,'Ovation RT':100.0,'Profit%':91.2,'Labor%':85.3,'COG+OP%':101.0,'Health':88.0,'Audit':85.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'West Midtown',avg:90.62,kpis:{'Sunday GS':73.2,'Bad Review':94.5,'Ovation Sat':78.0,'Ovation RT':100.0,'Profit%':98.7,'Labor%':97.9,'COG+OP%':101.9,'Health':82.0,'Audit':72.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Buckhead',avg:90.59,kpis:{'Sunday GS':84.5,'Bad Review':92.5,'Ovation Sat':86.5,'Ovation RT':94.5,'Profit%':90.3,'Labor%':95.0,'COG+OP%':100.5,'Health':73.0,'Audit':81.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Decatur',avg:89.03,kpis:{'Sunday GS':79.8,'Bad Review':70.0,'Ovation Sat':86.0,'Ovation RT':91.8,'Profit%':94.9,'Labor%':95.0,'COG+OP%':99.9,'Health':79.0,'Audit':86.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Beltline',avg:88.26,kpis:{'Sunday GS':73.5,'Bad Review':94.2,'Ovation Sat':84.0,'Ovation RT':75.0,'Profit%':92.3,'Labor%':92.7,'COG+OP%':99.8,'Health':76.0,'Audit':87.0,'ID Check':100.0,'Missing Inv':'-'}},{name:'Midtown',avg:85.44,kpis:{'Sunday GS':78.5,'Bad Review':86.0,'Ovation Sat':82.0,'Ovation RT':90.0,'Profit%':99.9,'Labor%':98.2,'COG+OP%':100.8,'Health':83.0,'Audit':78.0,'ID Check':50.0,'Missing Inv':'-'}}]},mar:{label:'Marzo 2026',weeks:'Wks 10–13',locations:[,{name:'Sugar Hill',avg:95.25,kpis:{'Sunday GS':85.9,'Bad Review':99.8,'Ovation Sat':89.9,'Ovation RT':100.0,'Profit%':92.1,'Labor%':94.7,'COG+OP%':92.3,'Health':92.0,'Audit':97.0,'ID Check':100.0,'Missing Inv':97.3}},{name:'Cumming',avg:93.79,kpis:{'Sunday GS':87.0,'Bad Review':84.4,'Ovation Sat':89.2,'Ovation RT':100.0,'Profit%':85.8,'Labor%':94.0,'COG+OP%':91.7,'Health':95.0,'Audit':95.0,'ID Check':100.0,'Missing Inv':96.0}},{name:'Duluth',avg:93.09,kpis:{'Sunday GS':86.8,'Bad Review':88.8,'Ovation Sat':86.6,'Ovation RT':98.6,'Profit%':94.3,'Labor%':87.6,'COG+OP%':93.8,'Health':99.0,'Audit':86.0,'ID Check':100.0,'Missing Inv':91.7}},{name:'Lawrenceville',avg:92.88,kpis:{'Sunday GS':85.5,'Bad Review':100.0,'Ovation Sat':88.9,'Ovation RT':92.2,'Profit%':95.7,'Labor%':93.2,'COG+OP%':93.2,'Health':86.0,'Audit':84.0,'ID Check':100.0,'Missing Inv':94.0}},{name:'Buckhead',avg:92.1,kpis:{'Sunday GS':85.2,'Bad Review':100.0,'Ovation Sat':89.6,'Ovation RT':100.0,'Profit%':93.3,'Labor%':95.8,'COG+OP%':92.8,'Health':68.5,'Audit':88.0,'ID Check':100.0,'Missing Inv':93.0}},{name:'Midtown',avg:91.24,kpis:{'Sunday GS':83.8,'Bad Review':96.9,'Ovation Sat':86.2,'Ovation RT':100.0,'Profit%':93.6,'Labor%':99.8,'COG+OP%':92.4,'Health':86.0,'Audit':75.0,'ID Check':100.0,'Missing Inv':92.0}},{name:'Chamblee',avg:90.72,kpis:{'Sunday GS':84.9,'Bad Review':87.1,'Ovation Sat':86.8,'Ovation RT':100.0,'Profit%':93.0,'Labor%':93.8,'COG+OP%':90.6,'Health':80.0,'Audit':84.0,'ID Check':100.0,'Missing Inv':94.3}},{name:'Sandy Springs',avg:89.15,kpis:{'Sunday GS':88.9,'Bad Review':94.4,'Ovation Sat':89.1,'Ovation RT':100.0,'Profit%':90.3,'Labor%':96.8,'COG+OP%':92.0,'Health':90.0,'Audit':85.0,'ID Check':25.0,'Missing Inv':96.0}},{name:'West Midtown',avg:88.4,kpis:{'Sunday GS':72.3,'Bad Review':100.0,'Ovation Sat':81.1,'Ovation RT':97.2,'Profit%':88.1,'Labor%':94.2,'COG+OP%':92.4,'Health':62.8,'Audit':85.0,'ID Check':100.0,'Missing Inv':93.3}},{name:'Beltline',avg:88.39,kpis:{'Sunday GS':79.7,'Bad Review':97.4,'Ovation Sat':86.2,'Ovation RT':87.3,'Profit%':90.2,'Labor%':92.6,'COG+OP%':91.9,'Health':70.5,'Audit':83.0,'ID Check':100.0,'Missing Inv':85.0}},{name:'Decatur',avg:88.19,kpis:{'Sunday GS':77.9,'Bad Review':90.2,'Ovation Sat':82.5,'Ovation RT':96.1,'Profit%':94.2,'Labor%':95.8,'COG+OP%':89.0,'Health':86.0,'Audit':76.0,'ID Check':100.0,'Missing Inv':88.3}}]}};
 const scLocHistory={'Midtown':{jan:88.02,feb:85.44,mar:91.24},'West Midtown':{jan:88.80,feb:90.62,mar:88.40},'Chamblee':{jan:91.97,feb:93.27,mar:90.72},'Sandy Springs':{jan:88.79,feb:92.90,mar:89.15},'Cumming':{jan:88.39,feb:93.30,mar:93.79},'Sugar Hill':{jan:88.19,feb:96.33,mar:95.25},'Buckhead':{jan:89.35,feb:90.59,mar:92.10},'Decatur':{jan:86.07,feb:89.03,mar:88.19},'Lawrenceville':{jan:83.21,feb:92.81,mar:92.88},'Beltline':{jan:83.51,feb:88.26,mar:88.39},'Duluth':{jan:91.06,feb:91.50,mar:93.09}};
-const scWeeklyData={'Midtown':{jan:{wk1:88.0,wk2:86.9,wk3:90.5,wk4:93.5,wk5:92.6},feb:{wk6:85.4,wk7:88.3,wk8:80.0,wk9:92.9,wk10:79.4},mar:{wk10:91.2,wk11:91.7,wk12:93.7,wk13:92.0}},'West Midtown':{jan:{wk1:88.8,wk2:88.4,wk3:90.9,wk4:93.1,wk5:85.7},feb:{wk6:90.6,wk7:87.5,wk8:87.3,wk9:90.6,wk10:90.7},mar:{wk10:88.4,wk11:89.8,wk12:85.2,wk13:90.9}},'Chamblee':{jan:{wk1:92.0,wk2:92.5,wk3:86.8,wk4:88.6,wk5:87.4},feb:{wk6:93.3,wk7:96.7,wk8:94.6,wk9:89.4,wk10:89.9},mar:{wk10:90.7,wk11:92.0,wk12:93.9,wk13:87.0}},'Sandy Springs':{jan:{wk1:88.8,wk2:86.1,wk3:76.5,wk4:96.0,wk5:92.3},feb:{wk6:92.9,wk7:91.7,wk8:95.5,wk9:89.0,wk10:93.5},mar:{wk10:89.2,wk11:93.6,wk12:79.6,wk13:93.4}},'Cumming':{jan:{wk1:88.4,wk2:87.4,wk3:91.2,wk4:84.9,wk5:85.5},feb:{wk6:93.3,wk7:95.2,wk8:95.7,wk9:88.1,wk10:87.2},mar:{wk10:93.8,wk11:81.9,wk12:95.0,wk13:95.5}},'Sugar Hill':{jan:{wk1:88.2,wk2:88.4,wk3:92.3,wk4:89.1,wk5:90.6},feb:{wk6:96.3,wk7:97.4,wk8:93.4,wk9:93.6,wk10:90.0},mar:{wk10:95.2,wk11:93.7,wk12:92.9,wk13:95.2}},'Buckhead':{jan:{wk1:89.3,wk2:89.8,wk3:93.8,wk4:87.6,wk5:85.1},feb:{wk6:90.6,wk7:88.8,wk8:89.3,wk9:94.3,wk10:95.3},mar:{wk10:92.1,wk11:90.5,wk12:92.9,wk13:92.3}},'Decatur':{jan:{wk1:86.1,wk2:80.0,wk3:90.1,wk4:87.0,wk5:89.3},feb:{wk6:89.0,wk7:87.2,wk8:88.6,wk9:86.2,wk10:88.7},mar:{wk10:88.2,wk11:88.9,wk12:86.3,wk13:91.1}},'Lawrenceville':{jan:{wk1:83.2,wk2:75.9,wk3:93.2,wk4:85.5,wk5:76.4},feb:{wk6:92.8,wk7:95.4,wk8:91.1,wk9:87.9,wk10:95.0},mar:{wk10:92.9,wk11:93.4,wk12:92.6,wk13:91.5}},'Beltline':{jan:{wk1:83.5,wk2:83.1,wk3:89.0,wk4:93.0,wk5:83.1},feb:{wk6:88.3,wk7:92.6,wk8:75.5,wk9:92.5,wk10:88.7},mar:{wk10:88.4,wk11:90.9,wk12:85.1,wk13:87.8}},'Duluth':{jan:{wk1:91.1,wk2:92.5,wk3:84.6,wk4:87.0,wk5:81.4},feb:{wk6:91.5,wk7:89.6,wk8:93.2,wk9:87.8,wk10:92.0},mar:{wk10:93.1,wk11:87.9,wk12:92.8,wk13:91.8}},'Woodstock':{jan:{},feb:{wk6:90.3,wk7:93.9,wk8:79.2,wk9:90.6,wk10:84.2},mar:{wk10:95.9,wk11:92.9,wk12:94.6,wk13:96.0}}};
+const scWeeklyData={'Midtown':{jan:{wk1:88.0,wk2:86.9,wk3:90.5,wk4:93.5,wk5:92.6},feb:{wk6:85.4,wk7:88.3,wk8:80.0,wk9:92.9,wk10:79.4},mar:{wk10:91.2,wk11:91.7,wk12:93.7,wk13:92.0}},'West Midtown':{jan:{wk1:88.8,wk2:88.4,wk3:90.9,wk4:93.1,wk5:85.7},feb:{wk6:90.6,wk7:87.5,wk8:87.3,wk9:90.6,wk10:90.7},mar:{wk10:88.4,wk11:89.8,wk12:85.2,wk13:90.9}},'Chamblee':{jan:{wk1:92.0,wk2:92.5,wk3:86.8,wk4:88.6,wk5:87.4},feb:{wk6:93.3,wk7:96.7,wk8:94.6,wk9:89.4,wk10:89.9},mar:{wk10:90.7,wk11:92.0,wk12:93.9,wk13:87.0}},'Sandy Springs':{jan:{wk1:88.8,wk2:86.1,wk3:76.5,wk4:96.0,wk5:92.3},feb:{wk6:92.9,wk7:91.7,wk8:95.5,wk9:89.0,wk10:93.5},mar:{wk10:89.2,wk11:93.6,wk12:79.6,wk13:93.4}},'Cumming':{jan:{wk1:88.4,wk2:87.4,wk3:91.2,wk4:84.9,wk5:85.5},feb:{wk6:93.3,wk7:95.2,wk8:95.7,wk9:88.1,wk10:87.2},mar:{wk10:93.8,wk11:81.9,wk12:95.0,wk13:95.5}},'Sugar Hill':{jan:{wk1:88.2,wk2:88.4,wk3:92.3,wk4:89.1,wk5:90.6},feb:{wk6:96.3,wk7:97.4,wk8:93.4,wk9:93.6,wk10:90.0},mar:{wk10:95.2,wk11:93.7,wk12:92.9,wk13:95.2}},'Buckhead':{jan:{wk1:89.3,wk2:89.8,wk3:93.8,wk4:87.6,wk5:85.1},feb:{wk6:90.6,wk7:88.8,wk8:89.3,wk9:94.3,wk10:95.3},mar:{wk10:92.1,wk11:90.5,wk12:92.9,wk13:92.3}},'Decatur':{jan:{wk1:86.1,wk2:80.0,wk3:90.1,wk4:87.0,wk5:89.3},feb:{wk6:89.0,wk7:87.2,wk8:88.6,wk9:86.2,wk10:88.7},mar:{wk10:88.2,wk11:88.9,wk12:86.3,wk13:91.1}},'Lawrenceville':{jan:{wk1:83.2,wk2:75.9,wk3:93.2,wk4:85.5,wk5:76.4},feb:{wk6:92.8,wk7:95.4,wk8:91.1,wk9:87.9,wk10:95.0},mar:{wk10:92.9,wk11:93.4,wk12:92.6,wk13:91.5}},'Beltline':{jan:{wk1:83.5,wk2:83.1,wk3:89.0,wk4:93.0,wk5:83.1},feb:{wk6:88.3,wk7:92.6,wk8:75.5,wk9:92.5,wk10:88.7},mar:{wk10:88.4,wk11:90.9,wk12:85.1,wk13:87.8}},'Duluth':{jan:{wk1:91.1,wk2:92.5,wk3:84.6,wk4:87.0,wk5:81.4},feb:{wk6:91.5,wk7:89.6,wk8:93.2,wk9:87.8,wk10:92.0},mar:{wk10:93.1,wk11:87.9,wk12:92.8,wk13:91.8}},feb:{wk6:90.3,wk7:93.9,wk8:79.2,wk9:90.6,wk10:84.2},mar:{wk10:95.9,wk11:92.9,wk12:94.6,wk13:96.0}},feb:{wk6:94.3,wk7:89.4,wk8:null,wk9:97.8,wk10:null},mar:{wk10:86.7,wk11:90.1,wk12:84.8,wk13:89.4}}};
 let scCurrentMonth='jan';
 let _scBuilt=false;
 function scCls(s){if(!s||s==='-'||s==='N/A'||isNaN(parseFloat(s)))return 'sc-gray';const v=parseFloat(s);if(v>=90)return 'sc-green';if(v>=87)return 'sc-yellow';if(v>=84)return 'sc-orange';return 'sc-red';}
 function scInlineStyle(s){if(!s||s==='-'||s==='N/A'||isNaN(parseFloat(s)))return '';const v=parseFloat(s);if(v>=90)return 'background:#166534;color:#ffffff;border-radius:4px;padding:2px 7px;font-weight:700;display:inline-block;font-size:.8rem;';if(v>=87)return 'background:#854d0e;color:#ffffff;border-radius:4px;padding:2px 7px;font-weight:700;display:inline-block;font-size:.8rem;';if(v>=84)return 'background:#9a3412;color:#ffffff;border-radius:4px;padding:2px 7px;font-weight:700;display:inline-block;font-size:.8rem;';return 'background:#7f1d1d;color:#ffffff;border-radius:4px;padding:2px 7px;font-weight:700;display:inline-block;font-size:.8rem;';}
 function scShowMonth(m,btn){scCurrentMonth=m;document.querySelectorAll('.sc-month-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');scRenderRanking();scRenderKpiTable();}
 function scRenderRanking(){const d=scData[scCurrentMonth];const s=[...d.locations].sort((a,b)=>parseFloat(b.avg)-parseFloat(a.avg));let h='';s.forEach((loc,i)=>{h+=`<div class="sc-rank-card ${scCls(loc.avg)}"><div class="sc-rank-num">#${i+1}</div><div class="sc-rank-name">${loc.name}</div><div class="sc-rank-score">${loc.avg}</div><div class="sc-rank-sub">${d.label}</div></div>`;});document.getElementById('sc-ranking').innerHTML=h;}
-function scRenderKpiTable(){const d=scData[scCurrentMonth];const keys=['Sunday GS','Bad Review','Ovation Sat','Ovation RT','Profit%','Labor%','COG+OP%','Health','Audit','ID Check','Missing Inv'];const keyLabels={'Sunday GS':'SUNDAY GS','Bad Review':'BAD REVIEW','Ovation Sat':'OVATION SAT','Ovation RT':'OVATION RT','Profit%':'PROFIT%','Labor%':'LABOR%','COG+OP%':'COG+OP%','Health':'HEALTH','Audit':'AUDIT','ID Check':'ID CHECK','Missing Inv':'MISSING INV'};let th='<tr><th style="text-align:left;">LOCATION</th>';keys.forEach(k=>th+='<th>'+keyLabels[k]+'</th>');th+='<th style="background:#0f2d4a;border-left:2px solid rgba(255,255,255,.2);">AVG SCORE</th></tr>';document.getElementById('sc-kpi-thead').innerHTML=th;const LOC_ORDER=['Midtown','West Midtown','Chamblee','Sandy Springs','Cumming','Sugar Hill','Buckhead','Decatur','Lawrenceville','Beltline','Duluth','Woodstock','Woodstock','Zocalo','Eclipse','Beltline'];const s=[...d.locations].sort((a,b)=>{const ai=LOC_ORDER.indexOf(a.name);const bi=LOC_ORDER.indexOf(b.name);return(ai===-1?99:ai)-(bi===-1?99:bi);});let tb='';s.forEach((loc)=>{const numIdx=LOC_ORDER.indexOf(loc.name);const num=numIdx>=0&&numIdx<12?'<span style="color:#64748b;font-size:.72rem;font-weight:600;margin-right:5px;">'+(numIdx+1)+'.</span>':'';tb+='<tr><td>'+num+loc.name+'</td>';keys.forEach(k=>{const v=loc.kpis[k]!==undefined?loc.kpis[k]:'-';const style=scInlineStyle(v);const isNum=v!=='-'&&v!=='N/A'&&!isNaN(parseFloat(v));tb+='<td>'+(style?'<span style="'+style+'">'+v+'</span>':(isNum?'<span style="color:#ffffff;font-weight:600;font-size:.82rem;">'+v+'</span>':'<span style="color:#475569;font-size:.8rem;">'+v+'</span>'))+'</td>';});const avgStyle=scInlineStyle(loc.avg);tb+='<td class="avg-col">'+(avgStyle?'<span style="'+avgStyle+'">'+loc.avg+'</span>':loc.avg)+'</td></tr>';});document.getElementById('sc-kpi-tbody').innerHTML=tb;}
+function scRenderKpiTable(){const d=scData[scCurrentMonth];const keys=['Sunday GS','Bad Review','Ovation Sat','Ovation RT','Profit%','Labor%','COG+OP%','Health','Audit','ID Check','Missing Inv'];const keyLabels={'Sunday GS':'SUNDAY GS','Bad Review':'BAD REVIEW','Ovation Sat':'OVATION SAT','Ovation RT':'OVATION RT','Profit%':'PROFIT%','Labor%':'LABOR%','COG+OP%':'COG+OP%','Health':'HEALTH','Audit':'AUDIT','ID Check':'ID CHECK','Missing Inv':'MISSING INV'};let th='<tr><th style="text-align:left;">LOCATION</th>';keys.forEach(k=>th+='<th>'+keyLabels[k]+'</th>');th+='<th style="background:#0f2d4a;border-left:2px solid rgba(255,255,255,.2);">AVG SCORE</th></tr>';document.getElementById('sc-kpi-thead').innerHTML=th;const LOC_ORDER=['Midtown','West Midtown','Chamblee','Sandy Springs','Cumming','Sugar Hill','Buckhead','Decatur','Lawrenceville','Beltline','Duluth','Woodstock','Zocalo','Eclipse','Beltline'];const s=[...d.locations].sort((a,b)=>{const ai=LOC_ORDER.indexOf(a.name);const bi=LOC_ORDER.indexOf(b.name);return(ai===-1?99:ai)-(bi===-1?99:bi);});let tb='';s.forEach((loc)=>{const numIdx=LOC_ORDER.indexOf(loc.name);const num=numIdx>=0&&numIdx<12?'<span style="color:#64748b;font-size:.72rem;font-weight:600;margin-right:5px;">'+(numIdx+1)+'.</span>':'';tb+='<tr><td>'+num+loc.name+'</td>';keys.forEach(k=>{const v=loc.kpis[k]!==undefined?loc.kpis[k]:'-';const style=scInlineStyle(v);const isNum=v!=='-'&&v!=='N/A'&&!isNaN(parseFloat(v));tb+='<td>'+(style?'<span style="'+style+'">'+v+'</span>':(isNum?'<span style="color:#ffffff;font-weight:600;font-size:.82rem;">'+v+'</span>':'<span style="color:#475569;font-size:.8rem;">'+v+'</span>'))+'</td>';});const avgStyle=scInlineStyle(loc.avg);tb+='<td class="avg-col">'+(avgStyle?'<span style="'+avgStyle+'">'+loc.avg+'</span>':loc.avg)+'</td></tr>';});document.getElementById('sc-kpi-tbody').innerHTML=tb;}
 function scPopulateLocSelect(){const sel=document.getElementById('sc-loc-select');if(sel.options.length>0)return;Object.keys(scLocHistory).forEach(loc=>{const o=document.createElement('option');o.value=loc;o.text=loc;sel.appendChild(o);});}
 function scShowLocHistory(){
   const sel=document.getElementById('sc-loc-select');
@@ -3823,7 +3624,7 @@ function renderP100K() {
   document.getElementById('p100k-week-label').textContent = 'Wk ' + w.week + ' · ' + w.dates;
   
   const LOC_ORDER_P100K = ['Midtown','West Midtown','Chamblee','Sandy Springs','Cumming',
-    'Sugar Hill','Buckhead','Decatur','Lawrenceville','Beltline','Duluth','Woodstock'];
+    'Sugar Hill','Buckhead','Decatur','Lawrenceville','Beltline','Duluth'];
   const LOC_KEY_P100K = {
     Midtown:'Midtown', 'West Midtown':'WestMidtown', Chamblee:'Chamblee',
     'Sandy Springs':'SandySprings', Cumming:'Cumming', 'Sugar Hill':'SugarHill',
