@@ -1,5 +1,6 @@
 node_modules/
 whatsapp-bridge/node_modules/
 *.log
+!memory/heartbeat.log
 .DS_Store
 credentials.md
