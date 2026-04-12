@@ -226,6 +226,7 @@ Reference file: `reports/APPROVED_FORMAT_REFERENCE.pdf`
 - **2026-04-10:** April 2026 Scorecard set as gold standard report format
 - **2026-04-10:** Daily report generator (`gen_daily_report.js`) built — Style 2 Clean Corporate
 - **2026-04-10:** Permanent memory system: LOLA-MEMORY.md + RECONNECT.md + keep-alive
+- **2026-04-12:** Woodstock added to Reviews tab · Mac Mini auto-restart configured (launchd com.lola.autostart)
 - **2026-04-09:** Last known good commit: `d8cc94702f5b`
 - **2026-04-07:** Week 14 review report finalized
 - **2026-04-02:** Scorecard payouts added; Ponce replaced by Beltline everywhere
