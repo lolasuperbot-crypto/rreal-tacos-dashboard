@@ -686,7 +686,7 @@
         <span style="font-size:1.1rem;">📄</span><span><div style="color:#94a3b8;font-size:.68rem;">WK 13 · Mar</div>Mar 23–29</span>
       </a>
       <a href="#" style="display:flex;align-items:center;gap:8px;background:#1e2a3a;border:1px solid #3b82f6;border-radius:8px;padding:8px 12px;text-decoration:none;color:#93c5fd;font-size:.78rem;font-weight:700;transition:background .15s;" onmouseover="this.style.background='#1e3a5f'" onmouseout="this.style.background='#1e2a3a'">
-        <span style="font-size:1.1rem;">📄</span><span><div style="color:#3b82f6;font-size:.68rem;font-weight:800;">WK 14 · Apr ★ LATEST</div>Mar 30–Apr 5</span>
+        <span style="font-size:1.1rem;">📄</span><span><div style="color:#3b82f6;font-size:.68rem;font-weight:800;">WK 14 · Apr</div>Mar 30–Apr 5</span>
       </a>
     </div>
   </div>
@@ -1240,7 +1240,8 @@
   </div>
 
   <div class="section-title">🚨 All Alerts</div>
-  <div class="alert info">ℹ️ <strong>Source: Weekly Resto Reviews Sheet · Wk14 (Mar 30–Apr 5):</strong> 22 bad reviews (all platforms). Decatur: 4 · Sandy Springs: 3 · Cumming: 3 · Midtown: 2 · Chamblee: 2 · Lawrenceville: 2 · Beltline: 2 · Duluth: 2 · Sugar Hill: 1 · West Midtown: 1.</div>
+  <div class="alert info">ℹ️ <strong>Source: Weekly Resto Reviews Sheet · Wk15 (Apr 6–Apr 12):</strong> 16 bad reviews (Google + Yelp). 🚨 Beltline: 8 · Midtown: 3 · West Midtown: 2 · Buckhead: 1 · Decatur: 1 · Lawrenceville: 1. Chamblee, Sandy Springs, Cumming, Sugar Hill, Duluth, Woodstock: 0 (clean week ✅). System avg: 0.85/100K.</div>
+  <div class="alert danger">🔴 <strong>Wk15 Alert — Beltline:</strong> 8 bad reviews (3.65/100K) — up from 2 reviews (0.95/100K) in Wk14. 4x spike in a single week. Requires immediate GM action and review response.</div>
   <div class="alert warning">🟡 <strong>Source: Marqii — Wk13:</strong> Beltline 4 bad reviews — 3 unanswered as of Mar 31. Requires immediate response.</div>
   <div class="alert warning">🟡 <strong>Source: Marqii — Wk13:</strong> Lawrenceville — 2 reviews from same guest (Abbey R.) about staff directing them to leave. Unresolved.</div>
   <div class="alert warning">🟡 <strong>Source: Marqii — Wk13:</strong> Decatur — customer complaint names staff (Anderson & Lauren) by name. <em>"terrible customer service"</em>.</div>
@@ -2127,6 +2128,33 @@ const LOCATION_ORDER = ["Midtown","West Midtown","Chamblee","Sandy Springs","Cum
 // food/service breakdown: Lola categorizes from Marqii review text each Monday.
 // themes.food / themes.service = actual complaint topics seen that week (with counts)
 const reviewsWeeks = [
+  {week:15,dates:"04/06–04/12",month:"April",
+   stars1:10,stars2:6,platforms:{google:14,yelp:2,uber:0},
+   foodTotal:5,serviceTotal:6,
+   themes:{
+     food:[
+       {emoji:"🍽️",topic:"Food quality / consistency",count:3,locs:"Beltline, Midtown, West Midtown",worst:{loc:"Beltline",stars:"⭐",quote:"Quality has noticeably dropped at this location. Food was lukewarm and portions seemed smaller than usual. Not the experience I expect from Rreal Tacos."}},
+       {emoji:"🌮",topic:"Order accuracy issues",count:2,locs:"Midtown, Decatur",worst:{loc:"Midtown",stars:"⭐",quote:"Got the wrong order and had to wait an extra 15 minutes for the correction. Staff didn't apologize. This shouldn't keep happening."}},
+     ],
+     service:[
+       {emoji:"😤",topic:"Poor guest experience / dismissive staff",count:4,locs:"Beltline (multiple)",worst:{loc:"Beltline",stars:"⭐",quote:"Waited almost 20 minutes without anyone acknowledging our table. When I flagged someone down they said our server would 'be right with us' — 10 more minutes passed. Completely unacceptable for the price we're paying."}},
+       {emoji:"⏳",topic:"Long wait / slow response",count:2,locs:"Beltline, Lawrenceville",worst:{loc:"Beltline",stars:"⭐",quote:"Service was extremely slow. Ordered drinks and food at the same time — drinks came out 25 minutes later than the food. No manager check-in the entire visit."}},
+     ]
+   },
+   locations:{
+    Midtown:      {reviews:3, stars1:2,stars2:1,sales:183294.38,laborPct:0,per100k:1.64,food:1,service:1},
+    WestMidtown:  {reviews:2, stars1:1,stars2:1,sales:136200.95,laborPct:0,per100k:1.47,food:1,service:1},
+    Chamblee:     {reviews:0, stars1:0,stars2:0,sales:122273.84,laborPct:0,per100k:0.00,food:0,service:0},
+    SandySprings: {reviews:0, stars1:0,stars2:0,sales:147516.32,laborPct:0,per100k:0.00,food:0,service:0},
+    Cumming:      {reviews:0, stars1:0,stars2:0,sales:69794.19, laborPct:0,per100k:0.00,food:0,service:0},
+    SugarHill:    {reviews:0, stars1:0,stars2:0,sales:94325.63, laborPct:0,per100k:0.00,food:0,service:0},
+    Buckhead:     {reviews:1, stars1:0,stars2:1,sales:142273.79,laborPct:0,per100k:0.70,food:0,service:1},
+    Decatur:      {reviews:1, stars1:1,stars2:0,sales:160863.78,laborPct:0,per100k:0.62,food:1,service:0},
+    Lawrenceville:{reviews:1, stars1:1,stars2:0,sales:224718.60,laborPct:0,per100k:0.45,food:0,service:1},
+    Beltline:     {reviews:8, stars1:6,stars2:2,sales:219207.79,laborPct:0,per100k:3.65,food:2,service:4},
+    Duluth:       {reviews:0, stars1:0,stars2:0,sales:130752.83,laborPct:0,per100k:0.00,food:0,service:0},
+    Woodstock:    {reviews:0, stars1:0,stars2:0,sales:161530.00,laborPct:0,per100k:0.00,food:0,service:0},
+   },total:16,avg100k:0.85},
   {week:14,dates:"03/30–04/05",month:"April",
    stars1:14,stars2:8,platforms:{google:17,yelp:2,uber:3},
    foodTotal:8,serviceTotal:7,
@@ -2344,7 +2372,7 @@ function initReviews() {
     const btn = document.createElement('button');
     btn.className = 'month-tab' + (i === 0 ? ' active' : '');
     if (i === 0) {
-      btn.innerHTML = 'Wk ' + w.week + ' · ' + w.dates + ' <span style="font-size:.65rem;background:#1d4ed8;color:#fff;padding:1px 5px;border-radius:6px;margin-left:3px;vertical-align:middle">LATEST</span>';
+      btn.innerHTML = 'Wk ' + w.week + ' · ' + w.dates + (w.week===15 ? ' <span style="font-size:.65rem;background:#1d4ed8;color:#fff;padding:1px 5px;border-radius:6px;margin-left:3px;vertical-align:middle">LATEST</span>' : '');
     } else {
       btn.textContent = 'Wk ' + w.week + ' · ' + w.dates;
     }
