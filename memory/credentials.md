@@ -54,6 +54,12 @@
   - Zocalo:        f22ccc48-ad68-304f-9bfc-12db9ebf960d
   - Eclipse Beltline: 79518d92-0160-35d8-be86-6d06f018ab8a
 
+## Gmail — lolasuperbot@gmail.com
+- **Email:** lolasuperbot@gmail.com
+- **Gmail App Password (Lola AI):** ujtu hhbh qhkf ilvi
+- **Use:** SMTP via nodemailer (service: gmail) for sending reports
+- **Added:** 2026-04-15
+
 ## Dashboard
 - **URL:** https://rrealtacos-dashboard.surge.sh
 - **PDF Server:** localhost:8765 (LaunchAgent: com.rrealtacos.pdfserver)
