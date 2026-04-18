@@ -1,0 +1,83 @@
+{
+  "date": "2026-04-17",
+  "generated_at": "2026-04-18T11:51:34.108Z",
+  "locations": {
+    "Midtown": {
+      "location": "Midtown",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "West Midtown": {
+      "location": "West Midtown",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Chamblee": {
+      "location": "Chamblee",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Sandy Springs": {
+      "location": "Sandy Springs",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Cumming": {
+      "location": "Cumming",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Sugar Hill": {
+      "location": "Sugar Hill",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Buckhead": {
+      "location": "Buckhead",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Decatur": {
+      "location": "Decatur",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Lawrenceville": {
+      "location": "Lawrenceville",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Beltline": {
+      "location": "Beltline",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Duluth": {
+      "location": "Duluth",
+      "date": "2026-04-17",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    }
+  }
+}
