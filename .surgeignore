@@ -1,1 +1,13 @@
-
+whatsapp-bridge
+.git
+memory
+scripts
+data
+playbooks
+reports
+*.py
+*.js
+*.log
+*.json
+*.pdf
+node_modules
