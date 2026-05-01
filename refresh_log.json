@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-05-01T13:07:42.426152-04:00",
-  "total_sales": 60075.0,
-  "total_checks": 1489,
+  "timestamp": "2026-05-01T14:37:39.672285-04:00",
+  "total_sales": 89334.28,
+  "total_checks": 2084,
   "new_audits": 0,
-  "deployed": true
+  "deployed": false
 }
