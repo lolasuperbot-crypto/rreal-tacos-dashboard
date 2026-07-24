@@ -1,0 +1,110 @@
+{
+  "date": "2026-07-23",
+  "generated_at": "2026-07-24T11:43:25.083Z",
+  "locations": {
+    "Midtown": {
+      "location": "Midtown",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "West Midtown": {
+      "location": "West Midtown",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Chamblee": {
+      "location": "Chamblee",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Sandy Springs": {
+      "location": "Sandy Springs",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Cumming": {
+      "location": "Cumming",
+      "date": "2026-07-23",
+      "status": "ON TIME",
+      "closing_time": null,
+      "manager_on_duty": null,
+      "sales_summary": null,
+      "staff_issues": null,
+      "customer_complaints": null,
+      "maintenance_needs": null,
+      "critical_incidents": null,
+      "notes": null,
+      "is_critical": false,
+      "has_maintenance": false,
+      "submitted_at": "2026-07-24T11:43:25.520Z"
+    },
+    "Sugar Hill": {
+      "location": "Sugar Hill",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Buckhead": {
+      "location": "Buckhead",
+      "date": "2026-07-23",
+      "status": "ON TIME",
+      "closing_time": null,
+      "manager_on_duty": null,
+      "sales_summary": null,
+      "staff_issues": null,
+      "customer_complaints": null,
+      "maintenance_needs": null,
+      "critical_incidents": null,
+      "notes": null,
+      "is_critical": false,
+      "has_maintenance": false,
+      "submitted_at": "2026-07-24T11:43:25.532Z"
+    },
+    "Decatur": {
+      "location": "Decatur",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Lawrenceville": {
+      "location": "Lawrenceville",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    },
+    "Beltline": {
+      "location": "Beltline",
+      "date": "2026-07-23",
+      "status": "ON TIME",
+      "closing_time": null,
+      "manager_on_duty": null,
+      "sales_summary": null,
+      "staff_issues": null,
+      "customer_complaints": null,
+      "maintenance_needs": null,
+      "critical_incidents": null,
+      "notes": null,
+      "is_critical": false,
+      "has_maintenance": false,
+      "submitted_at": "2026-07-24T11:43:25.933Z"
+    },
+    "Duluth": {
+      "location": "Duluth",
+      "date": "2026-07-23",
+      "status": "MISSING",
+      "is_critical": false,
+      "has_maintenance": false
+    }
+  }
+}
